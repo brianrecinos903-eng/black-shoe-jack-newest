@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://gciqq0ragkc4"]
+
+[ext_resource type="Script" uid="uid://dwpyhnkhfjc7l" path="res://enemies/cragoon.gd" id="1_ds4yr"]
+[ext_resource type="Texture2D" uid="uid://bxqsacuped6nh" path="res://enemies/Cragoon!-Sheet.png" id="2_cyx88"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykxfu"]
+atlas = ExtResource("2_cyx88")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqi31"]
+atlas = ExtResource("2_cyx88")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jverk"]
+atlas = ExtResource("2_cyx88")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fha5m"]
+atlas = ExtResource("2_cyx88")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbc73"]
+atlas = ExtResource("2_cyx88")
+region = Rect2(1024, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qcxu"]
+atlas = ExtResource("2_cyx88")
+region = Rect2(0, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jejns"]
+atlas = ExtResource("2_cyx88")
+region = Rect2(256, 256, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cj7mf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ykxfu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqi31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jverk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fha5m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbc73")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8qcxu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jejns")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cyx88"]
+size = Vector2(186, 138)
+
+[node name="Cragoon" type="CharacterBody2D" unique_id=2082878937]
+script = ExtResource("1_ds4yr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1119822914]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_cj7mf")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1926711728]
+position = Vector2(-3, 59)
+shape = SubResource("RectangleShape2D_cyx88")

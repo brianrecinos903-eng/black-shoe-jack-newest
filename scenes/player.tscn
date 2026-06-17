@@ -54,6 +54,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ur7pv"]
+size = Vector2(104, 88)
 
 [node name="Player" type="CharacterBody2D" unique_id=1517732702]
 collision_layer = 3
@@ -66,4 +67,8 @@ sprite_frames = SubResource("SpriteFrames_smehm")
 animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1025254512]
+position = Vector2(-4, 20)
 shape = SubResource("RectangleShape2D_ur7pv")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1415550353]
+zoom = Vector2(2, 2)

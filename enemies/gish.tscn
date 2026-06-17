@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://5vgm163kkxqw"]
+
+[ext_resource type="Script" uid="uid://bgjqlrjk7li2n" path="res://enemies/gish.gd" id="1_c1doh"]
+[ext_resource type="Texture2D" uid="uid://dj1wx3coskxou" path="res://enemies/Gish-Sheet.png" id="2_lku4d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhal3"]
+atlas = ExtResource("2_lku4d")
+region = Rect2(0, 160, 176, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okj8j"]
+atlas = ExtResource("2_lku4d")
+region = Rect2(176, 160, 176, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hesui"]
+atlas = ExtResource("2_lku4d")
+region = Rect2(352, 160, 176, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2qjb"]
+atlas = ExtResource("2_lku4d")
+region = Rect2(528, 160, 176, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsll3"]
+atlas = ExtResource("2_lku4d")
+region = Rect2(0, 320, 176, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7p5n8"]
+atlas = ExtResource("2_lku4d")
+region = Rect2(176, 320, 176, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkmgq"]
+atlas = ExtResource("2_lku4d")
+region = Rect2(352, 320, 176, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c1doh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rhal3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_okj8j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hesui")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2qjb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsll3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7p5n8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hkmgq")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lku4d"]
+size = Vector2(128, 144)
+
+[node name="Gish" type="CharacterBody2D" unique_id=847841096]
+script = ExtResource("1_c1doh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2111599325]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_c1doh")
+animation = &"idle"
+frame_progress = 0.474248
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=718588462]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_lku4d")
