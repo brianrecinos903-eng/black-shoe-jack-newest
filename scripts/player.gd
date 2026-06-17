@@ -1,15 +1,33 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const speed = 250.0
+const jump_velocity = -400.0
+var speed_mult = 1
+var speed_mult_max = 3
+var speed_mult_change = 0.01
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 
-
-func _ready() -> void:
-	anim.play("idle")
-
+func animate():
+	var velX = velocity.x
+	var velY = velocity.y
+	if velX != 0:
+		if velX > 0:
+			anim.scale = Vector2(1,1)
+		else:
+			anim.scale = Vector2(-1,1)
+		if speed_mult == 3:
+			anim.play("run")
+		elif speed_mult > 2.6:
+			anim.play("run")
+		elif speed_mult > 1.8:
+			anim.play("run")
+		elif speed_mult > 1:
+			anim.play("walk")
+	else:
+		speed_mult = 1
+		anim.play("idle")
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -18,14 +36,21 @@ func _physics_process(delta: float) -> void:
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+		velocity.y = jump_velocity
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("left", "right") 
 	if direction:
-		velocity.x = direction * SPEED
+		velocity.x = direction * speed * speed_mult
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, speed)
+		
+	#Speed Up
+	if Input.is_action_pressed("accelerate") and speed_mult < speed_mult_max:
+		speed_mult+=speed_mult_change
+	elif speed_mult > 1:
+		speed_mult-=speed_mult_change
+	
+	
+	animate()
 
 	move_and_slide()

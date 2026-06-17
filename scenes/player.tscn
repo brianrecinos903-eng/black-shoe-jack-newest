@@ -27,6 +27,70 @@ region = Rect2(704, 0, 176, 128)
 atlas = ExtResource("1_3vyb7")
 region = Rect2(880, 0, 176, 128)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8ls1"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(0, 128, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfm1y"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(176, 128, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fulsm"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(352, 128, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4r5pv"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(528, 128, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60mlk"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(704, 128, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4ail"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(880, 128, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a38lo"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(1056, 128, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ni07"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(1232, 128, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smehm"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(1056, 0, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ur7pv"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(1232, 0, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4r1p"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(1408, 0, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2wvv"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(1584, 0, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3v2ag"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(1760, 0, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jej6c"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(1936, 0, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1ej7"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(2112, 0, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oprun"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(2288, 0, 176, 128)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_smehm"]
 animations = [{
 "frames": [{
@@ -51,6 +115,64 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 0.65,
+"texture": SubResource("AtlasTexture_a8ls1")
+}, {
+"duration": 0.65,
+"texture": SubResource("AtlasTexture_qfm1y")
+}, {
+"duration": 0.65,
+"texture": SubResource("AtlasTexture_fulsm")
+}, {
+"duration": 0.65,
+"texture": SubResource("AtlasTexture_4r5pv")
+}, {
+"duration": 0.65,
+"texture": SubResource("AtlasTexture_60mlk")
+}, {
+"duration": 0.65,
+"texture": SubResource("AtlasTexture_i4ail")
+}, {
+"duration": 0.65,
+"texture": SubResource("AtlasTexture_a38lo")
+}, {
+"duration": 0.65,
+"texture": SubResource("AtlasTexture_4ni07")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.75,
+"texture": SubResource("AtlasTexture_smehm")
+}, {
+"duration": 0.75,
+"texture": SubResource("AtlasTexture_ur7pv")
+}, {
+"duration": 0.75,
+"texture": SubResource("AtlasTexture_y4r1p")
+}, {
+"duration": 0.75,
+"texture": SubResource("AtlasTexture_d2wvv")
+}, {
+"duration": 0.75,
+"texture": SubResource("AtlasTexture_3v2ag")
+}, {
+"duration": 0.75,
+"texture": SubResource("AtlasTexture_jej6c")
+}, {
+"duration": 0.75,
+"texture": SubResource("AtlasTexture_f1ej7")
+}, {
+"duration": 0.75,
+"texture": SubResource("AtlasTexture_oprun")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ur7pv"]
@@ -64,7 +186,8 @@ script = ExtResource("1_g2els")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2006722624]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_smehm")
-animation = &"idle"
+animation = &"run"
+frame_progress = 0.71510804
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1025254512]
 position = Vector2(-4, 20)
