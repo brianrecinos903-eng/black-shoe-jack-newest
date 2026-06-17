@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://0am1lt5kfxuf"]
+
+[ext_resource type="Script" uid="uid://bjic2e86uo78y" path="res://Bosses/termite_man.gd" id="1_xkjpb"]
+[ext_resource type="Texture2D" uid="uid://df3kxlfime5f7" path="res://Bosses/Termite_Man_Superhero!-Sheet.png" id="2_afqno"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ac5rf"]
+atlas = ExtResource("2_afqno")
+region = Rect2(0, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_goxw2"]
+atlas = ExtResource("2_afqno")
+region = Rect2(320, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3qm8"]
+atlas = ExtResource("2_afqno")
+region = Rect2(640, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xv5c8"]
+atlas = ExtResource("2_afqno")
+region = Rect2(960, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12pal"]
+atlas = ExtResource("2_afqno")
+region = Rect2(1280, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ydk4"]
+atlas = ExtResource("2_afqno")
+region = Rect2(1600, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mb3hq"]
+atlas = ExtResource("2_afqno")
+region = Rect2(0, 320, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3q3pc"]
+atlas = ExtResource("2_afqno")
+region = Rect2(320, 320, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6834"]
+atlas = ExtResource("2_afqno")
+region = Rect2(640, 320, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsp4i"]
+atlas = ExtResource("2_afqno")
+region = Rect2(960, 320, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkey1"]
+atlas = ExtResource("2_afqno")
+region = Rect2(1280, 320, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ta156"]
+atlas = ExtResource("2_afqno")
+region = Rect2(1600, 320, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7f2w"]
+atlas = ExtResource("2_afqno")
+region = Rect2(0, 640, 320, 320)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xkjpb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ac5rf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_goxw2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b3qm8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xv5c8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12pal")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ydk4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mb3hq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3q3pc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6834")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gsp4i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkey1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ta156")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o7f2w")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7se1p"]
+size = Vector2(200, 208)
+
+[node name="Termite-Man" type="CharacterBody2D" unique_id=1414919197]
+script = ExtResource("1_xkjpb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1788099799]
+texture_filter = 1
+position = Vector2(8, -96)
+sprite_frames = SubResource("SpriteFrames_xkjpb")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=908326111]
+position = Vector2(-4, -104)
+shape = SubResource("RectangleShape2D_7se1p")

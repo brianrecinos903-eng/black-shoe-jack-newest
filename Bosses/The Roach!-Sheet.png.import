@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://df3kxlfime5f7"
-path="res://.godot/imported/Termite_Man_Superhero!-Sheet.png-60acd390dbbef1e16de7d938290b0c36.ctex"
+uid="uid://bu6uhpsope3u5"
+path="res://.godot/imported/The Roach!-Sheet.png-9805d1896d5e42cf18ef48730a16a4a6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Termite_Man_Superhero!-Sheet.png"
-dest_files=["res://.godot/imported/Termite_Man_Superhero!-Sheet.png-60acd390dbbef1e16de7d938290b0c36.ctex"]
+source_file="res://Bosses/The Roach!-Sheet.png"
+dest_files=["res://.godot/imported/The Roach!-Sheet.png-9805d1896d5e42cf18ef48730a16a4a6.ctex"]
 
 [params]
 
