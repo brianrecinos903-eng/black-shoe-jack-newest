@@ -16,8 +16,10 @@ var SPRINT = false
 var RUSH = false
 var SLAM = false
 
-var bounces_left = 3
+var bounces_left_max = 3
+var bounces_left = bounces_left_max
 var down_left_to_bounce = 1 
+var bounce_direction:int 
 
 var key_press_delay = 0
 	
@@ -26,12 +28,12 @@ var key_press_delay = 0
 func animate():
 	var velX = velocity.x
 	var velY = velocity.y
-	if velX != 0:
+	if velX != 0 and not SLAM:
 		if velX > 0:
 			anim.scale = Vector2(1,1)
 		else:
 			anim.scale = Vector2(-1,1)
-		
+			
 		if speed_mult >= 3: #Rush
 			anim.play("rush")
 			RUSH=true
@@ -44,6 +46,8 @@ func animate():
 		elif speed_mult == 1: #Walk
 			anim.play("walk")
 			WALK=true
+	elif SLAM:
+		pass#ADD SLAM ANIMATION HERE
 	else:
 		speed_mult = 1
 		IDLE = true
@@ -74,27 +78,33 @@ func _physics_process(delta: float) -> void:
 		
 	
 	#Move
-	var direction := Input.get_axis("left", "right") 
+	var direction: int
+	if not SLAM==true:
+		direction = Input.get_axis("left", "right") 
+	elif SLAM:
+		direction = bounce_direction
 	if direction:
 		velocity.x = direction * speed * speed_mult
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.x = move_toward(velocity.x, 0, speed*speed_mult)
+	if not SLAM:
+		#Speed Up
+		if Input.is_action_pressed("accelerate") and speed_mult < speed_mult_max and is_on_floor():
+			speed_mult+=speed_mult_change
+		elif speed_mult > 1:
+			speed_mult-=(speed_mult_change/2)
 	
-	#Speed Up
-	if Input.is_action_pressed("accelerate") and speed_mult < speed_mult_max and is_on_floor():
-		speed_mult+=speed_mult_change
-	elif speed_mult > 1:
-		speed_mult-=(speed_mult_change/2)
-	
-	#Bounce
-	if Input.is_action_just_pressed("down") and not is_on_floor():
-		if down_left_to_bounce <= 0:
-			SLAM = true
-		elif key_press_delay<=0:
-			down_left_to_bounce-=1
-			key_press_delay = 1
-	elif is_on_floor():
-		down_left_to_bounce = 1
+		#Bounce
+		if Input.is_action_just_pressed("down") and not is_on_floor():
+			if down_left_to_bounce <= 0:
+				bounces_left = bounces_left_max
+				SLAM = true
+				bounce_direction = direction
+			elif key_press_delay<=0:
+				down_left_to_bounce-=1
+				key_press_delay = 1
+		elif is_on_floor():
+			down_left_to_bounce = 1
 	
 	animate()
 	
