@@ -31,6 +31,34 @@ region = Rect2(0, 256, 256, 256)
 atlas = ExtResource("2_cyx88")
 region = Rect2(256, 256, 256, 256)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxyb6"]
+atlas = ExtResource("2_cyx88")
+region = Rect2(256, 768, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4cm1"]
+atlas = ExtResource("2_cyx88")
+region = Rect2(512, 768, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_663e6"]
+atlas = ExtResource("2_cyx88")
+region = Rect2(768, 768, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6qu1"]
+atlas = ExtResource("2_cyx88")
+region = Rect2(1024, 768, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvoyh"]
+atlas = ExtResource("2_cyx88")
+region = Rect2(0, 1024, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wlje"]
+atlas = ExtResource("2_cyx88")
+region = Rect2(256, 1024, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1p6en"]
+atlas = ExtResource("2_cyx88")
+region = Rect2(512, 1024, 256, 256)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_cyx88"]
 atlas = ExtResource("2_cyx88")
 region = Rect2(1024, 256, 256, 256)
@@ -89,6 +117,32 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_kxyb6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4cm1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_663e6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6qu1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvoyh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wlje")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1p6en")
+}],
+"loop": 1,
+"name": &"stunned",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_cyx88")
 }, {
 "duration": 1.0,
@@ -123,9 +177,7 @@ script = ExtResource("1_ds4yr")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1119822914 groups=["enemy"]]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_cj7mf")
-animation = &"walk"
-frame = 4
-frame_progress = 0.077832036
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1926711728 groups=["enemy"]]
 position = Vector2(-2.5, 77.5)
