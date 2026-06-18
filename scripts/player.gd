@@ -49,6 +49,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = jump_velocity
 		jumping = true
 
+
 	var direction := Input.get_axis("left", "right") 
 	if direction:
 		velocity.x = direction * speed * speed_mult
