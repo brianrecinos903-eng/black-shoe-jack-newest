@@ -1131,11 +1131,11 @@ position = Vector2(104, -936)
 scale = Vector2(2, 2)
 texture = ExtResource("5_pc087")
 
-[node name="Cragoon" parent="." unique_id=2082878937 instance=ExtResource("6_apkv3")]
-position = Vector2(-322, -128)
-
 [node name="EdgeMarker" parent="." unique_id=1680477582 instance=ExtResource("7_omrgh")]
 position = Vector2(-704, -41)
 
 [node name="EdgeMarker2" parent="." unique_id=2058116843 instance=ExtResource("7_omrgh")]
 position = Vector2(567, -47)
+
+[node name="Cragoon" parent="." unique_id=2088169173 instance=ExtResource("6_apkv3")]
+position = Vector2(-378, -128)

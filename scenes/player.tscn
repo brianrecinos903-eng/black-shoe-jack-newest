@@ -408,6 +408,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ur7pv"]
 size = Vector2(104, 88)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(104, 49)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yf5fn"]
+size = Vector2(123, 88)
+
 [node name="Player" type="CharacterBody2D" unique_id=1517732702]
 z_index = 3
 collision_layer = 3
@@ -425,3 +431,22 @@ shape = SubResource("RectangleShape2D_ur7pv")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1415550353]
 zoom = Vector2(2, 2)
+
+[node name="SlamAtkArea" type="Area2D" parent="." unique_id=1612459812]
+collision_layer = 64
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlamAtkArea" unique_id=380484561]
+position = Vector2(-4, 68.5)
+shape = SubResource("RectangleShape2D_g4v7s")
+
+[node name="RunAtkArea" type="Area2D" parent="." unique_id=367250035]
+collision_layer = 64
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RunAtkArea" unique_id=700965705]
+position = Vector2(-4.5, 20)
+shape = SubResource("RectangleShape2D_yf5fn")
+
+[connection signal="body_entered" from="SlamAtkArea" to="." method="_on_slam_atk_area_body_entered"]
+[connection signal="body_entered" from="RunAtkArea" to="." method="_on_run_atk_area_body_entered"]

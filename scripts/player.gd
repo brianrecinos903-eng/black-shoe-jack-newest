@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 const speed = 250.0
 const jump_velocity = -630.0
 var speed_mult = 1
@@ -56,6 +55,10 @@ func animate():
 				anim.play("walk")
 				WALK=true
 	elif SLAM:
+		if velX > 0:
+			anim.scale = Vector2(1,1)
+		else:
+			anim.scale = Vector2(-1,1)
 		anim.play("slam")
 	else:
 		speed_mult = 1
@@ -65,6 +68,13 @@ func animate():
 func _physics_process(delta: float) -> void:
 	if key_press_delay >= 0:
 		key_press_delay-=1
+		
+	WALK = false
+	RUN = false
+	SPRINT = false
+	RUSH = false
+	JUMP = false
+	IDLE = false
 	
 	# Add the gravity.
 	if not is_on_floor():
@@ -122,10 +132,16 @@ func _physics_process(delta: float) -> void:
 	animate()
 	
 	move_and_slide()
-	
-	WALK = false
-	RUN = false
-	SPRINT = false
-	RUSH = false
-	JUMP = false
-	IDLE = false
+
+func _on_slam_atk_area_body_entered(body: Node2D) -> void:
+	if SLAM and body.is_in_group("enemy"):
+		body.kill()
+	elif not SLAM and body.is_in_group("enemy") and JUMP:
+		velocity.y = jump_velocity
+		body.stun()
+
+
+func _on_run_atk_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemy"):
+		if RUN or RUSH or SPRINT:
+			body.kill()

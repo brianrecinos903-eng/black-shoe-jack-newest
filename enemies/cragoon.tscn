@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://gciqq0ragkc4"]
 
-[ext_resource type="Script" uid="uid://dwpyhnkhfjc7l" path="res://enemies/cragoon.gd" id="1_ds4yr"]
+[ext_resource type="Script" uid="uid://dujqdbgnssp7n" path="res://enemies/cragoon.gd" id="1_ds4yr"]
 [ext_resource type="Texture2D" uid="uid://bxqsacuped6nh" path="res://enemies/Cragoon!-Sheet.png" id="2_cyx88"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ykxfu"]
@@ -171,16 +171,26 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cyx88"]
 size = Vector2(179, 101)
 
-[node name="Cragoon" type="CharacterBody2D" unique_id=2082878937 groups=["enemy"]]
+[node name="Cragoon" type="CharacterBody2D" unique_id=2088169173 node_paths=PackedStringArray("stunned_timer", "anim") groups=["enemy"]]
 collision_layer = 64
 collision_mask = 64
 script = ExtResource("1_ds4yr")
+stunned_timer = NodePath("StunnedTimer")
+anim = NodePath("AnimatedSprite2D")
+metadata/_custom_type_script = "uid://hijrt35chfkt"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1119822914 groups=["enemy"]]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_cj7mf")
-animation = &"idle"
+animation = &"stunned"
+frame = 5
+frame_progress = 0.68046457
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1926711728 groups=["enemy"]]
 position = Vector2(-2.5, 77.5)
 shape = SubResource("RectangleShape2D_cyx88")
+
+[node name="StunnedTimer" type="Timer" parent="." unique_id=1908240874]
+wait_time = 3.0
+
+[connection signal="timeout" from="StunnedTimer" to="." method="_on_skip_move_timer_timeout"]
