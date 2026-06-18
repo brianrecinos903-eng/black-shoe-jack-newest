@@ -187,7 +187,7 @@ script = ExtResource("1_g2els")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_smehm")
 animation = &"run"
-frame_progress = 0.71510804
+frame_progress = 0.77666354
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1025254512]
 position = Vector2(-4, 20)
