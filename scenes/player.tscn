@@ -383,9 +383,13 @@ script = ExtResource("1_g2els")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2006722624]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_smehm")
+<<<<<<< HEAD
 animation = &"jump"
 frame = 7
 frame_progress = 0.9305451
+=======
+animation = &"idle"
+>>>>>>> b98e06dece0a9c75e3e481f4a7bea84146d39033
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1025254512]
 position = Vector2(-4, 20)
