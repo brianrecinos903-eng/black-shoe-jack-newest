@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://ddarxkcofo6sh" path="res://art/All sea bar.png" id="3_nqcc7"]
 [ext_resource type="PackedScene" uid="uid://bxmlw6fl0lws0" path="res://scenes/player.tscn" id="4_nqcc7"]
 [ext_resource type="Texture2D" uid="uid://dy51vl5kgue2n" path="res://art/lobby_background_new.png" id="5_pc087"]
+[ext_resource type="PackedScene" uid="uid://gciqq0ragkc4" path="res://enemies/cragoon.tscn" id="6_apkv3"]
+[ext_resource type="PackedScene" uid="uid://du2u3v7pf6n0q" path="res://scenes/edge_marker.tscn" id="7_omrgh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nqcc7"]
 texture = ExtResource("2_q60fs")
@@ -1128,3 +1130,12 @@ z_index = -3
 position = Vector2(104, -936)
 scale = Vector2(2, 2)
 texture = ExtResource("5_pc087")
+
+[node name="Cragoon" parent="." unique_id=2082878937 instance=ExtResource("6_apkv3")]
+position = Vector2(-891, -128)
+
+[node name="EdgeMarker" parent="." unique_id=1680477582 instance=ExtResource("7_omrgh")]
+position = Vector2(-1273, -41)
+
+[node name="EdgeMarker2" parent="." unique_id=2058116843 instance=ExtResource("7_omrgh")]
+position = Vector2(-2, -47)

@@ -31,6 +31,11 @@ func animate():
 	if velY!=0 and not SLAM:
 		anim.play("jump")
 		JUMP = true
+		if velX != 0:
+			if velX > 0:
+				anim.scale = Vector2(1,1)
+			else:
+				anim.scale = Vector2(-1,1)
 	elif velX != 0 and not SLAM:
 		if velX > 0:
 			anim.scale = Vector2(1,1)

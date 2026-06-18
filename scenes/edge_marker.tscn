@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://du2u3v7pf6n0q"]
+
+[ext_resource type="Script" uid="uid://cqhiwsryv3ed8" path="res://scripts/edge_marker.gd" id="1_sokr4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(14, 83)
+
+[node name="EdgeMarker" type="Area2D" unique_id=1680477582]
+script = ExtResource("1_sokr4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1178584002]
+shape = SubResource("RectangleShape2D_g4v7s")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

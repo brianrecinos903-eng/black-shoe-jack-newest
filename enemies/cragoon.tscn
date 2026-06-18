@@ -115,18 +115,18 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cyx88"]
-size = Vector2(186, 138)
+size = Vector2(179, 101)
 
-[node name="Cragoon" type="CharacterBody2D" unique_id=2082878937]
+[node name="Cragoon" type="CharacterBody2D" unique_id=2082878937 groups=["enemy"]]
 script = ExtResource("1_ds4yr")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1119822914]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1119822914 groups=["enemy"]]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_cj7mf")
 animation = &"walk"
 frame = 4
 frame_progress = 0.077832036
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1926711728]
-position = Vector2(-3, 59)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1926711728 groups=["enemy"]]
+position = Vector2(-2.5, 77.5)
 shape = SubResource("RectangleShape2D_cyx88")
