@@ -62,7 +62,7 @@ func animate():
 			anim.play("walk")
 			WALK=true
 	elif SLAM:
-		pass#ADD SLAM ANIMATION HERE
+		anim.play("slam")
 	else:
 		speed_mult = 1
 		IDLE = true
