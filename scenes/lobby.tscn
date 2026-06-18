@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b07uogw01vjsc" path="res://art/All sea bar walls.png" id="2_q60fs"]
 [ext_resource type="Texture2D" uid="uid://ddarxkcofo6sh" path="res://art/All sea bar.png" id="3_nqcc7"]
 [ext_resource type="PackedScene" uid="uid://bxmlw6fl0lws0" path="res://scenes/player.tscn" id="4_nqcc7"]
+[ext_resource type="Texture2D" uid="uid://k8106ciccbit" path="res://art/shipyard_background.png" id="5_pc087"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nqcc7"]
 texture = ExtResource("2_q60fs")
@@ -1115,3 +1116,14 @@ tile_set = SubResource("TileSet_o1atq")
 
 [node name="Player" parent="." unique_id=1517732702 instance=ExtResource("4_nqcc7")]
 position = Vector2(-1217, -72)
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1699825389]
+scroll_scale = Vector2(0.8, 0.8)
+scroll_offset = Vector2(-64, 96)
+repeat_size = Vector2(2000, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=696183627]
+z_index = -4
+position = Vector2(-240, -528)
+texture = ExtResource("5_pc087")
