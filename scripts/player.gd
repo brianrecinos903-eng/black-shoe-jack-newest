@@ -24,10 +24,10 @@ func animate():
 		else:
 			anim.scale = Vector2(-1,1)
 		if speed_mult == 3: #Rush
-			anim.play("run")
+			anim.play("rush")
 			rushing=true
 		elif speed_mult > 2.6: #Spring
-			anim.play("run")
+			anim.play("sprint")
 			sprinting=true
 		elif speed_mult > 1.8: #Run
 			anim.play("run")
@@ -48,7 +48,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_velocity
 		jumping = true
-
+	
 
 	var direction := Input.get_axis("left", "right") 
 	if direction:
