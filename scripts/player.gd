@@ -6,21 +6,13 @@ const jump_velocity = -400.0
 var speed_mult = 1
 var speed_mult_max = 3
 var speed_mult_change = 0.01
-var slowing = false
 
-var IDLE = false
-var JUMP = false
-var WALK = false
-var RUN = false
-var SPRINT = false
-var RUSH = false
-var SLAM = false
+var jumping = false
+var walking = false
+var running = false
+var sprinting = false
+var rushing = false
 
-var bounces_left = 3
-var down_left_to_bounce = 1 
-
-var key_press_delay = 0
-	
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 
 func animate():
@@ -31,77 +23,50 @@ func animate():
 			anim.scale = Vector2(1,1)
 		else:
 			anim.scale = Vector2(-1,1)
-		
-		if speed_mult >= 3: #Rush
+		if speed_mult == 3: #Rush
 			anim.play("run")
-			RUSH=true
-		elif speed_mult > 2: #Spring
+			rushing=true
+		elif speed_mult > 2.6: #Spring
 			anim.play("run")
-			SPRINT=true
-		elif speed_mult > 1: #Run
+			sprinting=true
+		elif speed_mult > 1.8: #Run
 			anim.play("run")
-			RUN=true
-		elif speed_mult == 1: #Walk
+			running=true
+		elif speed_mult > 1: #Walk
 			anim.play("walk")
-			WALK=true
+			walking=true
 	else:
 		speed_mult = 1
-		IDLE = true
 		anim.play("idle")
 
 func _physics_process(delta: float) -> void:
-	if key_press_delay >= 0:
-		key_press_delay-=1
-	
 	# Add the gravity.
 	if not is_on_floor():
-		if SLAM:
-			down_left_to_bounce = 1
-			velocity += get_gravity() * delta * 2
-		else:
-			velocity += get_gravity() * delta
-	if is_on_floor() and SLAM:
-		if bounces_left > 0:
-			velocity = -1 * get_gravity() * delta * 45
-			bounces_left-=1
-		else:
-			SLAM = false
+		velocity += get_gravity() * delta
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_velocity
-		JUMP = true
-	
-	#Move
+		jumping = true
+
 	var direction := Input.get_axis("left", "right") 
 	if direction:
 		velocity.x = direction * speed * speed_mult
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
-	
+		
 	#Speed Up
-	if Input.is_action_pressed("accelerate") and speed_mult < speed_mult_max and is_on_floor():
+	if Input.is_action_pressed("accelerate") and speed_mult < speed_mult_max:
 		speed_mult+=speed_mult_change
 	elif speed_mult > 1:
 		speed_mult-=(speed_mult_change/2)
 	
-	#Bounce
-	if Input.is_action_just_pressed("down") and not is_on_floor():
-		if down_left_to_bounce <= 0:
-			SLAM = true
-		elif key_press_delay<=0:
-			down_left_to_bounce-=1
-			key_press_delay = 1
-	elif is_on_floor():
-		down_left_to_bounce = 1
 	
 	animate()
-	
-	move_and_slide()
-	
-	WALK = false
-	RUN = false
-	SPRINT = false
-	RUSH = false
-	JUMP = false
-	IDLE = false
+
+	move_and_slide() #Dont change these
+	walking = false
+	running = false
+	sprinting = false
+	rushing = false
+	jumping = false
