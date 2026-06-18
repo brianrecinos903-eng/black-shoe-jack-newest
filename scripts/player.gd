@@ -40,7 +40,6 @@ func animate():
 			anim.play("run")
 			SPRINT=true
 		elif speed_mult > 1: #Run
-=======
 		if speed_mult == 3: #Rush
 			anim.play("rush")
 			rushing=true
@@ -84,7 +83,6 @@ func _physics_process(delta: float) -> void:
 		JUMP = true
 	
 	#Move
-=======
 		jumping = true
 		anim.play("jump")
 
@@ -95,7 +93,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 	
-<<<<<<< HEAD
 =======
 		
 		
