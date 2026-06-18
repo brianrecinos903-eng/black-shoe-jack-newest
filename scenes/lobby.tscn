@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dy51vl5kgue2n" path="res://art/lobby_background_new.png" id="5_pc087"]
 [ext_resource type="PackedScene" uid="uid://gciqq0ragkc4" path="res://enemies/cragoon.tscn" id="6_apkv3"]
 [ext_resource type="PackedScene" uid="uid://du2u3v7pf6n0q" path="res://scenes/edge_marker.tscn" id="7_omrgh"]
+[ext_resource type="PackedScene" uid="uid://b6am1uxqlfmi0" path="res://scenes/checkpoint.tscn" id="8_ncsg4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nqcc7"]
 texture = ExtResource("2_q60fs")
@@ -1139,3 +1140,6 @@ position = Vector2(567, -47)
 
 [node name="Cragoon" parent="." unique_id=2088169173 instance=ExtResource("6_apkv3")]
 position = Vector2(-378, -128)
+
+[node name="Checkpoint" parent="." unique_id=939017722 instance=ExtResource("8_ncsg4")]
+position = Vector2(-1122, -63)

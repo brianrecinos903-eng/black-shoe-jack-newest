@@ -7,6 +7,7 @@ class_name enemy
 
 var direction:int = 1
 @export var speed:int = 300
+@export var atk_damage = 2
 
 var stunned = false
 

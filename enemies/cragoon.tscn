@@ -171,6 +171,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cyx88"]
 size = Vector2(179, 101)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(179, 87)
+
 [node name="Cragoon" type="CharacterBody2D" unique_id=2088169173 node_paths=PackedStringArray("stunned_timer", "anim") groups=["enemy"]]
 collision_layer = 64
 collision_mask = 64
@@ -193,4 +196,11 @@ shape = SubResource("RectangleShape2D_cyx88")
 [node name="StunnedTimer" type="Timer" parent="." unique_id=1908240874]
 wait_time = 3.0
 
+[node name="AttackArea" type="Area2D" parent="." unique_id=1247215163]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1446375454]
+position = Vector2(-2.5, 84.5)
+shape = SubResource("RectangleShape2D_g4v7s")
+
 [connection signal="timeout" from="StunnedTimer" to="." method="_on_skip_move_timer_timeout"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]

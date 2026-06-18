@@ -1,5 +1,11 @@
 extends CharacterBody2D
 
+var health:int = 3
+var alive = true
+@onready var death_timer: Timer = $DeathTimer
+
+var last_checkpoint:Vector2
+
 const speed = 250.0
 const jump_velocity = -630.0
 var speed_mult = 1
@@ -23,6 +29,9 @@ var bounce_direction:int
 var key_press_delay = 0
 	
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+
+func damage(amount:int):
+	health-=amount
 
 func animate():
 	var velX = velocity.x
@@ -68,70 +77,76 @@ func animate():
 func _physics_process(delta: float) -> void:
 	if key_press_delay >= 0:
 		key_press_delay-=1
-		
-	WALK = false
-	RUN = false
-	SPRINT = false
-	RUSH = false
-	JUMP = false
-	IDLE = false
 	
-	# Add the gravity.
-	if not is_on_floor():
-		if SLAM:
-			down_left_to_bounce = 1
-			velocity += get_gravity() * delta * 2
-		else:
-			velocity += get_gravity() * delta
-	if is_on_floor() and SLAM:
-		if bounces_left > 0:
-			velocity = -1 * get_gravity() * delta * 45
-			bounces_left-=1
-		else:
-			SLAM = false
+	if health <= 0 and alive:
+		alive = false
+		anim.play("death")
+		death_timer.start()
+	
+	if alive:
+		WALK = false
+		RUN = false
+		SPRINT = false
+		RUSH = false
+		JUMP = false
+		IDLE = false
+		
+		# Add the gravity.
+		if not is_on_floor():
+			if SLAM:
+				down_left_to_bounce = 1
+				velocity += get_gravity() * delta * 2
+			else:
+				velocity += get_gravity() * delta
+		if is_on_floor() and SLAM:
+			if bounces_left > 0:
+				velocity = -1 * get_gravity() * delta * 45
+				bounces_left-=1
+			else:
+				SLAM = false
 
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = jump_velocity
-		JUMP = true
+		# Handle jump.
+		if Input.is_action_just_pressed("jump") and is_on_floor():
+			velocity.y = jump_velocity
+			JUMP = true
+			
 		
-	
-	#Move
-	var direction: int
-	if not SLAM:
-		direction = Input.get_axis("left", "right") 
-	elif SLAM:
-		if Input.get_axis("left", "right") == 0:
-			direction = bounce_direction
-		else:
+		#Move
+		var direction: int
+		if not SLAM:
 			direction = Input.get_axis("left", "right") 
-			bounce_direction = direction
-	if direction:
-		velocity.x = direction * speed * speed_mult
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed*speed_mult)
-	if not SLAM:
-		#Speed Up
-		if Input.is_action_pressed("accelerate") and speed_mult < speed_mult_max and is_on_floor():
-			speed_mult+=speed_mult_change
-		elif speed_mult > 1:
-			speed_mult-=(speed_mult_change/2)
-	
-		#Bounce
-		if Input.is_action_just_pressed("down") and not is_on_floor():
-			if down_left_to_bounce <= 0:
-				bounces_left = bounces_left_max
-				SLAM = true
+		elif SLAM:
+			if Input.get_axis("left", "right") == 0:
+				direction = bounce_direction
+			else:
+				direction = Input.get_axis("left", "right") 
 				bounce_direction = direction
-			elif key_press_delay<=0:
-				down_left_to_bounce-=1
-				key_press_delay = 1
-		elif is_on_floor():
-			down_left_to_bounce = 1
-	
-	animate()
-	
-	move_and_slide()
+		if direction:
+			velocity.x = direction * speed * speed_mult
+		else:
+			velocity.x = move_toward(velocity.x, 0, speed*speed_mult)
+		if not SLAM:
+			#Speed Up
+			if Input.is_action_pressed("accelerate") and speed_mult < speed_mult_max and is_on_floor():
+				speed_mult+=speed_mult_change
+			elif speed_mult > 1:
+				speed_mult-=(speed_mult_change/2)
+		
+			#Bounce
+			if Input.is_action_just_pressed("down") and not is_on_floor():
+				if down_left_to_bounce <= 0:
+					bounces_left = bounces_left_max
+					SLAM = true
+					bounce_direction = direction
+				elif key_press_delay<=0:
+					down_left_to_bounce-=1
+					key_press_delay = 1
+			elif is_on_floor():
+				down_left_to_bounce = 1
+		
+		animate()
+		
+		move_and_slide()
 
 func _on_slam_atk_area_body_entered(body: Node2D) -> void:
 	if SLAM and body.is_in_group("enemy"):
@@ -145,3 +160,10 @@ func _on_run_atk_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
 		if RUN or RUSH or SPRINT:
 			body.kill()
+
+
+func _on_death_timer_timeout() -> void:
+	if not alive:
+		health = 3
+		self.global_position = last_checkpoint
+		alive = true
