@@ -50,17 +50,6 @@ func animate():
 			elif speed_mult == 1: #Walk
 				anim.play("walk")
 				WALK=true
-			anim.play("rush")
-			RUSH=true
-		elif speed_mult > 2: #Sprint
-			anim.play("sprint")
-			SPRINT=true
-		elif speed_mult > 1: #Run
-			anim.play("run")
-			RUN=true
-		elif speed_mult == 1: #Walk
-			anim.play("walk")
-			WALK=true
 	elif SLAM:
 		pass#ADD SLAM ANIMATION HERE
 	else:
