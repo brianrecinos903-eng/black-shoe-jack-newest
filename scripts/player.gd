@@ -48,13 +48,15 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_velocity
 		jumping = true
-	
+		anim.play("jump")
 
 	var direction := Input.get_axis("left", "right") 
 	if direction:
 		velocity.x = direction * speed * speed_mult
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
+	
+		
 		
 	#Speed Up
 	if Input.is_action_pressed("accelerate") and speed_mult < speed_mult_max:
