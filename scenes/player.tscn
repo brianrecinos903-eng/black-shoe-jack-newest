@@ -216,7 +216,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fjrip")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle",
 "speed": 6.0
 }, {
@@ -251,7 +251,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_u2ulf")
 }],
-"loop": true,
+"loop": 1,
 "name": &"jump",
 "speed": 8.0
 }, {
@@ -280,7 +280,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_oprun")
 }],
-"loop": true,
+"loop": 1,
 "name": &"run",
 "speed": 7.0
 }, {
@@ -309,7 +309,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4ni07")
 }],
-"loop": true,
+"loop": 1,
 "name": &"rush",
 "speed": 14.0
 }, {
@@ -338,7 +338,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wnwbv")
 }],
-"loop": true,
+"loop": 1,
 "name": &"sprint",
 "speed": 10.0
 }, {
@@ -367,7 +367,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_j2b1d")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk",
 "speed": 7.0
 }]
@@ -383,7 +383,9 @@ script = ExtResource("1_g2els")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2006722624]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_smehm")
-animation = &"sprint"
+animation = &"jump"
+frame = 7
+frame_progress = 0.9305451
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1025254512]
 position = Vector2(-4, 20)
