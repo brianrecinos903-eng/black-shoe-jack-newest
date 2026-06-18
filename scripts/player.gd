@@ -31,14 +31,24 @@ func animate():
 			anim.scale = Vector2(1,1)
 		else:
 			anim.scale = Vector2(-1,1)
+<<<<<<< HEAD
 		
 		if speed_mult >= 3: #Rush
-			anim.play("rush")
+			anim.play("run")
 			RUSH=true
-		elif speed_mult > 2: #Sprint
-			anim.play("sprint")
+		elif speed_mult > 2: #Spring
+			anim.play("run")
 			SPRINT=true
 		elif speed_mult > 1: #Run
+=======
+		if speed_mult == 3: #Rush
+			anim.play("rush")
+			rushing=true
+		elif speed_mult > 2.6: #Spring
+			anim.play("sprint")
+			sprinting=true
+		elif speed_mult > 1.8: #Run
+>>>>>>> 958fda81c7508e0369d49b44faec87a3dea652cf
 			anim.play("run")
 			RUN=true
 		elif speed_mult == 1: #Walk
@@ -70,15 +80,26 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_velocity
+<<<<<<< HEAD
 		JUMP = true
 	
 	#Move
+=======
+		jumping = true
+		anim.play("jump")
+
+>>>>>>> 958fda81c7508e0369d49b44faec87a3dea652cf
 	var direction := Input.get_axis("left", "right") 
 	if direction:
 		velocity.x = direction * speed * speed_mult
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 	
+<<<<<<< HEAD
+=======
+		
+		
+>>>>>>> 958fda81c7508e0369d49b44faec87a3dea652cf
 	#Speed Up
 	if Input.is_action_pressed("accelerate") and speed_mult < speed_mult_max and is_on_floor():
 		speed_mult+=speed_mult_change
