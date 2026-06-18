@@ -1119,7 +1119,7 @@ tile_map_data = PackedByteArray("AAD6/wAAAwAmACIAAAD7/wAAAwAmACIAAAD8/wAAAwAmACI
 tile_set = SubResource("TileSet_o1atq")
 
 [node name="Player" parent="." unique_id=1517732702 instance=ExtResource("4_nqcc7")]
-position = Vector2(-1216, -64)
+position = Vector2(-1217, -72)
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=6456256]
 scroll_scale = Vector2(0.8, 0.8)
