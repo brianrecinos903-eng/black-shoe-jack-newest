@@ -56,6 +56,5 @@ down={
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 environment/defaults/default_clear_color=Color(0.23655674, 0.19375247, 0.3616561, 1)

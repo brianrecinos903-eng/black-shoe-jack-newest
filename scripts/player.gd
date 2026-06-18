@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 const speed = 250.0
-const jump_velocity = -630.0
+const jump_velocity = -400.0
 var speed_mult = 1
 var speed_mult_max = 3
 var speed_mult_change = 0.01
@@ -28,27 +28,24 @@ var key_press_delay = 0
 func animate():
 	var velX = velocity.x
 	var velY = velocity.y
-	if velY!=0 and not SLAM:
-		anim.play("jump")
-		JUMP = true
-	elif velX != 0 and not SLAM:
+	if velX != 0 and not SLAM:
 		if velX > 0:
 			anim.scale = Vector2(1,1)
 		else:
 			anim.scale = Vector2(-1,1)
-		if not JUMP:
-			if speed_mult >= 2.9: #Rush
-				anim.play("rush")
-				RUSH=true
-			elif speed_mult > 2: #Sprint
-				anim.play("sprint")
-				SPRINT=true
-			elif speed_mult > 1: #Run
-				anim.play("run")
-				RUN=true
-			elif speed_mult == 1: #Walk
-				anim.play("walk")
-				WALK=true
+			
+		if speed_mult >= 3: #Rush
+			anim.play("rush")
+			RUSH=true
+		elif speed_mult > 2: #Sprint
+			anim.play("sprint")
+			SPRINT=true
+		elif speed_mult > 1: #Run
+			anim.play("run")
+			RUN=true
+		elif speed_mult == 1: #Walk
+			anim.play("walk")
+			WALK=true
 	elif SLAM:
 		pass#ADD SLAM ANIMATION HERE
 	else:
@@ -82,14 +79,10 @@ func _physics_process(delta: float) -> void:
 	
 	#Move
 	var direction: int
-	if not SLAM:
+	if not SLAM==true:
 		direction = Input.get_axis("left", "right") 
 	elif SLAM:
-		if Input.get_axis("left", "right") == 0:
-			direction = bounce_direction
-		else:
-			direction = Input.get_axis("left", "right") 
-			bounce_direction = direction
+		direction = bounce_direction
 	if direction:
 		velocity.x = direction * speed * speed_mult
 	else:

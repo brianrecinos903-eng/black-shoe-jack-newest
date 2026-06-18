@@ -31,34 +31,6 @@ region = Rect2(0, 256, 256, 256)
 atlas = ExtResource("2_cyx88")
 region = Rect2(256, 256, 256, 256)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cyx88"]
-atlas = ExtResource("2_cyx88")
-region = Rect2(1024, 256, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cj7mf"]
-atlas = ExtResource("2_cyx88")
-region = Rect2(0, 512, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a3cg7"]
-atlas = ExtResource("2_cyx88")
-region = Rect2(256, 512, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yisyg"]
-atlas = ExtResource("2_cyx88")
-region = Rect2(512, 512, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_10ire"]
-atlas = ExtResource("2_cyx88")
-region = Rect2(768, 512, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bvvex"]
-atlas = ExtResource("2_cyx88")
-region = Rect2(1024, 512, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8ctuv"]
-atlas = ExtResource("2_cyx88")
-region = Rect2(0, 768, 256, 256)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_cj7mf"]
 animations = [{
 "frames": [{
@@ -83,34 +55,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jejns")
 }],
-"loop": 1,
+"loop": true,
 "name": &"idle",
-"speed": 7.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cyx88")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cj7mf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_a3cg7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yisyg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_10ire")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bvvex")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8ctuv")
-}],
-"loop": 1,
-"name": &"walk",
 "speed": 7.0
 }]
 
@@ -123,8 +69,7 @@ script = ExtResource("1_ds4yr")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1119822914]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_cj7mf")
-animation = &"walk"
-frame_progress = 0.05070664
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1926711728]
 position = Vector2(-3, 59)
