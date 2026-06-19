@@ -506,7 +506,9 @@ script = ExtResource("1_g2els")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2006722624 groups=["player"]]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_smehm")
-animation = &"idle"
+animation = &"walk"
+frame = 3
+frame_progress = 0.7214976
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1025254512 groups=["player"]]
 visible = false
