@@ -21,7 +21,6 @@ var RUN = false
 var SPRINT = false
 var RUSH = false
 var SLAM = false
-var CROUCH = false
 var SLIDE = false
 var CRAWL = false
 
@@ -142,16 +141,10 @@ func x_movement(delta:float):
 		
 		#Crawling Sliding
 		if Input.is_action_just_pressed("down") and is_on_floor():
-			if velocity.x == 0:
-				if CROUCH:
-					CROUCH = false
-				else:
-					CROUCH = true
+			if direction != 0:
+				SLIDE = true
 			else:
-				if SLIDE:
-					SLIDE = false
-				else:
-					SLIDE = true
+				CRAWL = true
 
 func _physics_process(delta: float) -> void:
 	if key_press_delay >= 0:

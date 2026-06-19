@@ -258,6 +258,11 @@ region = Rect2(2288, 0, 176, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_smehm"]
 animations = [{
+"frames": [],
+"loop": 1,
+"name": &"crawl",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ha2mi")
@@ -429,6 +434,11 @@ animations = [{
 "name": &"slam",
 "speed": 5.0
 }, {
+"frames": [],
+"loop": 1,
+"name": &"slide",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_l71n6")
@@ -506,9 +516,7 @@ script = ExtResource("1_g2els")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2006722624 groups=["player"]]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_smehm")
-animation = &"walk"
-frame = 3
-frame_progress = 0.7214976
+animation = &"crawl"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1025254512 groups=["player"]]
 visible = false
