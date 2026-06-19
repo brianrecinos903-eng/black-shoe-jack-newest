@@ -29,6 +29,8 @@ var bounce_direction:int
 var key_press_delay = 0
 	
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+@onready var camera_2d: Camera2D = $Camera2D
+
 
 func damage(amount:int):
 	health-=amount
@@ -82,7 +84,6 @@ func _physics_process(delta: float) -> void:
 		alive = false
 		anim.play("death")
 		death_timer.start()
-	
 	if alive:
 		WALK = false
 		RUN = false
@@ -100,6 +101,8 @@ func _physics_process(delta: float) -> void:
 				velocity += get_gravity() * delta
 		if is_on_floor() and SLAM:
 			if bounces_left > 0:
+				if bounces_left == bounces_left_max:
+					camera_2d.camera_shake()
 				velocity = -1 * get_gravity() * delta * 45
 				bounces_left-=1
 			else:
