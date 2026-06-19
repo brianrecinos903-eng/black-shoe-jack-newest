@@ -185,9 +185,7 @@ metadata/_custom_type_script = "uid://hijrt35chfkt"
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1119822914 groups=["enemy"]]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_cj7mf")
-animation = &"stunned"
-frame = 5
-frame_progress = 0.68046457
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1926711728 groups=["enemy"]]
 position = Vector2(-2.5, 77.5)

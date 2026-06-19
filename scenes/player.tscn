@@ -27,6 +27,26 @@ region = Rect2(352, 896, 176, 128)
 atlas = ExtResource("1_3vyb7")
 region = Rect2(528, 896, 176, 128)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7ic4"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(704, 896, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_au7lq"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(880, 896, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nubpm"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(1056, 896, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ua5cf"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(1232, 896, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51ujp"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(1408, 896, 176, 128)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("1_3vyb7")
 region = Rect2(0, 0, 176, 128)
@@ -255,8 +275,23 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_42b1b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7ic4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_au7lq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nubpm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ua5cf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_51ujp")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"death",
 "speed": 7.0
 }, {
@@ -470,8 +505,7 @@ script = ExtResource("1_g2els")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2006722624 groups=["player"]]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_smehm")
-animation = &"death"
-frame_progress = 0.0015089181
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1025254512 groups=["player"]]
 visible = false
@@ -500,7 +534,8 @@ position = Vector2(-4.5, 20)
 shape = SubResource("RectangleShape2D_yf5fn")
 
 [node name="DeathTimer" type="Timer" parent="." unique_id=1918549939]
-wait_time = 3.0
+wait_time = 2.0
+one_shot = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="SlamAtkArea" to="." method="_on_slam_atk_area_body_entered"]
