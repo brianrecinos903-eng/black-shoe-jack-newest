@@ -506,7 +506,7 @@ script = ExtResource("1_g2els")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2006722624 groups=["player"]]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_smehm")
-animation = &"death"
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1025254512 groups=["player"]]
 visible = false
