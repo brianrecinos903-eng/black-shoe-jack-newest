@@ -31,7 +31,7 @@ func accelerate():
 		speed_Mult = speed_Mult_Max
 
 func decelerate():
-	speed_Mult -= speed_mult_incr/2
+	speed_Mult -= speed_mult_incr*2
 
 func take_dmg(amount:int):
 	health -= amount
@@ -127,15 +127,14 @@ func _physics_process(_delta: float) -> void:
 	if direction != 0:
 		velocity.x = direction * speed * speed_Mult
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		speed_Mult = 1
+		velocity.x = move_toward(velocity.x, 0, speed * speed_Mult)
 	
 	if Input.is_action_just_pressed("jump") && is_on_floor():
 		jump()
 	
 	if Input.is_action_pressed("accelerate"):
 		accelerate()
-	elif speed_Mult > 1:
+	elif speed_Mult > .5:
 		decelerate()
 	
 	if Input.is_action_just_pressed("down") && !is_on_floor() && !slam_Attack:
