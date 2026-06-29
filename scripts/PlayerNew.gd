@@ -12,6 +12,7 @@ var speed_Mult = 1
 var speed_Mult_Max = 3
 var speed_mult_incr = 0.01
 var direction: int = 1
+var friction = 1200.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var is_Jumping = false
@@ -127,12 +128,12 @@ func _physics_process(_delta: float) -> void:
 	if direction != 0:
 		velocity.x = direction * speed * speed_Mult
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed * speed_Mult)
+		velocity.x = move_toward(velocity.x, 0, friction * _delta)
 	
 	if Input.is_action_just_pressed("jump") && is_on_floor():
 		jump()
 	
-	if Input.is_action_pressed("accelerate"):
+	if Input.is_action_pressed("accelerate") && direction != 0:
 		accelerate()
 	elif speed_Mult > .5:
 		decelerate()
