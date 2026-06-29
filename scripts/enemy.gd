@@ -38,7 +38,9 @@ func enemy_base_movement():
 	velocity.x=direction*speed
 
 func _physics_process(_delta: float) -> void:
-	enemy_base_movement()
 	animate()
-	if !stunned:
+	if stunned:
+		return
+	else:
+		enemy_base_movement()
 		move_and_slide()
