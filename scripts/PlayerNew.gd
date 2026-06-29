@@ -68,6 +68,8 @@ func player_touched_enemy(enemy: Node2D) -> void:
 func kill_player():
 	death_timer.start()
 	alive = false
+	if slam_Attack:
+		slam_Attack = false
 	
 
 func death_timer_end() -> void:
