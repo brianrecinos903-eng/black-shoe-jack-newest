@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var health:int = 1
+var health:int = 3
 var alive = true
 @onready var death_timer: Timer = $DeathTimer
 
@@ -14,11 +14,7 @@ var speed_mult_incr = 0.01
 var direction: int = 1
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-var Idle = true
 var is_Jumping = false
-var is_Walking = false
-var is_Running = false
-var rush_Attack = false
 var slam_Attack = false
 
 var max_Bounces = 3
@@ -38,7 +34,7 @@ func decelerate():
 	speed_Mult -= speed_mult_incr/2
 
 func take_dmg(amount:int):
-	health-=amount
+	health -= amount
 	if health <= 0:
 		kill_player()
 
@@ -54,23 +50,20 @@ func slam_start():
 	bounces_Left = max_Bounces
 
 func slam_again():
-	if Input.is_action_pressed("down"):
+	if Input.is_action_pressed("down") or bounces_Left == 0:
 		slam_Attack = false
-	elif bounces_Left == 0:
-		slam_Attack = false
+		return
 	elif bounces_Left > 0:
 		velocity.y = jump_Velocity
 		bounces_Left -= 1
 
 func player_touched_enemy(enemy: Node2D) -> void:
 	if enemy.is_in_group("enemy"):
-		if slam_Attack:
+		if slam_Attack or speed_Mult > 2:
 			enemy.kill()
 		elif !slam_Attack && is_Jumping:
 			enemy.stun()
 			velocity.y = jump_Velocity
-		elif speed_Mult > 2:
-			enemy.kill()
 
 func kill_player():
 	death_timer.start()
@@ -134,7 +127,7 @@ func _physics_process(_delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		speed_Mult = 1
 	
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump") && is_on_floor():
 		jump()
 	
 	if Input.is_action_pressed("accelerate"):
