@@ -12,7 +12,7 @@ var speed_Mult = 1
 var speed_Mult_Max = 3
 var speed_mult_incr = 0.01
 var direction: int = 1
-var friction = 1200.0
+var friction = 2400.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var is_Jumping = false
