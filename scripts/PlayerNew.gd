@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var health:int = 1
+var health:int = 3
 var alive = true
 @onready var death_timer: Timer = $DeathTimer
 
