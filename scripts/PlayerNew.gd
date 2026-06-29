@@ -6,7 +6,7 @@ var alive = true
 
 var last_checkpoint:Vector2
 
-const speed = 750.0
+const speed = 250.0
 const jump_Velocity = -630.0
 var speed_Mult = 1
 var speed_Mult_Max = 3

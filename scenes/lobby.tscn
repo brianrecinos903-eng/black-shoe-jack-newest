@@ -1143,3 +1143,5 @@ position = Vector2(-1122, -63)
 
 [node name="Player" parent="." unique_id=413210945 instance=ExtResource("4_nqcc7")]
 position = Vector2(-1088, -64)
+collision_layer = 65
+collision_mask = 65
