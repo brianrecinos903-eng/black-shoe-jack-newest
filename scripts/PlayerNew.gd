@@ -6,7 +6,7 @@ var alive = true
 
 var last_checkpoint:Vector2
 
-const speed = 750.0
+const speed = 250.0
 const jump_Velocity = -630.0
 var speed_Mult = 1
 var speed_Mult_Max = 3
@@ -68,11 +68,12 @@ func player_touched_enemy(enemy: Node2D) -> void:
 func kill_player():
 	death_timer.start()
 	alive = false
-	self.global_position = last_checkpoint
+	
 
 func death_timer_end() -> void:
 	health = 3
 	alive = true
+	self.global_position = last_checkpoint
 	
 func animate():
 	if direction > 0:

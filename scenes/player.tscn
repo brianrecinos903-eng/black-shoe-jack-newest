@@ -504,7 +504,10 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fp1n2"]
 size = Vector2(64, 78)
 
-[node name="Player" type="CharacterBody2D" unique_id=413210945]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r0p3l"]
+size = Vector2(64, 78)
+
+[node name="Player" type="CharacterBody2D" unique_id=413210945 groups=["player"]]
 script = ExtResource("1_qhqgy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2035270482]
@@ -521,3 +524,13 @@ zoom = Vector2(2, 2)
 
 [node name="DeathTimer" type="Timer" parent="." unique_id=1295911180]
 one_shot = true
+
+[node name="AttackHitBox" type="Area2D" parent="." unique_id=577472217 groups=["player"]]
+position = Vector2(-63, -6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitBox" unique_id=654769101]
+position = Vector2(63, 31)
+shape = SubResource("RectangleShape2D_r0p3l")
+
+[connection signal="timeout" from="DeathTimer" to="." method="death_timer_end"]
+[connection signal="body_entered" from="AttackHitBox" to="." method="player_touched_enemy"]
