@@ -17,13 +17,14 @@ func animate():
 	else:
 		anim.scale = Vector2(-1,1)
 	
-	if not stunned:
+	if !stunned:
 		anim.play("walk")
 	else:
 		anim.play("stunned")
 
 func kill():
 	queue_free()
+
 func stun():
 	stunned = true
 	stunned_timer.start()
@@ -39,5 +40,5 @@ func enemy_base_movement():
 func _physics_process(_delta: float) -> void:
 	enemy_base_movement()
 	animate()
-	if not stunned:
+	if !stunned:
 		move_and_slide()
