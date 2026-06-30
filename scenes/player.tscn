@@ -3,6 +3,22 @@
 [ext_resource type="Texture2D" uid="uid://hggfb20qqf0i" path="res://art/Cap'n_Jackpine_mackeral_new_and_improved-Sheet.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://ddcvtpoapeaim" path="res://scripts/PlayerNew.gd" id="1_qhqgy"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjrip"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(1936, 768, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smehm"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(2112, 768, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fuw3a"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(2288, 768, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8txt3"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(0, 896, 176, 128)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_apa73"]
 atlas = ExtResource("1_3vyb7")
 region = Rect2(1232, 896, 176, 128)
@@ -187,6 +203,30 @@ region = Rect2(2288, 768, 176, 128)
 atlas = ExtResource("1_3vyb7")
 region = Rect2(0, 896, 176, 128)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2w11d"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(176, 896, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_770dr"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(352, 896, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8f1cb"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(528, 896, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdulj"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(704, 896, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vau08"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(880, 896, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsb7e"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(1056, 896, 176, 128)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_md1ol"]
 atlas = ExtResource("1_3vyb7")
 region = Rect2(1408, 128, 176, 128)
@@ -257,6 +297,23 @@ region = Rect2(2288, 0, 176, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6jhai"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjrip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smehm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fuw3a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8txt3")
+}],
+"loop": 1,
+"name": &"crouch",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_apa73")
@@ -423,6 +480,29 @@ animations = [{
 }],
 "loop": 1,
 "name": &"slam",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2w11d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_770dr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8f1cb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdulj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vau08")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsb7e")
+}],
+"loop": 1,
+"name": &"slide",
 "speed": 5.0
 }, {
 "frames": [{
