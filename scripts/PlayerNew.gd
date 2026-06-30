@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var health:int = 3
+var health:int = 1
 var alive = true
 @onready var death_timer: Timer = $DeathTimer
 
@@ -35,9 +35,12 @@ func decelerate():
 	speed_Mult -= speed_mult_incr*2
 
 func take_dmg(amount:int):
+	if slam_Attack or speed_Mult >= 2:
+		return
 	health -= amount
 	if health <= 0:
 		kill_player()
+	
 
 func jump():
 	if !is_Jumping && !slam_Attack:
@@ -60,7 +63,7 @@ func slam_again():
 
 func player_touched_enemy(enemy: Node2D) -> void:
 	if enemy.is_in_group("enemy"):
-		if slam_Attack or speed_Mult > 2:
+		if slam_Attack or speed_Mult >= 2:
 			enemy.kill()
 		elif !slam_Attack && is_Jumping:
 			enemy.stun()
