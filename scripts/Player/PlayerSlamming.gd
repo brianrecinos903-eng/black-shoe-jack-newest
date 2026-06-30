@@ -5,7 +5,7 @@ func enter() -> void:
 	player.bounces_left = player.max_bounces
 
 func physics_update(delta: float) -> void:
-	player.apply_gravity(delta)
+	player.apply_fall(delta)
 	player.apply_horizontal_movement()
 
 	if player.is_on_floor():

@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://0c3jvo44v0k8" path="res://scripts/Player/PlayerJumping.gd" id="6_jej6c"]
 [ext_resource type="Script" uid="uid://lr72p6uqf7jk" path="res://scripts/Player/PlayerSlamming.gd" id="8_oprun"]
 [ext_resource type="Script" uid="uid://qws78eurfp2j" path="res://scripts/Player/PlayerIdle.gd" id="9_a8ls1"]
+[ext_resource type="Script" uid="uid://bak2y3ap2h1he" path="res://scripts/Player/PlayerFalling.gd" id="9_ur7pv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_apa73"]
 atlas = ExtResource("1_3vyb7")
@@ -529,25 +530,23 @@ shape = SubResource("RectangleShape2D_r0p3l")
 script = ExtResource("3_y4r1p")
 initial_state = NodePath("Idle")
 
-[node name="Death" type="Node" parent="StateMachine" unique_id=1637866031 node_paths=PackedStringArray("player")]
+[node name="Death" type="Node" parent="StateMachine" unique_id=1637866031]
 script = ExtResource("4_d2wvv")
-player = NodePath("../..")
 
-[node name="Move" type="Node" parent="StateMachine" unique_id=1989659830 node_paths=PackedStringArray("player")]
+[node name="Move" type="Node" parent="StateMachine" unique_id=1989659830]
 script = ExtResource("5_3v2ag")
-player = NodePath("../..")
 
-[node name="Jump" type="Node" parent="StateMachine" unique_id=645013472 node_paths=PackedStringArray("player")]
+[node name="Jump" type="Node" parent="StateMachine" unique_id=645013472]
 script = ExtResource("6_jej6c")
-player = NodePath("../..")
 
-[node name="Slam" type="Node" parent="StateMachine" unique_id=1265901013 node_paths=PackedStringArray("player")]
+[node name="Slam" type="Node" parent="StateMachine" unique_id=1265901013]
 script = ExtResource("8_oprun")
-player = NodePath("../..")
 
-[node name="Idle" type="Node" parent="StateMachine" unique_id=686660641 node_paths=PackedStringArray("player")]
+[node name="Idle" type="Node" parent="StateMachine" unique_id=686660641]
 script = ExtResource("9_a8ls1")
-player = NodePath("../..")
+
+[node name="Fall" type="Node" parent="StateMachine" unique_id=641053761]
+script = ExtResource("9_ur7pv")
 
 [connection signal="timeout" from="DeathTimer" to="." method="death_timer_end"]
 [connection signal="body_entered" from="AttackHitBox" to="." method="player_touched_enemy"]

@@ -28,3 +28,6 @@ func transition_to(new_state: String):
 	current_state.exit()
 	current_state = states[new_state]
 	current_state.enter()
+
+func _unhandled_input(event: InputEvent) -> void:
+	current_state.handle_input(event)
