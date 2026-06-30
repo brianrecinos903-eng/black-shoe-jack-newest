@@ -12,6 +12,7 @@ var direction: int = 1
 
 @export_subgroup("Vertical Movement")
 @export var jump_velocity: float = -630.0
+@export var uber_jump_velocity: float = -1000.0
 @export_range(0.0,2.0) var gravity_scale := 1.0
 @export_range(0.0,2.0) var jump_gravity_scale := 0.8
 @export_range(0.0,2.0) var fall_gravity_scale := 1.5

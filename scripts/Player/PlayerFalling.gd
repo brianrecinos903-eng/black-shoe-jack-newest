@@ -13,6 +13,7 @@ func physics_update(delta):
 	player.apply_speed_input()
 
 
+
 	if Input.is_action_just_pressed("down"):
 		state_machine.transition_to("Slam")
 		return
