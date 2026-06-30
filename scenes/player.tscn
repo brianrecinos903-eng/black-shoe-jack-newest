@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://hggfb20qqf0i" path="res://art/Cap'n_Jackpine_mackeral_new_and_improved-Sheet.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://ddcvtpoapeaim" path="res://scripts/PlayerNew.gd" id="1_qhqgy"]
+[ext_resource type="Script" uid="uid://dd3bpgmk1o0uq" path="res://scripts/PlayerAnimations.gd" id="3_qhqgy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fjrip"]
 atlas = ExtResource("1_3vyb7")
@@ -579,7 +580,12 @@ script = ExtResource("1_qhqgy")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2035270482]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_6jhai")
+<<<<<<< HEAD
 animation = &"idle"
+script = ExtResource("3_qhqgy")
+=======
+animation = &"jump"
+>>>>>>> c3b7e4f1f8a022e289d30653a149127fb71815c3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=761622445]
 position = Vector2(0, 25)

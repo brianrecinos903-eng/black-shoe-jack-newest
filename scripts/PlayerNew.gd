@@ -11,35 +11,52 @@ const jump_Velocity = -630.0
 var speed_Mult = 1
 var speed_Mult_Max = 3
 var speed_mult_incr = 0.01
-var direction: int = 1
+var direction: int = 0
+var friction = 2500
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var is_Jumping = false
+var is_Crouching = false
+var is_Sliding = false
 var slam_Attack = false
 
 var max_Bounces = 3
 var bounces_Left = max_Bounces
 
-@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var camera_2d: Camera2D = $Camera2D
 
 
 func accelerate():
-	if !slam_Attack:
-		speed_Mult += speed_mult_incr 
+	speed_Mult += speed_mult_incr 
 	if speed_Mult > speed_Mult_Max:
 		speed_Mult = speed_Mult_Max
 
-func decelerate():
-	speed_Mult -= speed_mult_incr/2
+func decelerate(amount: int):
+	speed_Mult -= speed_mult_incr * 5 * amount
 
 func take_dmg(amount:int):
+	if slam_Attack or speed_Mult >= 2:
+		return
 	health -= amount
+	
 	if health <= 0:
 		kill_player()
 
+func crouch():
+	if is_Sliding:
+		is_Sliding = false
+	speed_Mult = .2
+	is_Crouching = true
+
+func stand_up():
+	is_Crouching = false
+
+func slide():
+	speed_Mult -= speed_mult_incr * 2
+	is_Sliding = true
+
 func jump():
-	if !is_Jumping && !slam_Attack:
+	if !is_Jumping:
 		is_Jumping = true
 		velocity.y = jump_Velocity
 
@@ -59,7 +76,7 @@ func slam_again():
 
 func player_touched_enemy(enemy: Node2D) -> void:
 	if enemy.is_in_group("enemy"):
-		if slam_Attack or speed_Mult > 2:
+		if slam_Attack or speed_Mult >= 2:
 			enemy.kill()
 		elif !slam_Attack && is_Jumping:
 			enemy.stun()
@@ -70,46 +87,12 @@ func kill_player():
 	alive = false
 	if slam_Attack:
 		slam_Attack = false
-	
 
 func death_timer_end() -> void:
 	health = 3
 	alive = true
 	self.global_position = last_checkpoint
 	
-func animate():
-	if direction > 0:
-			anim.scale = Vector2(1,1)
-	elif direction < 0:
-		anim.scale = Vector2(-1,1)
-
-
-	if !alive:
-		anim.play("death")
-	
-	elif slam_Attack:
-		anim.play("slam")
-	
-	elif is_Jumping:
-		anim.play("jump")
-	
-	elif direction == 0:
-		anim.play("idle")
-	else:
-		if speed_Mult >= 2.9:
-			anim.play("rush")
-		
-		elif speed_Mult > 2:
-			anim.play("sprint")
-		
-		elif speed_Mult > 1:
-			anim.play("run")
-		
-		else:
-			anim.play("walk")
-
-func _process(_delta) -> void:
-	animate()
 
 func _physics_process(_delta: float) -> void:
 	
@@ -125,23 +108,34 @@ func _physics_process(_delta: float) -> void:
 	
 	direction = Input.get_axis("left", "right")
 	if direction != 0:
-		velocity.x = direction * speed * speed_Mult
+		var target_Velocity = direction * speed * speed_Mult
+		velocity.x = move_toward(velocity.x, target_Velocity, friction * _delta)
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		speed_Mult = 1
+		velocity.x = move_toward(velocity.x, 0, friction * 2 * _delta)
 	
-	if Input.is_action_just_pressed("jump") && is_on_floor():
-		jump()
-	
-	if Input.is_action_pressed("accelerate"):
-		accelerate()
-	elif speed_Mult > 1:
-		decelerate()
-	
-	if Input.is_action_just_pressed("down") && !is_on_floor() && !slam_Attack:
-		slam_start()
-	
-	if slam_Attack && is_on_floor():
-		slam_again()
+	if is_on_floor():
+
+		if slam_Attack:
+			slam_again()
+
+		elif Input.is_action_pressed("jump"):
+			jump()
+
+		elif Input.is_action_pressed("down"):
+			if speed_Mult > 1.5:
+				slide()
+			else:
+				crouch()
+
+		elif Input.is_action_pressed("accelerate") or speed_Mult <.65:
+			if velocity.x != 0 and !is_on_wall():
+				accelerate()
+			elif speed_Mult > .75:
+				decelerate(50)
+		elif speed_Mult > .675:
+			decelerate(1)
+	else:
+		if Input.is_action_just_pressed("down"):
+			slam_start()
 	
 	move_and_slide()
