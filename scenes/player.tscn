@@ -1,7 +1,13 @@
 [gd_scene format=3 uid="uid://bpmvu08481i1c"]
 
 [ext_resource type="Texture2D" uid="uid://hggfb20qqf0i" path="res://art/Cap'n_Jackpine_mackeral_new_and_improved-Sheet.png" id="1_3vyb7"]
-[ext_resource type="Script" uid="uid://ddcvtpoapeaim" path="res://scripts/PlayerNew.gd" id="1_qhqgy"]
+[ext_resource type="Script" uid="uid://diibimr70041o" path="res://scripts/Player/PlayerProperties.gd" id="1_ur7pv"]
+[ext_resource type="Script" uid="uid://do1i5qvqaxghh" path="res://scripts/Misc/StateMachine.gd" id="3_y4r1p"]
+[ext_resource type="Script" uid="uid://c4nx2h8vfwn38" path="res://scripts/Player/PlayerDeath.gd" id="4_d2wvv"]
+[ext_resource type="Script" uid="uid://c13xaec8p1vxg" path="res://scripts/Player/PlayerMovement.gd" id="5_3v2ag"]
+[ext_resource type="Script" uid="uid://0c3jvo44v0k8" path="res://scripts/Player/PlayerJumping.gd" id="6_jej6c"]
+[ext_resource type="Script" uid="uid://lr72p6uqf7jk" path="res://scripts/Player/PlayerSlamming.gd" id="8_oprun"]
+[ext_resource type="Script" uid="uid://qws78eurfp2j" path="res://scripts/Player/PlayerIdle.gd" id="9_a8ls1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_apa73"]
 atlas = ExtResource("1_3vyb7")
@@ -494,7 +500,7 @@ size = Vector2(64, 78)
 size = Vector2(64, 78)
 
 [node name="Player" type="CharacterBody2D" unique_id=413210945 groups=["player"]]
-script = ExtResource("1_qhqgy")
+script = ExtResource("1_ur7pv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2035270482]
 texture_filter = 1
@@ -518,6 +524,30 @@ collision_mask = 64
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitBox" unique_id=654769101]
 position = Vector2(63, 31)
 shape = SubResource("RectangleShape2D_r0p3l")
+
+[node name="StateMachine" type="Node" parent="." unique_id=1263486853 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_y4r1p")
+initial_state = NodePath("Idle")
+
+[node name="Death" type="Node" parent="StateMachine" unique_id=1637866031 node_paths=PackedStringArray("player")]
+script = ExtResource("4_d2wvv")
+player = NodePath("../..")
+
+[node name="Move" type="Node" parent="StateMachine" unique_id=1989659830 node_paths=PackedStringArray("player")]
+script = ExtResource("5_3v2ag")
+player = NodePath("../..")
+
+[node name="Jump" type="Node" parent="StateMachine" unique_id=645013472 node_paths=PackedStringArray("player")]
+script = ExtResource("6_jej6c")
+player = NodePath("../..")
+
+[node name="Slam" type="Node" parent="StateMachine" unique_id=1265901013 node_paths=PackedStringArray("player")]
+script = ExtResource("8_oprun")
+player = NodePath("../..")
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=686660641 node_paths=PackedStringArray("player")]
+script = ExtResource("9_a8ls1")
+player = NodePath("../..")
 
 [connection signal="timeout" from="DeathTimer" to="." method="death_timer_end"]
 [connection signal="body_entered" from="AttackHitBox" to="." method="player_touched_enemy"]
