@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var health:int = 1
+var health:int = 3
 var alive = true
 @onready var death_timer: Timer = $DeathTimer
 
@@ -12,11 +12,13 @@ var speed_Mult = 1
 var speed_Mult_Max = 3
 var speed_mult_incr = 0.01
 var direction: int = 1
-var friction = 2400.0
+var friction = 5000
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var is_Jumping = false
 var slam_Attack = false
+var is_Crouching = false
+var is_Sliding = false
 
 var max_Bounces = 3
 var bounces_Left = max_Bounces
@@ -32,15 +34,23 @@ func accelerate():
 		speed_Mult = speed_Mult_Max
 
 func decelerate():
-	speed_Mult -= speed_mult_incr*2
+	speed_Mult -= speed_mult_incr * 5
 
 func take_dmg(amount:int):
 	if slam_Attack or speed_Mult >= 2:
 		return
 	health -= amount
+	
 	if health <= 0:
 		kill_player()
-	
+
+func crouch():
+	is_Crouching = true
+	speed_Mult = .2
+
+func slide():
+	is_Sliding = true
+	speed_Mult -= speed_mult_incr * 2
 
 func jump():
 	if !is_Jumping && !slam_Attack:
@@ -100,17 +110,23 @@ func animate():
 	elif direction == 0:
 		anim.play("idle")
 	else:
-		if speed_Mult >= 2.9:
-			anim.play("rush")
-		
-		elif speed_Mult > 2:
-			anim.play("sprint")
-		
-		elif speed_Mult > 1:
-			anim.play("run")
-		
+		if Input.is_action_pressed("down") && is_on_floor():
+			if speed_Mult > 1.5:
+				anim.play("sliding")
+			else:
+				anim.play("crouch")
 		else:
-			anim.play("walk")
+			if speed_Mult >= 2.9:
+				anim.play("rush")
+				
+			elif speed_Mult > 2:
+				anim.play("sprint")
+				
+			elif speed_Mult > 1:
+				anim.play("run")
+				
+			else:
+				anim.play("walk")
 
 func _process(_delta) -> void:
 	animate()
@@ -133,18 +149,26 @@ func _physics_process(_delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, friction * _delta)
 	
-	if Input.is_action_just_pressed("jump") && is_on_floor():
-		jump()
-	
-	if Input.is_action_pressed("accelerate") && direction != 0:
-		accelerate()
-	elif speed_Mult > .5:
-		decelerate()
-	
-	if Input.is_action_just_pressed("down") && !is_on_floor() && !slam_Attack:
-		slam_start()
-	
-	if slam_Attack && is_on_floor():
-		slam_again()
+	if is_on_floor():
+
+		if slam_Attack:
+			slam_again()
+
+		elif Input.is_action_just_pressed("jump"):
+			jump()
+
+		elif Input.is_action_pressed("down"):
+			if speed_Mult > 1.5:
+				slide()
+			else:
+				crouch()
+
+		elif Input.is_action_pressed("accelerate") or speed_Mult <.65:
+			accelerate()
+		elif speed_Mult > .75:
+			decelerate()
+	else:
+		if Input.is_action_just_pressed("down"):
+			slam_start()
 	
 	move_and_slide()
