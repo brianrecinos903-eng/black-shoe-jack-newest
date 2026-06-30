@@ -17,8 +17,6 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var is_Jumping = false
 var slam_Attack = false
-var is_Crouching = false
-var is_Sliding = false
 
 var max_Bounces = 3
 var bounces_Left = max_Bounces
@@ -28,13 +26,12 @@ var bounces_Left = max_Bounces
 
 
 func accelerate():
-	if !slam_Attack:
-		speed_Mult += speed_mult_incr 
+	speed_Mult += speed_mult_incr 
 	if speed_Mult > speed_Mult_Max:
 		speed_Mult = speed_Mult_Max
 
-func decelerate():
-	speed_Mult -= speed_mult_incr * 5
+func decelerate(amount: int):
+	speed_Mult -= speed_mult_incr * 5 * amount
 
 func take_dmg(amount:int):
 	if slam_Attack or speed_Mult >= 2:
@@ -45,15 +42,13 @@ func take_dmg(amount:int):
 		kill_player()
 
 func crouch():
-	is_Crouching = true
 	speed_Mult = .2
 
 func slide():
-	is_Sliding = true
 	speed_Mult -= speed_mult_incr * 2
 
 func jump():
-	if !is_Jumping && !slam_Attack:
+	if !is_Jumping:
 		is_Jumping = true
 		velocity.y = jump_Velocity
 
@@ -84,7 +79,6 @@ func kill_player():
 	alive = false
 	if slam_Attack:
 		slam_Attack = false
-	
 
 func death_timer_end() -> void:
 	health = 3
@@ -96,7 +90,6 @@ func animate():
 			anim.scale = Vector2(1,1)
 	elif direction < 0:
 		anim.scale = Vector2(-1,1)
-
 
 	if !alive:
 		anim.play("death")
@@ -155,7 +148,7 @@ func _physics_process(_delta: float) -> void:
 		if slam_Attack:
 			slam_again()
 
-		elif Input.is_action_just_pressed("jump"):
+		elif Input.is_action_pressed("jump"):
 			jump()
 
 		elif Input.is_action_pressed("down"):
@@ -165,9 +158,12 @@ func _physics_process(_delta: float) -> void:
 				crouch()
 
 		elif Input.is_action_pressed("accelerate") or speed_Mult <.65:
-			accelerate()
+			if velocity.x != 0 and !is_on_wall():
+				accelerate()
+			elif speed_Mult > .75:
+				decelerate(50)
 		elif speed_Mult > .75:
-			decelerate()
+			decelerate(1)
 	else:
 		if Input.is_action_just_pressed("down"):
 			slam_start()
