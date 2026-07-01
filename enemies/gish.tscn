@@ -64,6 +64,9 @@ animations = [{
 size = Vector2(128, 144)
 
 [node name="Gish" type="CharacterBody2D" unique_id=847841096]
+z_index = -1
+collision_layer = 64
+collision_mask = 64
 script = ExtResource("1_c1doh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2111599325]
