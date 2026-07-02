@@ -506,14 +506,14 @@ script = ExtResource("1_ur7pv")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2035270482]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_6jhai")
-animation = &"jump"
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=761622445]
 position = Vector2(0, 25)
 shape = SubResource("RectangleShape2D_fp1n2")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1154357457]
-zoom = Vector2(2, 2)
+zoom = Vector2(1.5, 1.5)
 
 [node name="DeathTimer" type="Timer" parent="." unique_id=1295911180]
 one_shot = true
