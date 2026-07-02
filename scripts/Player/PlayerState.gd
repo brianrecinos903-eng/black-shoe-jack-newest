@@ -8,6 +8,7 @@ const DEATH = "Death"
 const FALL = "Fall"
 const SPRING = "Spring"
 const HURT = "Hurt"
+const CROUCH = "Crouch"
 
 
 @export var player: Player

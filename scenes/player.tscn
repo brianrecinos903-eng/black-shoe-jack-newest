@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://bak2y3ap2h1he" path="res://scripts/Player/PlayerFalling.gd" id="9_ur7pv"]
 [ext_resource type="Script" uid="uid://duqscq7gyt0hc" path="res://scripts/Player/PlayerSpringJump.gd" id="10_y4r1p"]
 [ext_resource type="Script" uid="uid://bfnfyn0sqlmv" path="res://scripts/Player/PlayerHurt.gd" id="11_d2wvv"]
+[ext_resource type="Script" uid="uid://jmyu2apn736o" path="res://scripts/Player/PlayerCrouch.gd" id="12_3v2ag"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_apa73"]
 atlas = ExtResource("1_3vyb7")
@@ -560,6 +561,9 @@ knockback = Vector2(1000, 500)
 [node name="StunTimer" type="Timer" parent="StateMachine/Hurt" unique_id=1341333025]
 wait_time = 0.5
 one_shot = true
+
+[node name="Crouch" type="Node" parent="StateMachine" unique_id=230292596]
+script = ExtResource("12_3v2ag")
 
 [connection signal="timeout" from="DeathTimer" to="." method="death_timer_end"]
 [connection signal="body_entered" from="AttackHitBox" to="." method="player_touched_enemy"]

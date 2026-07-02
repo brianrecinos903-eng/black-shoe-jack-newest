@@ -23,5 +23,9 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to(PlayerState.MOVE)
 		return
 
+	if Input.is_action_pressed("down"):
+		state_machine.transition_to(PlayerState.CROUCH)
+		return
+
 	player.animate("Idle")
 	player.move_and_slide()
