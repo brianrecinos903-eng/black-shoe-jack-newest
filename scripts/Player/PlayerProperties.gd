@@ -28,6 +28,7 @@ var bounces_left: int = max_bounces
 var alive: bool = true
 var last_checkpoint: Vector2
 var is_hurt := false
+var can_be_hurt := true
 
 @onready var death_timer: Timer = $DeathTimer
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
@@ -84,8 +85,9 @@ func grounded_state_name() -> String:
 
 # combat 
 func take_dmg(amount: int) -> void:
-	is_hurt = true
-	health -= amount
+	if can_be_hurt:
+		is_hurt = true
+		health -= amount
 	
 func player_touched_enemy(enemy: Node2D) -> void:
 	if not enemy.is_in_group("enemy"):
