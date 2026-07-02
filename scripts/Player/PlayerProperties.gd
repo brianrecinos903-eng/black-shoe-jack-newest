@@ -9,10 +9,11 @@ var GRAVITY: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var speed_mult_max: float = 3
 @export var speed_mult_incr: float = 0.01
 var direction: int = 1
+var face_direction: int = 0;
 
 @export_subgroup("Vertical Movement")
 @export var jump_velocity: float = -630.0
-@export var uber_jump_velocity: float = -1000.0
+@export var spring_jump_velocity: Vector2 = Vector2(1000.0, -1000.0)
 @export_range(0.0,2.0) var gravity_scale := 1.0
 @export_range(0.0,2.0) var jump_gravity_scale := 0.8
 @export_range(0.0,2.0) var fall_gravity_scale := 1.5
@@ -109,8 +110,10 @@ func death_timer_end() -> void:
 func animate(state_name: String) -> void:
 	if direction > 0:
 		anim.scale = Vector2(1, 1)
+		face_direction = 1
 	elif direction < 0:
 		anim.scale = Vector2(-1, 1)
+		face_direction = -1
 
 	if not alive:
 		anim.play("death")
