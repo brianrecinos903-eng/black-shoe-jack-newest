@@ -513,7 +513,7 @@ position = Vector2(0, 25)
 shape = SubResource("RectangleShape2D_fp1n2")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1154357457]
-zoom = Vector2(2, 2)
+zoom = Vector2(1.5, 1.5)
 
 [node name="DeathTimer" type="Timer" parent="." unique_id=1295911180]
 one_shot = true
