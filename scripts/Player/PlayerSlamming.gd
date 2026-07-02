@@ -24,7 +24,7 @@ func handle_key_hold() -> void:
 		return
 
 	player.velocity.y = player.uber_jump_velocity
-	state_machine.transition_to("Jump")
+	state_machine.transition_to("Spring")
 
 
 
