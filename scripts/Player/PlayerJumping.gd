@@ -12,14 +12,17 @@ func physics_update(delta: float) -> void:
 	player.apply_horizontal_movement()
 	player.apply_speed_input()
 
+	if player.is_hurt:
+		state_machine.transition_to(PlayerState.HURT)
+		return
 
 	if Input.is_action_just_pressed("down"):
-		state_machine.transition_to("Slam")
+		state_machine.transition_to(PlayerState.SLAM)
 		return
 
 
 	if Input.is_action_just_released("jump"):
-		state_machine.transition_to("Fall")
+		state_machine.transition_to(PlayerState.FALL)
 		return
 
 

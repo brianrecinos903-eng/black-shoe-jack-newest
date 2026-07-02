@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://qws78eurfp2j" path="res://scripts/Player/PlayerIdle.gd" id="9_a8ls1"]
 [ext_resource type="Script" uid="uid://bak2y3ap2h1he" path="res://scripts/Player/PlayerFalling.gd" id="9_ur7pv"]
 [ext_resource type="Script" uid="uid://duqscq7gyt0hc" path="res://scripts/Player/PlayerSpringJump.gd" id="10_y4r1p"]
+[ext_resource type="Script" uid="uid://bfnfyn0sqlmv" path="res://scripts/Player/PlayerHurt.gd" id="11_d2wvv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_apa73"]
 atlas = ExtResource("1_3vyb7")
@@ -552,5 +553,14 @@ script = ExtResource("9_ur7pv")
 [node name="Spring" type="Node" parent="StateMachine" unique_id=724719584]
 script = ExtResource("10_y4r1p")
 
+[node name="Hurt" type="Node" parent="StateMachine" unique_id=319907968]
+script = ExtResource("11_d2wvv")
+knockback = Vector2(1000, 500)
+
+[node name="StunTimer" type="Timer" parent="StateMachine/Hurt" unique_id=1341333025]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="timeout" from="DeathTimer" to="." method="death_timer_end"]
 [connection signal="body_entered" from="AttackHitBox" to="." method="player_touched_enemy"]
+[connection signal="timeout" from="StateMachine/Hurt/StunTimer" to="StateMachine/Hurt" method="_on_stun_timer_timeout"]

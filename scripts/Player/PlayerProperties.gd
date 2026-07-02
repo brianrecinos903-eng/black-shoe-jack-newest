@@ -27,6 +27,7 @@ var bounces_left: int = max_bounces
 @export var health: int = 3
 var alive: bool = true
 var last_checkpoint: Vector2
+var is_hurt := false
 
 @onready var death_timer: Timer = $DeathTimer
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
@@ -79,27 +80,26 @@ func is_falling() -> bool:
 
 
 func grounded_state_name() -> String:
-	return "Idle" if direction == 0 else "Move"
+	return PlayerState.IDLE if direction == 0 else PlayerState.MOVE
 
 # combat 
 func take_dmg(amount: int) -> void:
+	is_hurt = true
 	health -= amount
-	if health <= 0:
-		kill_player()
 	
 func player_touched_enemy(enemy: Node2D) -> void:
 	if not enemy.is_in_group("enemy"):
 		return
-	if state_machine.current_state.name == "Slam" or speed_mult > 2:
+	if state_machine.current_state.name == PlayerState.SLAM or speed_mult > 2:
 		enemy.kill()
-	elif state_machine.current_state.name == "Jump":
+	elif state_machine.current_state.name == PlayerState.FALL:
 		enemy.stun()
 		velocity.y = jump_velocity
+	
 
 func kill_player() -> void:
 	death_timer.start()
 	alive = false
-	state_machine.transition_to("Death")
 
 func death_timer_end() -> void:
 	health = 3
@@ -117,11 +117,11 @@ func animate(state_name: String) -> void:
 
 	if not alive:
 		anim.play("death")
-	elif state_name == "Slam":
+	elif state_name == PlayerState.SLAM:
 		anim.play("slam")
-	elif state_name == "Jump":
+	elif state_name == PlayerState.JUMP:
 		anim.play("jump")
-	elif state_name == "Idle":
+	elif state_name == PlayerState.IDLE:
 		anim.play("idle")
 	else:
 		if speed_mult >= 2.9:

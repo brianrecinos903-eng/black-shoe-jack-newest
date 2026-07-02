@@ -15,6 +15,10 @@ run/main_scene="uid://ba34qnr5dfsq4"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Helpers="*uid://dleho7goljq83"
+
 [dotnet]
 
 project/assembly_name="Black Shoe Jack"

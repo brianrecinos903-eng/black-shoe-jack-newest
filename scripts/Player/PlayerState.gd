@@ -6,7 +6,9 @@ const JUMP = "Jump"
 const SLAM = "Slam"
 const DEATH = "Death"
 const FALL = "Fall"
-const Spring = "Spring"
+const SPRING = "Spring"
+const HURT = "Hurt"
+
 
 @export var player: Player
 

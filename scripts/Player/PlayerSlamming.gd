@@ -29,14 +29,14 @@ func handle_key_hold() -> void:
 	if player.direction != 0:
 		exit_state()
 		return
-	await get_tree().create_timer(button_hold_time).timeout
+	Helpers.wait(button_hold_time)
 	print("Exited: ", exited)
 	if exited or not Input.is_action_pressed("down"):
 		return
 
 	player.velocity.y = player.spring_jump_velocity.y
 	player.velocity.x = player.face_direction * player.spring_jump_velocity.x
-	state_machine.transition_to("Spring")
+	state_machine.transition_to(PlayerState.SPRING)
 
 
 func enter() -> void:

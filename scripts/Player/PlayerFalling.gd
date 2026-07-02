@@ -15,7 +15,7 @@ func physics_update(delta):
 
 
 	if Input.is_action_just_pressed("down"):
-		state_machine.transition_to("Slam")
+		state_machine.transition_to(PlayerState.SLAM)
 		return
 		
 
