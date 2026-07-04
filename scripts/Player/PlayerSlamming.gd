@@ -1,6 +1,6 @@
 extends PlayerState
 
-@export var button_hold_time = 0.76
+@export var button_hold_time = 1.5
 
 var exited = false
 

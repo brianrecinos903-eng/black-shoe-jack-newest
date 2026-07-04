@@ -11,7 +11,6 @@ func enter():
 
 func physics_update(delta: float) -> void:
 	player.apply_jump(delta)
-	player.apply_horizontal_movement()
 	player.apply_speed_input()
 
 	if player.is_hurt:
@@ -26,11 +25,19 @@ func physics_update(delta: float) -> void:
 	if Input.is_action_just_released("jump"):
 		state_machine.transition_to(PlayerState.FALL)
 		return
+	
+	if abs(player.velocity.x) <= 300:
+		player.apply_horizontal_movement()
 
 
-	if not ignore_floor_check and player.is_on_floor():
-		state_machine.transition_to(player.grounded_state_name())
+	if abs(player.velocity.x) <= 100 and not ignore_floor_check and player.is_on_floor():
+		var next_state := player.grounded_state_name()
+		state_machine.transition_to(next_state)
+		player.animate(next_state)
+		player.move_and_slide()
 		return
+
+	player.velocity.x = move_toward(player.velocity.x, 0, player.spring_jump_velocity.x * delta)
 
 	player.animate("Jump")
 	player.move_and_slide()

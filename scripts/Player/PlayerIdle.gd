@@ -11,7 +11,6 @@ func physics_update(delta: float) -> void:
 		return
 
 	if Input.is_action_just_pressed("jump"):
-		player.velocity.y = player.jump_velocity
 		state_machine.transition_to(PlayerState.JUMP)
 		return
 

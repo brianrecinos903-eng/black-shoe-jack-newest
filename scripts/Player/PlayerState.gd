@@ -9,6 +9,8 @@ const FALL = "Fall"
 const SPRING = "Spring"
 const HURT = "Hurt"
 const CROUCH = "Crouch"
+const SLIDE = "Slide"
+const WALL_RUN = "Wallrun"
 
 
 @export var player: Player

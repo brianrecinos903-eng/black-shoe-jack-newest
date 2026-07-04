@@ -12,6 +12,8 @@
 [ext_resource type="Script" uid="uid://duqscq7gyt0hc" path="res://scripts/Player/PlayerSpringJump.gd" id="10_y4r1p"]
 [ext_resource type="Script" uid="uid://bfnfyn0sqlmv" path="res://scripts/Player/PlayerHurt.gd" id="11_d2wvv"]
 [ext_resource type="Script" uid="uid://jmyu2apn736o" path="res://scripts/Player/PlayerCrouch.gd" id="12_3v2ag"]
+[ext_resource type="Script" uid="uid://j2kpi40vn3hv" path="res://scripts/Player/PlayerSlide.gd" id="13_jej6c"]
+[ext_resource type="Script" uid="uid://duqswexfliy0x" path="res://scripts/Player/PlayerWallRun.gd" id="14_f1ej7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vdulj"]
 atlas = ExtResource("1_3vyb7")
@@ -637,6 +639,12 @@ one_shot = true
 
 [node name="Crouch" type="Node" parent="StateMachine" unique_id=230292596]
 script = ExtResource("12_3v2ag")
+
+[node name="Slide" type="Node" parent="StateMachine" unique_id=694313141]
+script = ExtResource("13_jej6c")
+
+[node name="Wallrun" type="Node" parent="StateMachine" unique_id=758653123]
+script = ExtResource("14_f1ej7")
 
 [connection signal="timeout" from="DeathTimer" to="." method="death_timer_end"]
 [connection signal="body_entered" from="AttackHitBox" to="." method="player_touched_enemy"]

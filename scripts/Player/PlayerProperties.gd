@@ -8,12 +8,18 @@ var GRAVITY: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var speed_mult: float = 1
 @export var speed_mult_max: float = 3
 @export var speed_mult_incr: float = 0.01
+@export var slide_velocity: float = 1000
+@export var crouch_collider_scale: float = 0.5
+var standing_collider_pos = 25
+var crouch_collider_pos = 44
 var direction: int = 1
 var face_direction: int = 0;
+var can_coyote: bool = true
 
 @export_subgroup("Vertical Movement")
 @export var jump_velocity: float = -630.0
 @export var spring_jump_velocity: Vector2 = Vector2(1000.0, -1000.0)
+@export var coyote_time: float =  0.5
 @export_range(0.0,2.0) var gravity_scale := 1.0
 @export_range(0.0,2.0) var jump_gravity_scale := 0.8
 @export_range(0.0,2.0) var fall_gravity_scale := 1.5
@@ -34,7 +40,21 @@ var can_be_hurt := true
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var state_machine: StateMachine = $StateMachine
+@onready var collider: CollisionShape2D = $"CollisionShape2D"
 
+func is_wall_infront():
+	var space_state = get_world_2d().direct_space_state
+	var query = PhysicsRayQueryParameters2D.create(global_position, Vector2.RIGHT * direction * 5)
+	query.exclude = [self]
+	var result = space_state.intersect_ray(query)
+
+func crouch_collider():
+	collider.scale.y = crouch_collider_scale
+	collider.position.y = crouch_collider_pos
+
+func uncrouch_collider():
+	collider.position.y = standing_collider_pos
+	collider.scale.y = 1
 
 # movement
 func accelerate(allow_full: bool = true) -> void:
@@ -46,6 +66,13 @@ func accelerate(allow_full: bool = true) -> void:
 func decelerate() -> void:
 	speed_mult -= speed_mult_incr / 2.0
 
+func apply_wallrun() -> void:
+	direction = Input.get_axis("left", "right")
+	if direction != 0:
+		velocity.y = -speed * speed_mult
+	else:
+		velocity.y = move_toward(velocity.y, 0, -speed)
+		speed_mult = 1
 
 func apply_horizontal_movement() -> void:
 	direction = Input.get_axis("left", "right")

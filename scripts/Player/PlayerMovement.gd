@@ -10,8 +10,11 @@ func physics_update(delta: float) -> void:
 		return
 
 	if Input.is_action_just_pressed("jump"):
-		player.velocity.y = player.jump_velocity
 		state_machine.transition_to(PlayerState.JUMP)
+		return
+
+	if Input.is_action_pressed("down") and not player.is_falling():
+		state_machine.transition_to(PlayerState.SLIDE)
 		return
 
 	if player.is_falling():
@@ -22,9 +25,11 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to(PlayerState.IDLE)
 		return
 
-	if Input.is_action_pressed("down"):
-		state_machine.transition_to(PlayerState.CROUCH)
-		return
+	if player.speed_mult >= 1.5:
+		if player.is_on_wall():
+			state_machine.transition_to(PlayerState.WALL_RUN)
+			return
+
 
 	player.animate("Move")
 	player.move_and_slide()
