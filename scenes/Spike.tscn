@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://3a7uiu0jmb0l"]
+
+[ext_resource type="Script" uid="uid://c6fe71r8pjdie" path="res://scripts/spike.gd" id="1_uiy7f"]
+[ext_resource type="Texture2D" uid="uid://d2e110cw8jdwf" path="res://art/spike.png" id="1_ycsm2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uk11t"]
+size = Vector2(37, 37)
+
+[node name="Spike" type="Area2D" unique_id=361684399]
+script = ExtResource("1_uiy7f")
+
+[node name="PlaceholderSprite" type="Sprite2D" parent="." unique_id=1511531243]
+texture = ExtResource("1_ycsm2")
+
+[node name="SpikeHitbox" type="CollisionShape2D" parent="." unique_id=916155752]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_uk11t")
+debug_color = Color(0.8508984, 0.34238663, 0.39515233, 0.41960785)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

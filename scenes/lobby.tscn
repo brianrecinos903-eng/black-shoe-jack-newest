@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://du2u3v7pf6n0q" path="res://scenes/edge_marker.tscn" id="7_omrgh"]
 [ext_resource type="PackedScene" uid="uid://b6am1uxqlfmi0" path="res://scenes/checkpoint.tscn" id="8_ncsg4"]
 [ext_resource type="PackedScene" uid="uid://5vgm163kkxqw" path="res://enemies/gish.tscn" id="11_yad6j"]
+[ext_resource type="PackedScene" uid="uid://3a7uiu0jmb0l" path="res://scenes/Spike.tscn" id="14_q6qq2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pc087"]
 texture = ExtResource("3_nqcc7")
@@ -2063,3 +2064,6 @@ position = Vector2(4976, -80)
 
 [node name="Gish" parent="Gish" unique_id=1611118804 instance=ExtResource("11_yad6j")]
 position = Vector2(-5832, -608)
+
+[node name="Spike" parent="." unique_id=361684399 instance=ExtResource("14_q6qq2")]
+position = Vector2(-706, -30)

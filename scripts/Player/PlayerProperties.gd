@@ -35,6 +35,8 @@ var alive: bool = true
 var last_checkpoint: Vector2
 var is_hurt := false
 var can_be_hurt := true
+var can_be_hurt_by_spike := true
+
 
 @onready var death_timer: Timer = $DeathTimer
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
@@ -113,8 +115,16 @@ func grounded_state_name() -> String:
 # combat 
 func take_dmg(amount: int) -> void:
 	if can_be_hurt:
+		if can_be_hurt_by_spike:
+			health -= amount
+			if health <= 0:
+				kill_player()
+			return
 		is_hurt = true
 		health -= amount
+	
+
+		
 	
 func player_touched_enemy(enemy: Node2D) -> void:
 	if not enemy.is_in_group("enemy"):
