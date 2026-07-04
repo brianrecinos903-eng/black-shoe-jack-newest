@@ -1,6 +1,6 @@
 extends PlayerState
 
-@export var button_hold_time = 0.5
+@export var button_hold_time = 0.76
 
 var exited = false
 
@@ -34,8 +34,6 @@ func handle_key_hold() -> void:
 	if exited or not Input.is_action_pressed("down"):
 		return
 
-	player.velocity.y = player.spring_jump_velocity.y
-	player.velocity.x = player.face_direction * player.spring_jump_velocity.x
 	state_machine.transition_to(PlayerState.SPRING)
 
 

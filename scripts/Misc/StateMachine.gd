@@ -25,6 +25,7 @@ func _physics_process(delta: float) -> void:
 func transition_to(new_state: String):
 	if not states.has(new_state):
 		return
+	print("Moving from state: ", current_state, "to: ", states[new_state])
 	current_state.exit()
 	current_state = states[new_state]
 	current_state.enter()

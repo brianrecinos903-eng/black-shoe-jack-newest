@@ -125,6 +125,11 @@ func animate(state_name: String) -> void:
 		anim.play("jump")
 	elif state_name == PlayerState.IDLE:
 		anim.play("idle")
+	elif state_name == PlayerState.CROUCH:
+		if direction != 0:
+			anim.play("crawl")
+		else:
+			anim.play("crouch")
 	else:
 		if speed_mult >= 2.9:
 			anim.play("rush")

@@ -24,6 +24,8 @@ func physics_update(delta: float) -> void:
 	player.apply_horizontal_movement()
 	player.apply_speed_input()
 
+	
+
 	if player.is_hurt:
 		state_machine.transition_to(PlayerState.HURT)
 		return
@@ -37,10 +39,11 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to(PlayerState.FALL)
 		return
 
-	if player.direction == 0:
+	if Input.is_action_just_released("down"):
 		state_machine.transition_to(PlayerState.IDLE)
 		return
 
 
-	#player.animate("Crouch")
+	player.animate("Crouch")
+
 	player.move_and_slide()

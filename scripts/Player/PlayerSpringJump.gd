@@ -5,6 +5,8 @@ var ignore_floor_check := true
 
 func enter():
 	ignore_floor_check = true
+	player.velocity.x = player.face_direction * player.spring_jump_velocity.x
+	player.velocity.y = player.spring_jump_velocity.y
 
 
 func physics_update(delta: float) -> void:
@@ -17,7 +19,7 @@ func physics_update(delta: float) -> void:
 		return
 
 	if Input.is_action_just_pressed("down"):
-		state_machine.transition_to(PlayerState.HURT)
+		state_machine.transition_to(PlayerState.SLAM)
 		return
 
 
