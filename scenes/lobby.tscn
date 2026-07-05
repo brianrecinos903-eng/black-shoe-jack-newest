@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://b6am1uxqlfmi0" path="res://scenes/checkpoint.tscn" id="8_ncsg4"]
 [ext_resource type="PackedScene" uid="uid://5vgm163kkxqw" path="res://enemies/gish.tscn" id="11_yad6j"]
 [ext_resource type="PackedScene" uid="uid://3a7uiu0jmb0l" path="res://scenes/Spike.tscn" id="14_q6qq2"]
+[ext_resource type="PackedScene" uid="uid://l8qi5jvswr87" path="res://enemies/shrimpner.tscn" id="15_rgcd7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pc087"]
 texture = ExtResource("3_nqcc7")
@@ -2067,3 +2068,7 @@ position = Vector2(-5832, -608)
 
 [node name="Spike" parent="." unique_id=361684399 instance=ExtResource("14_q6qq2")]
 position = Vector2(-706, -30)
+
+[node name="Shrimpner" parent="." unique_id=1056129754 instance=ExtResource("15_rgcd7")]
+z_index = -1
+position = Vector2(976, -280)
