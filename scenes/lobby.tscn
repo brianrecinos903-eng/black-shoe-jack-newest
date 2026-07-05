@@ -2072,3 +2072,5 @@ position = Vector2(-706, -30)
 [node name="Shrimpner" parent="." unique_id=1056129754 instance=ExtResource("15_rgcd7")]
 z_index = -1
 position = Vector2(976, -280)
+
+[connection signal="player_entered_spike" from="Spike" to="Player" method="_on_spike_player_entered_spike"]
