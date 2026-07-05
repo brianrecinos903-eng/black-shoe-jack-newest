@@ -376,7 +376,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tk41t")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"death",
 "speed": 9.0
 }, {
@@ -584,7 +584,7 @@ script = ExtResource("1_ur7pv")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2035270482]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_6jhai")
-animation = &"jump"
+animation = &"death"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=761622445]
 position = Vector2(0, 25)
