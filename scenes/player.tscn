@@ -650,13 +650,6 @@ script = ExtResource("14_f1ej7")
 [node name="Ceillingrun" type="Node" parent="StateMachine" unique_id=232140253]
 script = ExtResource("15_oprun")
 
-[node name="Ceillingray" type="RayCast2D" parent="StateMachine/Ceillingrun" unique_id=749207847]
-modulate = Color(0.76080513, 0.043076284, 0.5951236, 1)
-scale = Vector2(15, 1)
-target_position = Vector2(0, -50)
-collision_mask = 67
-hit_from_inside = true
-
 [connection signal="timeout" from="DeathTimer" to="." method="death_timer_end"]
 [connection signal="body_entered" from="AttackHitBox" to="." method="player_touched_enemy"]
 [connection signal="timeout" from="StateMachine/Hurt/StunTimer" to="StateMachine/Hurt" method="_on_stun_timer_timeout"]

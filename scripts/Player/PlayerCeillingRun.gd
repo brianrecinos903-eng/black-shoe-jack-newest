@@ -1,13 +1,11 @@
 extends PlayerState
 
-@onready var ray: RayCast2D = $Ceillingray
-
 func enter():
 	player.gravity_scale = -1
 	
 func exit():
 	player.gravity_scale = 1
-
+ 
 
 func physics_update(delta: float) -> void:
 	player.apply_horizontal_movement()
@@ -27,10 +25,10 @@ func physics_update(delta: float) -> void:
 	# 	state_machine.transition_to(PlayerState.SLAM)
 	# 	return
 
-	print("ray colliding", ray.is_colliding())
 
-	if Input.is_action_just_pressed("jump") or not ray.is_colliding():
+	if not player.is_level_within_distance(Vector2.UP, 70) or Input.is_action_just_pressed("jump"):
 		print("Player not on ceilling")
+		player.velocity.y = -200
 		state_machine.transition_to(PlayerState.FALL)
 		return
 

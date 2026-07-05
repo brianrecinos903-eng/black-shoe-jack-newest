@@ -45,11 +45,16 @@ var vel = velocity
 @onready var state_machine: StateMachine = $StateMachine
 @onready var collider: CollisionShape2D = $"CollisionShape2D"
 
-func is_wall_infront():
+func is_level_within_distance(direction: Vector2, check_distance: float) -> bool:
 	var space_state = get_world_2d().direct_space_state
-	var query = PhysicsRayQueryParameters2D.create(global_position, Vector2.RIGHT * direction * 5)
-	query.exclude = [self]
+	var query = PhysicsRayQueryParameters2D.create(
+		global_position,
+		global_position + direction.normalized() * check_distance
+	)
+	query.exclude = [self]  # ignore the player itself
+
 	var result = space_state.intersect_ray(query)
+	return result.size() > 0 
 
 func crouch_collider():
 	collider.scale.y = crouch_collider_scale

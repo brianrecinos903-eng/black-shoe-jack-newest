@@ -13,12 +13,15 @@ func physics_update(delta: float) -> void:
 	player.apply_jump(delta)
 	player.apply_speed_input()
 
+	print("call run: ", player.is_on_ceiling() and player.direction != 0)
+	print("call direc: ", player.direction != 0)
+	print("call ceil: ", player.is_on_ceiling() )
 	if player.is_on_ceiling() and player.direction != 0:
 		state_machine.transition_to(PlayerState.CEILLING_RUN)
 		return
 
 
-	if player.velocity.y >= 0:
+	if player.velocity.y >= 100:
 		state_machine.transition_to(PlayerState.FALL)
 		return
 
