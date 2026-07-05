@@ -37,6 +37,7 @@ var is_hurt := false
 var can_be_hurt := true
 var can_be_hurt_by_spike := true
 
+var vel = velocity
 
 @onready var death_timer: Timer = $DeathTimer
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
@@ -153,6 +154,8 @@ func animate(state_name: String) -> void:
 	elif direction < 0:
 		anim.scale = Vector2(-1, 1)
 		face_direction = -1
+
+	vel = velocity
 
 	if not alive:
 		anim.play("death")

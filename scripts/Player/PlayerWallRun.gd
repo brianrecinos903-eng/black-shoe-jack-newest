@@ -22,7 +22,7 @@ func physics_update(delta: float) -> void:
 		return
 
 	if Input.is_action_just_pressed("jump"):
-		player.velocity.x = player.get_wall_normal().x * player.jump_velocity
+		player.velocity.x = -player.face_direction * player.jump_velocity
 		state_machine.transition_to(PlayerState.JUMP)
 		return
 
@@ -32,6 +32,10 @@ func physics_update(delta: float) -> void:
 
 	if player.is_falling():
 		state_machine.transition_to(PlayerState.FALL)
+		return
+
+	if player.is_on_ceiling() and player.direction != 0:
+		state_machine.transition_to(PlayerState.CEILLING_RUN)
 		return
 
 	if not player.is_on_wall():

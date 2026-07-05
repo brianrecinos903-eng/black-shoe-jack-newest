@@ -23,6 +23,14 @@ func physics_update(delta):
 		state_machine.transition_to(PlayerState.SLAM)
 		return
 		
+	if player.is_on_ceiling() and player.direction != 0:
+		state_machine.transition_to(PlayerState.CEILLING_RUN)
+		return
+	
+	if player.speed_mult >= 1.5:
+		if player.is_on_wall():
+			state_machine.transition_to(PlayerState.WALL_RUN)
+			return
 
 	if not ignore_floor_check and player.is_on_floor():
 		state_machine.transition_to(player.grounded_state_name())
