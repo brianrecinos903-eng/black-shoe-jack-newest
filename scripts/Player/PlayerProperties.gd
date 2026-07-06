@@ -124,6 +124,9 @@ func take_dmg(amount: int) -> void:
 func _on_spike_player_entered_spike() -> void:
 	health -= spike_damage
 	velocity.y = spike_launch_distance
+	if health <= 0:
+		kill_player()
+		
 
 
 	
