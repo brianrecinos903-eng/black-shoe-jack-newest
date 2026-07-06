@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://5vgm163kkxqw"]
 
-[ext_resource type="Script" uid="uid://bgjqlrjk7li2n" path="res://enemies/gish.gd" id="1_c1doh"]
+[ext_resource type="Script" uid="uid://bgjqlrjk7li2n" path="res://enemies/Enemy_Scripts/gish.gd" id="1_c1doh"]
 [ext_resource type="Texture2D" uid="uid://dj1wx3coskxou" path="res://enemies/Gish-Sheet.png" id="2_lku4d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rhal3"]

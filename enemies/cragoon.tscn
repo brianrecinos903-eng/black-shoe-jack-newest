@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://gciqq0ragkc4"]
 
-[ext_resource type="Script" uid="uid://dujqdbgnssp7n" path="res://enemies/cragoon.gd" id="1_ds4yr"]
+[ext_resource type="Script" uid="uid://dujqdbgnssp7n" path="res://enemies/Enemy_Scripts/cragoon.gd" id="1_ds4yr"]
 [ext_resource type="Texture2D" uid="uid://bxqsacuped6nh" path="res://enemies/Cragoon!-Sheet.png" id="2_cyx88"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ykxfu"]
@@ -176,11 +176,10 @@ size = Vector2(179, 87)
 
 [node name="Cragoon" type="CharacterBody2D" unique_id=2088169173 node_paths=PackedStringArray("stunned_timer", "anim") groups=["enemy"]]
 collision_layer = 64
-collision_mask = 64
+collision_mask = 2
 script = ExtResource("1_ds4yr")
 stunned_timer = NodePath("StunnedTimer")
 anim = NodePath("AnimatedSprite2D")
-metadata/_custom_type_script = "uid://hijrt35chfkt"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1119822914 groups=["enemy"]]
 texture_filter = 1
