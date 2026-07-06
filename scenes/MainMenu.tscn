@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://dnpcyc4xlrn6f"]
+
+[ext_resource type="Script" uid="uid://b1tww4tb14cb7" path="res://scripts/UI/MainMenu/main_menu.gd" id="1_0ykhv"]
+[ext_resource type="Texture2D" uid="uid://b4giwj0gryawk" path="res://art/menu_background_new.png" id="3_2wh52"]
+
+[node name="MainMenu" type="Control" unique_id=1883367545]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0ykhv")
+game_scene_path = "uid://ba34qnr5dfsq4"
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1366159809]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -67.0
+offset_right = 32.0
+offset_bottom = 67.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=555963231]
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1681042831]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_font_sizes/font_size = 64
+text = "Play"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=535255827]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Quit"
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1835920368]
+scale = Vector2(1.5, 1.5)
+scroll_scale = Vector2(0.8, 0.8)
+scroll_offset = Vector2(-1424, 320)
+repeat_size = Vector2(1472, 0)
+autoscroll = Vector2(80, 0)
+repeat_times = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=803156577]
+z_index = -2
+position = Vector2(608, 0)
+texture = ExtResource("3_2wh52")

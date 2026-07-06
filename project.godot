@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Black Shoe Jack"
-run/main_scene="uid://ba34qnr5dfsq4"
+run/main_scene="uid://dnpcyc4xlrn6f"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 

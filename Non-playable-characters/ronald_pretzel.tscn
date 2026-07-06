@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://cgyka8oxhu3cl"]
+
+[ext_resource type="Texture2D" uid="uid://c25sncoeir5sy" path="res://art/Ronald_Pretzel-Sheet.png" id="1_k6pom"]
+[ext_resource type="Script" uid="uid://dv6ge7e7n2m7g" path="res://Non-playable-characters/ronald_pretzel.gd" id="1_kp8l8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3p20"]
+atlas = ExtResource("1_k6pom")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ou10k"]
+atlas = ExtResource("1_k6pom")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8u4u"]
+atlas = ExtResource("1_k6pom")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63oen"]
+atlas = ExtResource("1_k6pom")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ufovb"]
+atlas = ExtResource("1_k6pom")
+region = Rect2(0, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxfiq"]
+atlas = ExtResource("1_k6pom")
+region = Rect2(256, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnnhy"]
+atlas = ExtResource("1_k6pom")
+region = Rect2(512, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udlub"]
+atlas = ExtResource("1_k6pom")
+region = Rect2(768, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3jdn"]
+atlas = ExtResource("1_k6pom")
+region = Rect2(0, 512, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7rbp"]
+atlas = ExtResource("1_k6pom")
+region = Rect2(256, 512, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8swyi"]
+atlas = ExtResource("1_k6pom")
+region = Rect2(512, 512, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bj3k"]
+atlas = ExtResource("1_k6pom")
+region = Rect2(768, 512, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fp1n2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3p20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ou10k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8u4u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_63oen")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ufovb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxfiq")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fnnhy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udlub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g3jdn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7rbp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8swyi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bj3k")
+}],
+"loop": 1,
+"name": &"talking",
+"speed": 9.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6jhai"]
+size = Vector2(168, 145)
+
+[node name="Ronald Pretzel" type="CharacterBody2D" unique_id=2086317626]
+collision_layer = 64
+collision_mask = 64
+script = ExtResource("1_kp8l8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=452085388]
+sprite_frames = SubResource("SpriteFrames_fp1n2")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1824132904]
+position = Vector2(4, 56.5)
+shape = SubResource("RectangleShape2D_6jhai")

@@ -35,7 +35,8 @@ var alive: bool = true
 var last_checkpoint: Vector2
 var is_hurt := false
 var can_be_hurt := true
-var can_be_hurt_by_spike := true
+var spike_launch_distance := -750
+var spike_damage := 1
 
 var vel = velocity
 
@@ -116,16 +117,19 @@ func grounded_state_name() -> String:
 # combat 
 func take_dmg(amount: int) -> void:
 	if can_be_hurt:
-		if can_be_hurt_by_spike:
-			health -= amount
-			if health <= 0:
-				kill_player()
-			return
 		is_hurt = true
 		health -= amount
-	
-
+	if health <= 0:
+			kill_player()
+			
+func _on_spike_player_entered_spike() -> void:
+	health -= spike_damage
+	velocity.y = spike_launch_distance
+	if health <= 0:
+		kill_player()
 		
+
+
 	
 func player_touched_enemy(enemy: Node2D) -> void:
 	if not enemy.is_in_group("enemy"):
