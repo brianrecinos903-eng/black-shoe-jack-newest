@@ -6,6 +6,7 @@ func _ready() -> void:
 	state_name = PlayerState.HURT
 
 func enter() -> void:
+	player.camera_2d.shake(player.hurt_shake_factor)
 	player.can_be_hurt = false
 
 	if player.health <= 0:

@@ -24,20 +24,19 @@ func physics_update(delta: float) -> void:
 	if abs(player.velocity.x) <= 500:
 		player.apply_horizontal_movement()
 
-	match state_machine.previous_state:
-		PlayerState.CEILLING_RUN, PlayerState.WALL_RUN, PlayerState.HURT:
-			state_machine.transition_to(PlayerState.FALL)
-			player.can_coyote = true 
-			return
+	if state_machine.previous_state == PlayerState.CEILLING_RUN or state_machine.previous_state ==  PlayerState.WALL_RUN or state_machine.previous_state == PlayerState.HURT:
+		player.can_coyote = true 
+		state_machine.transition_to(PlayerState.FALL)
+		return
 
 	if player.is_hurt:
-		state_machine.transition_to(PlayerState.HURT)
 		player.can_coyote = true
+		state_machine.transition_to(PlayerState.HURT)
 		return
 
 	if Input.is_action_just_pressed("down"):
-		state_machine.transition_to(PlayerState.SLAM)
 		player.can_coyote = true
+		state_machine.transition_to(PlayerState.SLAM)
 		return
 
 	if player.velocity.y >= 150:
@@ -51,8 +50,8 @@ func physics_update(delta: float) -> void:
 
 
 	if not ignore_floor_check and player.is_on_floor():
-		state_machine.transition_to(player.grounded_state_name())
 		player.can_coyote = true
+		state_machine.transition_to(player.grounded_state_name())
 		return
 
 	player.anim.play("jump")

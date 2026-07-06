@@ -49,6 +49,7 @@ func physics_update(delta: float) -> void:
 		if exited or not Input.is_action_pressed("down"):
 			return
 
+		player.camera_2d.shake(player.slam_shake_factor)
 		state_machine.transition_to(PlayerState.SPRING)
 		return
 		

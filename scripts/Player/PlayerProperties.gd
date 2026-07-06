@@ -47,9 +47,15 @@ var can_be_hurt := true
 var dmg_source : Helpers.DamageType
 var can_be_hurt_by_spike := true
 
+@export_group("Camera Settings")
+@export_range(0,1) var slam_shake_factor := 0.5
+@export_range(0,1) var hurt_shake_factor := 0.5
+
+
+
 @onready var death_timer: Timer = $DeathTimer
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
-@onready var camera_2d: Camera2D = $Camera2D
+@onready var camera_2d: PlayerCamera = $Camera2D
 @onready var state_machine: StateMachine = $StateMachine
 @onready var collider: CollisionShape2D = $"CollisionShape2D"
 

@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://hggfb20qqf0i" path="res://art/Cap'n_Jackpine_mackeral_new_and_improved-Sheet.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://diibimr70041o" path="res://scripts/Player/PlayerProperties.gd" id="1_ur7pv"]
+[ext_resource type="Script" uid="uid://cmvh5nl2kthj4" path="res://scripts/Player/PlayerCamera.gd" id="3_a8ls1"]
 [ext_resource type="Script" uid="uid://do1i5qvqaxghh" path="res://scripts/Misc/StateMachine.gd" id="3_y4r1p"]
 [ext_resource type="Script" uid="uid://c4nx2h8vfwn38" path="res://scripts/Player/States/PlayerDeath.gd" id="4_d2wvv"]
 [ext_resource type="Script" uid="uid://c13xaec8p1vxg" path="res://scripts/Player/States/PlayerMovement.gd" id="5_3v2ag"]
@@ -593,6 +594,10 @@ shape = SubResource("RectangleShape2D_fp1n2")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1154357457]
 zoom = Vector2(1.5, 1.5)
+position_smoothing_speed = 10.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+script = ExtResource("3_a8ls1")
 
 [node name="DeathTimer" type="Timer" parent="." unique_id=1295911180]
 one_shot = true
