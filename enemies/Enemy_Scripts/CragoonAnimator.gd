@@ -12,19 +12,16 @@ func animate():
 	elif enemy.direction < 0:
 		flip_h = true
 
-	var target_Anim: String = "idle"
+	var target_Anim: String = "walk"
 	
 	#if !enemy.alive:
 		#target_Anim = "death"
-	
-	if enemy.leaping:
-		target_Anim = "leap"
 
-	elif enemy.stunned:
+	if enemy.stunned:
 		target_Anim = "stunned"
 
-	elif !enemy.leaping:
-		target_Anim = "idle"
+	else:
+		target_Anim = "walk"
 
 	if target_Anim != animation:
 		print("Switching from ", animation, " to ", target_Anim)

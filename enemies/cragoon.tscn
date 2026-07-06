@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dujqdbgnssp7n" path="res://enemies/Enemy_Scripts/cragoon.gd" id="1_ds4yr"]
 [ext_resource type="Texture2D" uid="uid://bxqsacuped6nh" path="res://enemies/Cragoon!-Sheet.png" id="2_cyx88"]
+[ext_resource type="Script" uid="uid://cgyxndfdbbff3" path="res://enemies/Enemy_Scripts/CragoonAnimator.gd" id="3_ykxfu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ykxfu"]
 atlas = ExtResource("2_cyx88")
@@ -185,6 +186,7 @@ anim = NodePath("AnimatedSprite2D")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_cj7mf")
 animation = &"idle"
+script = ExtResource("3_ykxfu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1926711728 groups=["enemy"]]
 position = Vector2(-2.5, 77.5)
