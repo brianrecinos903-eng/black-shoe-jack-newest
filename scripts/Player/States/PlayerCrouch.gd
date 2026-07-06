@@ -1,11 +1,20 @@
 extends PlayerState
-	
+
+func _ready() -> void:
+	state_name = PlayerState.CROUCH
+
+func enter():
+	player.crouch_collider()
+
+func exit():
+	player.uncrouch_collider()
+
 
 func physics_update(delta: float) -> void:
 	player.apply_gravity(delta)
 	player.apply_horizontal_movement()
-	player.apply_speed_input()
 
+	
 	if player.is_hurt:
 		state_machine.transition_to(PlayerState.HURT)
 		return
@@ -18,13 +27,15 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to(PlayerState.FALL)
 		return
 
-	if player.direction != 0:
-		state_machine.transition_to(PlayerState.MOVE)
+	if Input.is_action_just_released("down"):
+		state_machine.transition_to(PlayerState.IDLE)
 		return
 
-	if Input.is_action_pressed("down"):
-		state_machine.transition_to(PlayerState.CROUCH)
-		return
 
-	player.animate("Idle")
+	if player.move_direction != 0:
+		player.anim.play("crawl")
+	else:
+		player.anim.play("crouch")
+
+
 	player.move_and_slide()

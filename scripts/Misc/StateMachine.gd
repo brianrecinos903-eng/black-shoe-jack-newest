@@ -3,6 +3,7 @@ class_name StateMachine
 
 @export var initial_state: State
 var current_state: State 
+var previous_state: String
 var states: Dictionary = {}
 
 func _ready() -> void:
@@ -14,6 +15,7 @@ func _ready() -> void:
 	print("States found: ", states.keys())
 	print("Owner: ", owner)
 	if initial_state:
+		previous_state = initial_state.state_name
 		current_state = initial_state
 	print("Initial state: ", current_state)
 	current_state.enter()
@@ -26,6 +28,7 @@ func transition_to(new_state: String):
 	if not states.has(new_state):
 		return
 	print("Moving from state: ", current_state, "to: ", states[new_state])
+	previous_state = current_state.state_name
 	current_state.exit()
 	current_state = states[new_state]
 	current_state.enter()

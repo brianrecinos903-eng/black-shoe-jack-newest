@@ -1,4 +1,7 @@
 extends PlayerState
+	
+func _ready() -> void:
+	state_name = PlayerState.IDLE
 
 func physics_update(delta: float) -> void:
 	player.apply_gravity(delta)
@@ -13,23 +16,17 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to(PlayerState.JUMP)
 		return
 
-	if Input.is_action_pressed("down") and not player.is_falling():
-		state_machine.transition_to(PlayerState.SLIDE)
-		return
-
 	if player.is_falling():
 		state_machine.transition_to(PlayerState.FALL)
 		return
 
-	if player.direction == 0:
-		state_machine.transition_to(PlayerState.IDLE)
+	if player.move_direction != 0:
+		state_machine.transition_to(PlayerState.MOVE)
 		return
 
-	if player.speed_mult >= 1.5:
-		if player.is_on_wall():
-			state_machine.transition_to(PlayerState.WALL_RUN)
-			return
+	if Input.is_action_pressed("down"):
+		state_machine.transition_to(PlayerState.CROUCH)
+		return
 
-
-	player.animate("Move")
+	player.anim.play("idle")
 	player.move_and_slide()

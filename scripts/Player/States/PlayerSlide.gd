@@ -1,8 +1,13 @@
 extends PlayerState
 
+
+
+func _ready() -> void:
+	state_name = PlayerState.SLIDE
+
 func enter():
 	player.crouch_collider()
-	player.velocity.x = player.direction * player.slide_velocity
+	player.velocity.x = player.move_direction * player.slide_velocity
 
 func exit():
 	player.uncrouch_collider()
@@ -28,18 +33,13 @@ func physics_update(delta: float) -> void:
 			next_state = PlayerState.CROUCH
 
 		state_machine.transition_to(next_state)
-		player.animate(next_state)
 		player.move_and_slide()
 		return
-
-	# if Input.is_action_pressed("down"):
-	# 	state_machine.transition_to(PlayerState.CROUCH)
-	# 	return
 
 
 	player.velocity.x = move_toward(player.velocity.x, 0, player.slide_velocity * delta)
 	print(player.velocity.x)
 
 
-	player.animate("Crouch")
+	player.anim.play("crawl")
 	player.move_and_slide()
