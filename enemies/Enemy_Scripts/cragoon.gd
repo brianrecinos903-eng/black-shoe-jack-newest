@@ -1,8 +1,5 @@
 extends enemy
 
-func _on_skip_move_timer_timeout() -> void:
-	stunned = false
-
 func _init():
 	speed = 300
 	attack_Dmg = 2

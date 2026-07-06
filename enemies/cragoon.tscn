@@ -179,7 +179,7 @@ size = Vector2(179, 87)
 collision_layer = 64
 collision_mask = 2
 script = ExtResource("1_ds4yr")
-stunned_timer = NodePath("StunnedTimer")
+stunned_timer = NodePath("")
 anim = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1119822914 groups=["enemy"]]
@@ -192,9 +192,6 @@ script = ExtResource("3_ykxfu")
 position = Vector2(-2.5, 77.5)
 shape = SubResource("RectangleShape2D_cyx88")
 
-[node name="StunnedTimer" type="Timer" parent="." unique_id=1908240874 groups=["enemy"]]
-wait_time = 3.0
-
 [node name="AttackHitBox" type="Area2D" parent="." unique_id=1247215163 groups=["enemy"]]
 collision_layer = 64
 
@@ -202,5 +199,4 @@ collision_layer = 64
 position = Vector2(-2.5, 84.5)
 shape = SubResource("RectangleShape2D_g4v7s")
 
-[connection signal="timeout" from="StunnedTimer" to="." method="_on_skip_move_timer_timeout"]
 [connection signal="body_entered" from="AttackHitBox" to="." method="_on_attack_area_body_entered"]

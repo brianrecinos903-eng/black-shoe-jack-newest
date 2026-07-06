@@ -13,7 +13,7 @@ func animate():
 		container.scale.x = abs(container.scale.x)
 	elif enemy.direction < 0:
 		container.scale.x = -abs(container.scale.x)
-	
+		
 	var target_Anim: String = "idle"
 	
 	#if !enemy.alive:
