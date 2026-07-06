@@ -1,16 +1,18 @@
 extends AnimatedSprite2D
 
-@onready var enemy: CharacterBody2D = get_parent()
-
+@onready var enemy: CharacterBody2D = get_parent().get_parent()
+@onready var container = get_parent()
 
 func animate():
 	if !enemy:
 		return
-
+	
+	var container = get_parent()
+	
 	if enemy.direction > 0:
-		flip_h = false
+		container.scale.x = abs(container.scale.x)
 	elif enemy.direction < 0:
-		flip_h = true
+		container.scale.x = -abs(container.scale.x)
 	
 	var target_Anim: String = "idle"
 	

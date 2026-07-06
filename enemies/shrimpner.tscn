@@ -129,39 +129,41 @@ animations = [{
 "speed": 11.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fp1n2"]
-size = Vector2(128, 136)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r0p3l"]
 size = Vector2(484, 57)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fp1n2"]
+size = Vector2(128, 136)
 
 [node name="Shrimpner" type="CharacterBody2D" unique_id=1056129754 node_paths=PackedStringArray("stunned_timer", "anim") groups=["enemy"]]
 collision_layer = 64
 collision_mask = 2
 script = ExtResource("1_hkagg")
 stunned_timer = NodePath("Idle_Timer")
-anim = NodePath("AnimatedSprite2D")
+anim = NodePath("FlipContainer/AnimatedSprite2D")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1614337912]
+[node name="FlipContainer" type="Node2D" parent="." unique_id=1090121764]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="FlipContainer" unique_id=1614337912]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_6jhai")
 animation = &"idle"
 script = ExtResource("3_ytiiq")
 
+[node name="Area2D" type="Area2D" parent="FlipContainer" unique_id=997813133]
+collision_layer = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlipContainer/Area2D" unique_id=1136806006]
+position = Vector2(302, 18)
+shape = SubResource("RectangleShape2D_r0p3l")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=443043869]
 position = Vector2(0, 20)
 shape = SubResource("RectangleShape2D_fp1n2")
-
-[node name="Area2D" type="Area2D" parent="." unique_id=997813133]
-collision_layer = 64
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1136806006]
-position = Vector2(302, 18)
-shape = SubResource("RectangleShape2D_r0p3l")
 
 [node name="Idle_Timer" type="Timer" parent="." unique_id=570138719]
 wait_time = 5.0
 autostart = true
 
-[connection signal="body_entered" from="Area2D" to="." method="On_Player_Sight"]
+[connection signal="body_entered" from="FlipContainer/Area2D" to="." method="On_Player_Sight"]
 [connection signal="timeout" from="Idle_Timer" to="." method="Idle_Timer_End"]
