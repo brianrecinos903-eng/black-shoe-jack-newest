@@ -2,24 +2,25 @@ extends PlayerState
 
 var ignore_floor_check := true
 
+func _ready() -> void:
+	state_name = PlayerState.SPRING
 
 func enter():
+	player.gravity_factor = player.jump_gravity_factor
 	ignore_floor_check = true
-	player.velocity.x = player.face_direction * player.spring_jump_velocity.x
-	player.velocity.y = player.spring_jump_velocity.y
+	player.velocity.x = player.move_direction * player.spring_jump_power.x
+	player.velocity.y = player.spring_jump_power.y
 
 
 func physics_update(delta: float) -> void:
-	player.apply_jump(delta)
+	player.apply_gravity(delta)
 	player.apply_speed_input()
+	if abs(player.velocity.x) <= 400:
+		player.apply_horizontal_movement()
 
-	print("call run: ", player.is_on_ceiling() and player.direction != 0)
-	print("call direc: ", player.direction != 0)
-	print("call ceil: ", player.is_on_ceiling() )
-	if player.is_on_ceiling() and player.direction != 0:
+	if player.is_on_ceiling() and player.move_direction != 0:
 		state_machine.transition_to(PlayerState.CEILLING_RUN)
 		return
-
 
 	if player.velocity.y >= 100:
 		state_machine.transition_to(PlayerState.FALL)
@@ -38,19 +39,16 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to(PlayerState.FALL)
 		return
 	
-	if abs(player.velocity.x) <= 300:
-		player.apply_horizontal_movement()
 
 
 	if not ignore_floor_check and player.is_on_floor():
 		var next_state := player.grounded_state_name()
 		state_machine.transition_to(next_state)
-		player.animate(next_state)
 		player.move_and_slide()
 		return
 
-	player.velocity.x = move_toward(player.velocity.x, 0, player.spring_jump_velocity.x * delta)
+	player.velocity.x = move_toward(player.velocity.x, 0, player.spring_jump_power.x * delta)
 
-	player.animate("Jump")
+	player.anim.play("jump")
 	player.move_and_slide()
 	ignore_floor_check = false

@@ -1,10 +1,14 @@
 extends PlayerState
 
+
+func _ready() -> void:
+	state_name = PlayerState.CEILLING_RUN
+
 func enter():
-	player.gravity_scale = -1
+	player.gravity_factor = -1
 	
 func exit():
-	player.gravity_scale = 1
+	player.gravity_factor = 1
  
 
 func physics_update(delta: float) -> void:
@@ -16,21 +20,11 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to(PlayerState.HURT)
 		return
 
-	# if Input.is_action_just_pressed("jump"):
-	# 	# player.velocity.x = player.get_normal * player.jump_velocity
-	# 	state_machine.transition_to(PlayerState.JUMP)
-	# 	return
-
-	# if Input.is_action_pressed("down"):
-	# 	state_machine.transition_to(PlayerState.SLAM)
-	# 	return
-
-
 	if not player.is_level_within_distance(Vector2.UP, 70) or Input.is_action_just_pressed("jump"):
 		print("Player not on ceilling")
 		player.velocity.y = -200
 		state_machine.transition_to(PlayerState.FALL)
 		return
 
-	player.animate("Move")
+	player.anim_move()
 	player.move_and_slide()

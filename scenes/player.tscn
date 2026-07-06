@@ -3,18 +3,18 @@
 [ext_resource type="Texture2D" uid="uid://hggfb20qqf0i" path="res://art/Cap'n_Jackpine_mackeral_new_and_improved-Sheet.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://diibimr70041o" path="res://scripts/Player/PlayerProperties.gd" id="1_ur7pv"]
 [ext_resource type="Script" uid="uid://do1i5qvqaxghh" path="res://scripts/Misc/StateMachine.gd" id="3_y4r1p"]
-[ext_resource type="Script" uid="uid://c4nx2h8vfwn38" path="res://scripts/Player/PlayerDeath.gd" id="4_d2wvv"]
-[ext_resource type="Script" uid="uid://c13xaec8p1vxg" path="res://scripts/Player/PlayerMovement.gd" id="5_3v2ag"]
-[ext_resource type="Script" uid="uid://0c3jvo44v0k8" path="res://scripts/Player/PlayerJumping.gd" id="6_jej6c"]
-[ext_resource type="Script" uid="uid://lr72p6uqf7jk" path="res://scripts/Player/PlayerSlamming.gd" id="8_oprun"]
-[ext_resource type="Script" uid="uid://qws78eurfp2j" path="res://scripts/Player/PlayerIdle.gd" id="9_a8ls1"]
-[ext_resource type="Script" uid="uid://bak2y3ap2h1he" path="res://scripts/Player/PlayerFalling.gd" id="9_ur7pv"]
-[ext_resource type="Script" uid="uid://duqscq7gyt0hc" path="res://scripts/Player/PlayerSpringJump.gd" id="10_y4r1p"]
-[ext_resource type="Script" uid="uid://bfnfyn0sqlmv" path="res://scripts/Player/PlayerHurt.gd" id="11_d2wvv"]
-[ext_resource type="Script" uid="uid://jmyu2apn736o" path="res://scripts/Player/PlayerCrouch.gd" id="12_3v2ag"]
-[ext_resource type="Script" uid="uid://j2kpi40vn3hv" path="res://scripts/Player/PlayerSlide.gd" id="13_jej6c"]
-[ext_resource type="Script" uid="uid://duqswexfliy0x" path="res://scripts/Player/PlayerWallRun.gd" id="14_f1ej7"]
-[ext_resource type="Script" uid="uid://d27dki7qtuia8" path="res://scripts/Player/PlayerCeillingRun.gd" id="15_oprun"]
+[ext_resource type="Script" uid="uid://c4nx2h8vfwn38" path="res://scripts/Player/States/PlayerDeath.gd" id="4_d2wvv"]
+[ext_resource type="Script" uid="uid://c13xaec8p1vxg" path="res://scripts/Player/States/PlayerMovement.gd" id="5_3v2ag"]
+[ext_resource type="Script" uid="uid://0c3jvo44v0k8" path="res://scripts/Player/States/PlayerJumping.gd" id="6_jej6c"]
+[ext_resource type="Script" uid="uid://lr72p6uqf7jk" path="res://scripts/Player/States/PlayerSlamming.gd" id="8_oprun"]
+[ext_resource type="Script" uid="uid://qws78eurfp2j" path="res://scripts/Player/States/PlayerIdle.gd" id="9_a8ls1"]
+[ext_resource type="Script" uid="uid://bak2y3ap2h1he" path="res://scripts/Player/States/PlayerFalling.gd" id="9_oprun"]
+[ext_resource type="Script" uid="uid://duqscq7gyt0hc" path="res://scripts/Player/States/PlayerSpringJump.gd" id="10_y4r1p"]
+[ext_resource type="Script" uid="uid://bfnfyn0sqlmv" path="res://scripts/Player/States/PlayerHurt.gd" id="11_a8ls1"]
+[ext_resource type="Script" uid="uid://jmyu2apn736o" path="res://scripts/Player/States/PlayerCrouch.gd" id="12_3v2ag"]
+[ext_resource type="Script" uid="uid://j2kpi40vn3hv" path="res://scripts/Player/States/PlayerSlide.gd" id="13_jej6c"]
+[ext_resource type="Script" uid="uid://duqswexfliy0x" path="res://scripts/Player/States/PlayerWallRun.gd" id="14_f1ej7"]
+[ext_resource type="Script" uid="uid://d27dki7qtuia8" path="res://scripts/Player/States/PlayerCeillingRun.gd" id="15_qfm1y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vdulj"]
 atlas = ExtResource("1_3vyb7")
@@ -609,8 +609,8 @@ shape = SubResource("RectangleShape2D_r0p3l")
 script = ExtResource("3_y4r1p")
 initial_state = NodePath("Idle")
 
-[node name="Death" type="Node" parent="StateMachine" unique_id=1637866031]
-script = ExtResource("4_d2wvv")
+[node name="Idle" type="Node" parent="StateMachine" unique_id=686660641]
+script = ExtResource("9_a8ls1")
 
 [node name="Move" type="Node" parent="StateMachine" unique_id=1989659830]
 script = ExtResource("5_3v2ag")
@@ -618,38 +618,37 @@ script = ExtResource("5_3v2ag")
 [node name="Jump" type="Node" parent="StateMachine" unique_id=645013472]
 script = ExtResource("6_jej6c")
 
+[node name="Death" type="Node" parent="StateMachine" unique_id=1637866031]
+script = ExtResource("4_d2wvv")
+
 [node name="Slam" type="Node" parent="StateMachine" unique_id=1265901013]
 script = ExtResource("8_oprun")
 
-[node name="Idle" type="Node" parent="StateMachine" unique_id=686660641]
-script = ExtResource("9_a8ls1")
-
 [node name="Fall" type="Node" parent="StateMachine" unique_id=641053761]
-script = ExtResource("9_ur7pv")
+script = ExtResource("9_oprun")
+
+[node name="Crouch" type="Node" parent="StateMachine" unique_id=230292596]
+script = ExtResource("12_3v2ag")
 
 [node name="Spring" type="Node" parent="StateMachine" unique_id=724719584]
 script = ExtResource("10_y4r1p")
 
+[node name="Slide" type="Node" parent="StateMachine" unique_id=694313141]
+script = ExtResource("13_jej6c")
+
 [node name="Hurt" type="Node" parent="StateMachine" unique_id=319907968]
-script = ExtResource("11_d2wvv")
-knockback = Vector2(1000, 500)
+script = ExtResource("11_a8ls1")
 
 [node name="StunTimer" type="Timer" parent="StateMachine/Hurt" unique_id=1341333025]
 wait_time = 0.5
 one_shot = true
 
-[node name="Crouch" type="Node" parent="StateMachine" unique_id=230292596]
-script = ExtResource("12_3v2ag")
-
-[node name="Slide" type="Node" parent="StateMachine" unique_id=694313141]
-script = ExtResource("13_jej6c")
-
 [node name="Wallrun" type="Node" parent="StateMachine" unique_id=758653123]
 script = ExtResource("14_f1ej7")
 
 [node name="Ceillingrun" type="Node" parent="StateMachine" unique_id=232140253]
-script = ExtResource("15_oprun")
+script = ExtResource("15_qfm1y")
 
-[connection signal="timeout" from="DeathTimer" to="." method="death_timer_end"]
-[connection signal="body_entered" from="AttackHitBox" to="." method="player_touched_enemy"]
+[connection signal="timeout" from="DeathTimer" to="StateMachine/Death" method="death_timer_end"]
+[connection signal="body_entered" from="AttackHitBox" to="." method="_in_attack_range"]
 [connection signal="timeout" from="StateMachine/Hurt/StunTimer" to="StateMachine/Hurt" method="_on_stun_timer_timeout"]

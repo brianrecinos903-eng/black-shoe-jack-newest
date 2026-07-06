@@ -14,6 +14,7 @@ const WALL_RUN = "Wallrun"
 const CEILLING_RUN = "Ceillingrun"
 
 
+
 @export var player: Player
 
 

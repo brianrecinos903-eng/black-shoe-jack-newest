@@ -2,6 +2,7 @@ extends Node
 class_name State
 
 var state_machine
+var state_name: String
 
 func enter():
 	pass
