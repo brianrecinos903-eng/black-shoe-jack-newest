@@ -7,3 +7,8 @@ enum DamageType {
 	TRAP,
 	ENEMY,
 }
+	
+enum PlayerAttackType {
+	DEFAULT,
+	SLAM
+}

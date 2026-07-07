@@ -15,6 +15,12 @@ func enter():
 func physics_update(delta: float) -> void:
 	player.apply_gravity(delta)
 	player.apply_speed_input()
+
+	if player.slam_area.disabled == false:
+		Helpers.wait(0.5)
+		print("Slam disabled")
+		player.slam_area.disabled = true
+
 	if abs(player.velocity.x) <= 400:
 		player.apply_horizontal_movement()
 

@@ -22,10 +22,20 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to(PlayerState.HURT)
 		return
 
+	if player.is_on_wall():
+		print("player wall normal: ", player.get_wall_normal().x == player.move_direction)
+		if Input.is_action_pressed("down") and -player.get_wall_normal().x == player.move_direction:
+			state_machine.transition_to(PlayerState.WALL_RUN)
+			return
+
 	if not player.is_level_within_distance(Vector2.UP, 70) or Input.is_action_just_pressed("jump"):
 		print("Player not on ceilling")
 		state_machine.transition_to(PlayerState.JUMP)
 		return
 
-	player.anim_move()
+	if player.move_direction != 0:
+		player.anim_move()
+	else:
+		player.anim.play("idle")
+
 	player.move_and_slide()

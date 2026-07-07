@@ -1,12 +1,24 @@
 extends PlayerState
 
-func apply_wallrun() -> void:
+func apply_wallrun(wall_run_direction: float) -> void:
 	player.move_direction = Input.get_axis("left", "right")
 	if player.move_direction != 0:
-		player.velocity.y = -player.speed * player.acceleration
+		player.velocity.y = wall_run_direction * player.speed * player.acceleration
 	else:
-		player.velocity.y = move_toward(player.velocity.y, 0, -player.speed)
+		player.velocity.y = move_toward(player.velocity.y, 0, wall_run_direction * player.speed)
 		player.acceleration = 1
+
+	if player.move_direction > 0:
+		player.anim.scale.x = 1
+		player.face_direction = 1
+	elif player.move_direction < 0:
+		player.anim.scale.x = -1
+		player.face_direction = -1
+	
+	if player.gravity_factor == -1:
+		player.anim.scale.y = -1
+	else: 
+		player.anim.scale.y = 1
 
 
 func _ready() -> void:
@@ -14,7 +26,10 @@ func _ready() -> void:
 
 func enter():
 	player.gravity_factor = 0
-	player.velocity.y = -abs(player.velocity.x)
+	if state_machine.previous_state == PlayerState.CEILLING_RUN:
+		player.velocity.y = abs(player.velocity.x) + 100
+	else: 
+		player.velocity.y = -abs(player.velocity.x)
 	print("wall run dimension ", player.move_direction)
 	
 func exit():
@@ -24,8 +39,14 @@ func exit():
 
 
 func physics_update(delta: float) -> void:
-	apply_wallrun()
 	player.apply_speed_input()
+	if state_machine.previous_state == PlayerState.CEILLING_RUN:
+		apply_wallrun(1)
+	else:
+		apply_wallrun(-1)
+		if player.is_falling():
+			state_machine.transition_to(PlayerState.FALL)
+			return
 
 	if player.is_hurt:
 		state_machine.transition_to(PlayerState.HURT)
@@ -35,15 +56,11 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to(PlayerState.JUMP)
 		return
 
-	if Input.is_action_pressed("down"):
+	if Input.is_action_just_pressed("down"):
 		state_machine.transition_to(PlayerState.SLAM)
 		return
 
-	if player.is_falling():
-		state_machine.transition_to(PlayerState.FALL)
-		return
-
-	if player.is_on_ceiling() and player.move_direction != 0:
+	if player.is_on_ceiling() and player.move_direction != 0 and state_machine.previous_state != PlayerState.CEILLING_RUN:
 		state_machine.transition_to(PlayerState.CEILLING_RUN)
 		return
 

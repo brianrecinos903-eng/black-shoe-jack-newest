@@ -580,6 +580,9 @@ size = Vector2(64, 78)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r0p3l"]
 size = Vector2(64, 78)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sfl3n"]
+size = Vector2(816, 63)
+
 [node name="Player" type="CharacterBody2D" unique_id=413210945 groups=["player"]]
 script = ExtResource("1_ur7pv")
 slam_shake_factor = 0.826
@@ -610,6 +613,13 @@ collision_mask = 64
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitBox" unique_id=654769101]
 position = Vector2(63, 31)
 shape = SubResource("RectangleShape2D_r0p3l")
+
+[node name="SlamArea" type="Area2D" parent="." unique_id=712288772]
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlamArea" unique_id=1056513306]
+position = Vector2(0, 31.5)
+shape = SubResource("RectangleShape2D_sfl3n")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1263486853 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_y4r1p")
@@ -657,4 +667,5 @@ script = ExtResource("15_qfm1y")
 
 [connection signal="timeout" from="DeathTimer" to="StateMachine/Death" method="death_timer_end"]
 [connection signal="body_entered" from="AttackHitBox" to="." method="_in_attack_range"]
+[connection signal="body_entered" from="SlamArea" to="." method="_on_slam_area_body_entered"]
 [connection signal="timeout" from="StateMachine/Hurt/StunTimer" to="StateMachine/Hurt" method="_on_stun_timer_timeout"]

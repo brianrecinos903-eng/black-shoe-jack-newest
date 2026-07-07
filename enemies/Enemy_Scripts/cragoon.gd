@@ -19,8 +19,7 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 		print("Attacked by: ", name)
 
 func _physics_process(_delta: float) -> void:
-	if stunned:
-		return
-	else:
+	if not stunned:
 		cragoon_base_movement()
-		move_and_slide()
+	move_and_slide()
+	Apply_Gravity(_delta)

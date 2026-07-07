@@ -60,7 +60,10 @@ var can_be_hurt_by_spike := true
 @onready var camera_2d: PlayerCamera = $Camera2D
 @onready var state_machine: StateMachine = $StateMachine
 @onready var collider: CollisionShape2D = $"CollisionShape2D"
+@onready var slam_area: CollisionShape2D = $SlamArea/"CollisionShape2D"
 
+func _ready() -> void:
+	slam_area.disabled = true
 
 func crouch_collider():
 	collider.scale.y = in_crouch_scale
@@ -157,6 +160,11 @@ func anim_move() -> void:
 		anim.play("walk")
 
 
+func _on_slam_area_body_entered(body: Node2D) -> void:
+	print("Body slammed")
+	if not body.is_in_group("enemy"):
+		return
+	body.stun(Helpers.PlayerAttackType.SLAM)
 
 
 	

@@ -2,6 +2,7 @@ extends PlayerState
 
 @export var button_hold_time = 1.5
 
+
 var exited = false
 
 func _ready() -> void:
@@ -38,6 +39,7 @@ func physics_update(delta: float) -> void:
 	player.apply_horizontal_movement()
 
 	if player.is_on_floor():
+
 		if Input.is_action_just_pressed("left") or Input.is_action_just_pressed("right"):
 			exit_state()
 			return
@@ -50,9 +52,14 @@ func physics_update(delta: float) -> void:
 			return
 
 		player.camera_2d.shake(player.slam_shake_factor)
+		player.slam_area.disabled = false
+		print("Slam enabled")
 		state_machine.transition_to(PlayerState.SPRING)
 		return
 		
 
 	player.anim.play("slam")
 	player.move_and_slide()
+
+
+	
