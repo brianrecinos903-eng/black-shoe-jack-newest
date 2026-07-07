@@ -11,7 +11,7 @@ func enter():
 		player.velocity.y = player.jump_power
 		player.velocity.x = -player.move_direction * player.walljump_power
 	elif state_machine.previous_state == PlayerState.CEILLING_RUN:
-		player.velocity.y = -200
+		player.velocity.y = 200
 	else:
 		player.velocity.y = player.jump_power
 
@@ -28,6 +28,11 @@ func physics_update(delta: float) -> void:
 		player.can_coyote = true 
 		state_machine.transition_to(PlayerState.FALL)
 		return
+
+	if state_machine.previous_state == PlayerState.FALL:
+		if player.is_on_ceiling() and player.move_direction != 0:
+			state_machine.transition_to(PlayerState.CEILLING_RUN)
+			return
 
 	if player.is_hurt:
 		player.can_coyote = true

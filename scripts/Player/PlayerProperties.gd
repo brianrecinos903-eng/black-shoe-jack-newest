@@ -31,6 +31,8 @@ var can_coyote: bool = true
 @export_range(0.0,2.0) var jump_gravity_factor := 0.8
 @export_range(0.0,2.0) var fall_gravity_factor := 1.5
 var gravity_factor := 1.0
+var inverse_sprite_pos = 50
+var default_sprite_pos = 0
 
 
 @export_subgroup("Bounce settings")

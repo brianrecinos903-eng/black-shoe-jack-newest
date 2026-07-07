@@ -6,9 +6,11 @@ func _ready() -> void:
 
 func enter():
 	player.gravity_factor = -1
+	player.anim.position.y = player.inverse_sprite_pos
 	
 func exit():
 	player.gravity_factor = 1
+	player.anim.position.y = player.default_sprite_pos
  
 
 func physics_update(delta: float) -> void:
@@ -22,8 +24,7 @@ func physics_update(delta: float) -> void:
 
 	if not player.is_level_within_distance(Vector2.UP, 70) or Input.is_action_just_pressed("jump"):
 		print("Player not on ceilling")
-		player.velocity.y = -200
-		state_machine.transition_to(PlayerState.FALL)
+		state_machine.transition_to(PlayerState.JUMP)
 		return
 
 	player.anim_move()
