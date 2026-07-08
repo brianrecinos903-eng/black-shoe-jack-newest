@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cext6w2tixtca"
-path="res://.godot/imported/water_animated-Sheet.png-655a9cdcac6d216b90c76b8e1f1f13fc.ctex"
+uid="uid://fvi6kn524k4u"
+path="res://.godot/imported/coins-Sheet.png-cdbe6de1cf0bcd9a3b09e4a0eef991aa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/water_animated-Sheet.png"
-dest_files=["res://.godot/imported/water_animated-Sheet.png-655a9cdcac6d216b90c76b8e1f1f13fc.ctex"]
+source_file="res://art/coins-Sheet.png"
+dest_files=["res://.godot/imported/coins-Sheet.png-cdbe6de1cf0bcd9a3b09e4a0eef991aa.ctex"]
 
 [params]
 
