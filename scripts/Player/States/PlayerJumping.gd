@@ -8,12 +8,12 @@ func _ready() -> void:
 func enter():
 	player.gravity_factor = player.jump_gravity_factor
 	if state_machine.previous_state == PlayerState.WALL_RUN:
-		player.velocity.y = player.jump_power
-		player.velocity.x = -player.move_direction * player.walljump_power
+		player.velocity.y = player.jump_impulse
+		player.velocity.x = -player.move_direction * player.wall_jump_impulse
 	elif state_machine.previous_state == PlayerState.CEILLING_RUN:
 		player.velocity.y = 200
 	else:
-		player.velocity.y = player.jump_power
+		player.velocity.y = player.jump_impulse
 
 	ignore_floor_check = true
 
@@ -22,7 +22,7 @@ func physics_update(delta: float) -> void:
 	player.apply_gravity(delta)
 	player.apply_speed_input()
 	if abs(player.velocity.x) <= 500:
-		player.apply_horizontal_movement()
+		player.apply_horizontal_movement(delta)
 
 	if state_machine.previous_state == PlayerState.CEILLING_RUN or state_machine.previous_state ==  PlayerState.WALL_RUN or state_machine.previous_state == PlayerState.HURT:
 		player.can_coyote = true 
@@ -48,7 +48,7 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to(PlayerState.FALL)
 		return
 
-	if player.acceleration >= 1.5:
+	if player.speed_multiplier >= 1.5:
 		if player.is_on_wall():
 			state_machine.transition_to(PlayerState.WALL_RUN)
 			return

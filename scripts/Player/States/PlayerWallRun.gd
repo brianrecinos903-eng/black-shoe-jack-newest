@@ -1,12 +1,12 @@
 extends PlayerState
 
-func apply_wallrun(wall_run_direction: float) -> void:
+func apply_wallrun(wall_run_direction: float, delta: float) -> void:
 	player.move_direction = Input.get_axis("left", "right")
 	if player.move_direction != 0:
-		player.velocity.y = wall_run_direction * player.speed * player.acceleration
+		player.velocity.y = move_toward(player.velocity.y, wall_run_direction * player.max_speed, player.acceleration * player.speed_multiplier * delta)
 	else:
-		player.velocity.y = move_toward(player.velocity.y, 0, wall_run_direction * player.speed)
-		player.acceleration = 1
+		player.velocity.y = move_toward(player.velocity.y, 0, player.friction_force * delta * player.speed_multiplier)
+		player.speed_multiplier = 1
 
 	if player.move_direction > 0:
 		player.anim.scale.x = 1
@@ -41,9 +41,9 @@ func exit():
 func physics_update(delta: float) -> void:
 	player.apply_speed_input()
 	if state_machine.previous_state == PlayerState.CEILLING_RUN:
-		apply_wallrun(1)
+		apply_wallrun(1, delta)
 	else:
-		apply_wallrun(-1)
+		apply_wallrun(-1, delta)
 		if player.is_falling():
 			state_machine.transition_to(PlayerState.FALL)
 			return

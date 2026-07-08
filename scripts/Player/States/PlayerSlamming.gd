@@ -24,19 +24,19 @@ func handle_bounce() -> void:
 		exit_state()
 		return
 	if player.bounces_left > 0:
-		player.velocity.y = player.jump_power
+		player.velocity.y = player.jump_impulse
 		player.bounces_left -= 1
 
 
 func enter() -> void:
 	exited = false
-	player.acceleration = 0.2
+	player.speed_multiplier = 0.2
 	player.bounces_left = player.max_bounces
 	player.gravity_factor = player.fall_gravity_factor
 
 func physics_update(delta: float) -> void:
 	player.apply_gravity(delta)
-	player.apply_horizontal_movement()
+	player.apply_horizontal_movement(delta)
 
 	if player.is_on_floor():
 

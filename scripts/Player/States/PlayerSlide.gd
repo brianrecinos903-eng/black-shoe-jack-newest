@@ -7,7 +7,7 @@ func _ready() -> void:
 
 func enter():
 	player.crouch_collider()
-	player.velocity.x = player.move_direction * player.slide_velocity
+	player.velocity.x = player.move_direction * player.slide_impulse
 
 func exit():
 	player.uncrouch_collider()
@@ -37,7 +37,7 @@ func physics_update(delta: float) -> void:
 		return
 
 
-	player.velocity.x = move_toward(player.velocity.x, 0, player.slide_velocity * delta)
+	player.velocity.x = move_toward(player.velocity.x, 0, player.slide_impulse * delta)
 	print(player.velocity.x)
 
 

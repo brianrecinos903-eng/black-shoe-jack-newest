@@ -14,7 +14,7 @@ func exit():
  
 
 func physics_update(delta: float) -> void:
-	player.apply_horizontal_movement()
+	player.apply_horizontal_movement(delta)
 	player.apply_speed_input()
 
 	player.velocity.y = -100

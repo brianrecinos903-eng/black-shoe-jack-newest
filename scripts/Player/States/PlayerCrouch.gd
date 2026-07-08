@@ -12,7 +12,7 @@ func exit():
 
 func physics_update(delta: float) -> void:
 	player.apply_gravity(delta)
-	player.apply_horizontal_movement()
+	player.apply_horizontal_movement(delta)
 
 	
 	if player.is_hurt:

@@ -16,7 +16,7 @@ func exit():
 
 func physics_update(delta):
 	player.apply_gravity(delta)
-	player.apply_horizontal_movement()
+	player.apply_horizontal_movement(delta)
 	player.apply_speed_input()
 
 
@@ -31,7 +31,7 @@ func physics_update(delta):
 		state_machine.transition_to(PlayerState.SLAM)
 		return
 		
-	if player.acceleration>= 1.5:
+	if player.speed_multiplier>= 1.5:
 		if player.is_on_wall():
 			state_machine.transition_to(PlayerState.WALL_RUN)
 			return

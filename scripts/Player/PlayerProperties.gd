@@ -5,24 +5,26 @@ var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export_group("Movement parameters")
 @export_subgroup("Horizontal movement")
 
-@export var max_acceleration: float = 3
-@export var acceleration_incr: float = 0.01
-var speed: float = 250.0
-var acceleration: float = 1
+@export var max_speed_multiplier: float = 3
+@export var speed_multiplier_step: float = 0.01
+@export var friction_force: float = 800.0
+@export var acceleration = 1000.0
+@export var max_speed: float = 600
+var speed_multiplier: float = 1
 
-@export var slide_velocity: float = 1000
+@export var slide_impulse: float = 1000
 @export var in_crouch_scale: float = 0.5
 var standing_collider_pos = 25
 var crouch_collider_pos = 44
 
 var move_direction: int = 1
-var face_direction: int = 0;
+var face_direction: int = 0
 
 @export_subgroup("Vertical Movement")
 
-@export var jump_power: float = -630.0
-@export var walljump_power: float = 300.0
-@export var spring_jump_power: Vector2 = Vector2(1000.0, -1000.0)
+@export var jump_impulse: float = -630.0
+@export var wall_jump_impulse: float = 300.0
+@export var spring_jump_impulse: Vector2 = Vector2(1000.0, -1000.0)
 
 @export var coyote_timeframe: float =  0.5
 var can_coyote: bool = true
@@ -47,7 +49,6 @@ var last_checkpoint: Vector2
 var is_hurt := false
 var can_be_hurt := true
 var dmg_source : Helpers.DamageType
-var can_be_hurt_by_spike := true
 
 @export_group("Camera Settings")
 @export_range(0,1) var slam_shake_factor := 0.5
@@ -87,12 +88,12 @@ func is_level_within_distance(dir: Vector2, check_distance: float) -> bool:
 
 func accelerate(allow_full: bool = true) -> void:
 	if allow_full:
-		acceleration += acceleration_incr
-	if acceleration > max_acceleration:
-		acceleration = max_acceleration
+		speed_multiplier += speed_multiplier_step
+	if speed_multiplier > max_speed_multiplier:
+		speed_multiplier = max_speed_multiplier
 
 func decelerate() -> void:
-	acceleration -= acceleration_incr / 2.0
+	speed_multiplier -= speed_multiplier_step / 2.0
 
 func is_falling() -> bool:
 	if not is_on_floor() and velocity.y > 0:
@@ -103,13 +104,13 @@ func is_falling() -> bool:
 func grounded_state_name() -> String:
 	return PlayerState.IDLE if move_direction == 0 else PlayerState.MOVE
 
-func apply_horizontal_movement() -> void:
+func apply_horizontal_movement(delta: float) -> void:
 	move_direction = Input.get_axis("left", "right")
 	if move_direction != 0:
-		velocity.x = move_direction * speed * acceleration
+		velocity.x = move_toward(velocity.x, move_direction * max_speed, acceleration * speed_multiplier * delta)
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		acceleration = 1
+		velocity.x = move_toward(velocity.x, 0, friction_force * delta * speed_multiplier)
+		speed_multiplier = 1
 
 	if move_direction > 0:
 		anim.scale.x = 1
@@ -127,7 +128,7 @@ func apply_horizontal_movement() -> void:
 func apply_speed_input() -> void:
 	if Input.is_action_pressed("accelerate"):
 		accelerate()
-	elif acceleration > 1:
+	elif speed_multiplier > 1:
 		decelerate()
 
 func apply_gravity(delta: float) -> void:
@@ -143,18 +144,18 @@ func take_dmg(amount: int, dmg_type: Helpers.DamageType = Helpers.DamageType.ENE
 func _in_attack_range(body: Node2D) -> void:
 	if not body.is_in_group("enemy"):
 		return
-	if state_machine.current_state.name == PlayerState.SLAM or acceleration > 2:
+	if state_machine.current_state.name == PlayerState.SLAM or speed_multiplier > 2:
 		body.kill()
 	elif state_machine.current_state.name == PlayerState.FALL:
 		body.stun()
-		velocity.y = jump_power
+		velocity.y = jump_impulse
 
 func anim_move() -> void:
-	if acceleration >= 2.9:
+	if speed_multiplier >= 2.9:
 		anim.play("rush")
-	elif acceleration > 2:
+	elif speed_multiplier > 2:
 		anim.play("sprint")
-	elif acceleration > 1:
+	elif speed_multiplier > 1:
 		anim.play("run")
 	else:
 		anim.play("walk")

@@ -8,8 +8,8 @@ func _ready() -> void:
 func enter():
 	player.gravity_factor = player.jump_gravity_factor
 	ignore_floor_check = true
-	player.velocity.x = player.move_direction * player.spring_jump_power.x
-	player.velocity.y = player.spring_jump_power.y
+	player.velocity.x = player.move_direction * player.spring_jump_impulse.x
+	player.velocity.y = player.spring_jump_impulse.y
 
 
 func physics_update(delta: float) -> void:
@@ -22,7 +22,7 @@ func physics_update(delta: float) -> void:
 		player.slam_area.disabled = true
 
 	if abs(player.velocity.x) <= 400:
-		player.apply_horizontal_movement()
+		player.apply_horizontal_movement(delta)
 
 	if player.is_on_ceiling() and player.move_direction != 0:
 		state_machine.transition_to(PlayerState.CEILLING_RUN)
@@ -53,7 +53,7 @@ func physics_update(delta: float) -> void:
 		player.move_and_slide()
 		return
 
-	player.velocity.x = move_toward(player.velocity.x, 0, player.spring_jump_power.x * delta)
+	player.velocity.x = move_toward(player.velocity.x, 0, player.spring_jump_impulse.x * delta)
 
 	player.anim.play("jump")
 	player.move_and_slide()

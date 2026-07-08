@@ -6,7 +6,7 @@ func _ready() -> void:
 
 func physics_update(delta: float) -> void:
 	player.apply_gravity(delta)
-	player.apply_horizontal_movement()
+	player.apply_horizontal_movement(delta)
 	player.apply_speed_input()
 
 	if player.is_hurt:
@@ -29,7 +29,7 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to(PlayerState.IDLE)
 		return
 
-	if player.acceleration >= 1.5:
+	if player.speed_multiplier >= 1.5:
 		if player.is_on_wall():
 			state_machine.transition_to(PlayerState.WALL_RUN)
 			return
