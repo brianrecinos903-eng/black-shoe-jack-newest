@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 class_name enemy
 
-@export var stunned_timer: Timer
+var stunned_timer: Timer
 @export var anim: AnimatedSprite2D
 
 var direction:int = 1
