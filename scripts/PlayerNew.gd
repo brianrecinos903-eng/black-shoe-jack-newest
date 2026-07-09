@@ -74,12 +74,12 @@ func slam_again():
 		velocity.y = jump_Velocity
 		bounces_Left -= 1
 
-func player_touched_enemy(enemy: Node2D) -> void:
-	if enemy.is_in_group("enemy"):
+func player_touched_enemy(Enemy: Node2D) -> void:
+	if Enemy.is_in_group("Enemy"):
 		if slam_Attack or speed_Mult >= 2:
-			enemy.kill()
+			Enemy.kill()
 		elif !slam_Attack && is_Jumping:
-			enemy.stun()
+			Enemy.stun()
 			velocity.y = jump_Velocity
 
 func kill_player():

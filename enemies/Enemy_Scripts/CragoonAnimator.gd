@@ -1,27 +1,30 @@
 extends AnimatedSprite2D
 
-@onready var enemy: CharacterBody2D = get_parent()
+@onready var Enemy: CharacterBody2D = get_parent()
 
 
 func animate():
-	if !enemy:
+	if !Enemy:
 		return
 	
-	if enemy.direction > 0:
+	if Enemy.direction > 0:
 		flip_h = false
-	elif enemy.direction < 0:
+	elif Enemy.direction < 0:
 		flip_h = true
 
-	var target_Anim: String = "walk"
+	var target_Anim: String = "idle"
 	
-	#if !enemy.alive:
+	#if !Enemy.alive:
 		#target_Anim = "death"
+	
+	if Enemy.leaping:
+		target_Anim = "leap"
 
-	if enemy.stunned:
+	elif Enemy.stunned:
 		target_Anim = "stunned"
 
-	else:
-		target_Anim = "walk"
+	elif !Enemy.leaping:
+		target_Anim = "idle"
 
 	if target_Anim != animation:
 		print("Switching from ", animation, " to ", target_Anim)

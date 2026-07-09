@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cext6w2tixtca"
-path="res://.godot/imported/water_animated-Sheet.png-655a9cdcac6d216b90c76b8e1f1f13fc.ctex"
+uid="uid://bm0icqitputqq"
+path="res://.godot/imported/splash-Sheet.png-023d26b9326bc17e7da7c65fef69d523.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/water_animated-Sheet.png"
-dest_files=["res://.godot/imported/water_animated-Sheet.png-655a9cdcac6d216b90c76b8e1f1f13fc.ctex"]
+source_file="res://art/splash-Sheet.png"
+dest_files=["res://.godot/imported/splash-Sheet.png-023d26b9326bc17e7da7c65fef69d523.ctex"]
 
 [params]
 

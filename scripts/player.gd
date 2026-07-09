@@ -152,15 +152,15 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 
 func _on_slam_atk_area_body_entered(body: Node2D) -> void:
-	if SLAM and body.is_in_group("enemy"):
+	if SLAM and body.is_in_group("Enemy"):
 		body.kill()
-	elif not SLAM and body.is_in_group("enemy") and JUMP:
+	elif not SLAM and body.is_in_group("Enemy") and JUMP:
 		velocity.y = jump_velocity
 		body.stun()
 
 
 func _on_run_atk_area_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemy"):
+	if body.is_in_group("Enemy"):
 		if RUN or RUSH or SPRINT:
 			body.kill()
 

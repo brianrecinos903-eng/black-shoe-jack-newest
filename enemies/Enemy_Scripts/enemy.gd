@@ -29,7 +29,10 @@ func _on_skip_move_timer_timeout() -> void:
 func kill():
 	queue_free()
 
-func stun():
+func stun(attack_type: Helpers.PlayerAttackType = Helpers.PlayerAttackType.DEFAULT):
+	if attack_type == Helpers.PlayerAttackType.SLAM:
+		velocity.y = -200
+		velocity.x = 0
 	stunned = true
 	stunned_timer.start()
 

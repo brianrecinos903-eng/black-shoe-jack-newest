@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cext6w2tixtca"
-path="res://.godot/imported/water_animated-Sheet.png-655a9cdcac6d216b90c76b8e1f1f13fc.ctex"
+uid="uid://bc1fhqsgxxktq"
+path="res://.godot/imported/jump_pad.png-6fb96005e506d1d878f5327cf5e062fe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/water_animated-Sheet.png"
-dest_files=["res://.godot/imported/water_animated-Sheet.png-655a9cdcac6d216b90c76b8e1f1f13fc.ctex"]
+source_file="res://art/jump_pad.png"
+dest_files=["res://.godot/imported/jump_pad.png-6fb96005e506d1d878f5327cf5e062fe.ctex"]
 
 [params]
 
