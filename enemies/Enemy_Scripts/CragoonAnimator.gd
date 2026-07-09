@@ -17,14 +17,12 @@ func animate():
 	#if !Enemy.alive:
 		#target_Anim = "death"
 	
-	if Enemy.leaping:
-		target_Anim = "leap"
 
-	elif Enemy.stunned:
+	if Enemy.stunned:
 		target_Anim = "stunned"
 
-	elif !Enemy.leaping:
-		target_Anim = "idle"
+	else:
+		target_Anim = "walk"
 
 	if target_Anim != animation:
 		print("Switching from ", animation, " to ", target_Anim)

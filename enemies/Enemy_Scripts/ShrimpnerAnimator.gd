@@ -1,6 +1,6 @@
 extends AnimatedSprite2D
 
-@onready var Enemy: CharacterBody2D = get_parent()
+@onready var Enemy: CharacterBody2D = get_parent().get_parent()
 
 
 func animate():
