@@ -1,16 +1,16 @@
-extends AnimatedSprite2D
+extends Node2D
 
-@onready var Enemy: CharacterBody2D = get_parent().get_parent()
-
+@onready var Enemy: CharacterBody2D = get_parent()
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func animate():
 	if !Enemy:
 		return
 
 	if Enemy.direction > 0:
-		flip_h = false
+		scale.x = abs(scale.x)
 	elif Enemy.direction < 0:
-		flip_h = true
+		scale.x = -abs(scale.x)
 	
 	var target_Anim: String = "idle"
 	
@@ -26,9 +26,8 @@ func animate():
 	else:
 		target_Anim = "idle"
 	
-	if target_Anim != animation:
-		print("Shrimpner switching from ", animation, " to ", target_Anim)
-		play(target_Anim)
+	if target_Anim != sprite.animation:
+		sprite.play(target_Anim)
 
 func _process(delta: float) -> void:
 	animate()

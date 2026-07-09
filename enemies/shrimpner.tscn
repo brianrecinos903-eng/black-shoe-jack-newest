@@ -175,21 +175,20 @@ size = Vector2(484, 57)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fp1n2"]
 size = Vector2(128, 136)
 
-[node name="Shrimpner" type="CharacterBody2D" unique_id=1056129754 node_paths=PackedStringArray("stunned_timer", "anim") groups=["enemy"]]
+[node name="Shrimpner" type="CharacterBody2D" unique_id=1056129754 node_paths=PackedStringArray("anim") groups=["enemy"]]
 collision_layer = 64
 collision_mask = 2
 script = ExtResource("1_hkagg")
-stunned_timer = NodePath("Idle_Timer")
 anim = NodePath("FlipContainer/AnimatedSprite2D")
 
 [node name="FlipContainer" type="Node2D" parent="." unique_id=1090121764]
+script = ExtResource("3_ytiiq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="FlipContainer" unique_id=1614337912]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_6jhai")
 animation = &"stunned"
 frame_progress = 0.36437795
-script = ExtResource("3_ytiiq")
 
 [node name="Area2D" type="Area2D" parent="FlipContainer" unique_id=997813133]
 collision_layer = 64
