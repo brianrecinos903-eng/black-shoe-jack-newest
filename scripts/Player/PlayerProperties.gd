@@ -45,6 +45,7 @@ var bounces_left: int = max_bounces
 @export_group("Gameplay settings")
 @export var health: int = 3
 @export var dmg_knockback: Vector2 = Vector2(100, 100)
+@export var spike_knockback: Vector2 = Vector2(0, -750)
 var is_alive: bool = true
 var last_checkpoint: Vector2
 var is_hurt := false
@@ -172,6 +173,11 @@ func _on_slam_area_body_entered(body: Node2D) -> void:
 	if not body.is_in_group("enemy"):
 		return
 	body.stun(Helpers.PlayerAttackType.SLAM)
+	
 
-
+func _on_spike_body_entered(body: Node2D) -> void:
+	take_dmg(1, Helpers.DamageType.TRAP)
+	velocity = spike_knockback
+	
+	
 	

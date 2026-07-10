@@ -2116,4 +2116,5 @@ position = Vector2(8, -128)
 
 [node name="PauseMenuCanvasLayer" parent="." unique_id=385780542 instance=ExtResource("18_o2i1r")]
 
+[connection signal="body_entered" from="Spike" to="Player" method="_on_spike_body_entered"]
 [connection signal="player_entered_spike" from="Spike" to="Player" method="_on_spike_player_entered_spike"]
