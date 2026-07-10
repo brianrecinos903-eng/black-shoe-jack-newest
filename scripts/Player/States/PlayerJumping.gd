@@ -21,8 +21,7 @@ func enter():
 func physics_update(delta: float) -> void:
 	player.apply_gravity(delta)
 	player.apply_speed_input()
-	if abs(player.velocity.x) <= 500:
-		player.apply_horizontal_movement(delta)
+	player.apply_horizontal_movement(delta)
 
 	if state_machine.previous_state == PlayerState.CEILLING_RUN or state_machine.previous_state ==  PlayerState.WALL_RUN or state_machine.previous_state == PlayerState.HURT:
 		player.can_coyote = true 

@@ -10,6 +10,7 @@ var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var friction_force: float = 800.0
 @export var acceleration = 1000.0
 @export var max_speed: float = 600
+@export var speed: float 
 var speed_multiplier: float = 1
 
 @export var slide_impulse: float = 1000
@@ -65,6 +66,8 @@ var dmg_source : Helpers.DamageType
 @onready var collider: CollisionShape2D = $"CollisionShape2D"
 @onready var slam_area: CollisionShape2D = $SlamArea/"CollisionShape2D"
 
+
+
 func _ready() -> void:
 	slam_area.disabled = true
 
@@ -113,6 +116,7 @@ func apply_horizontal_movement(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, friction_force * delta * speed_multiplier)
 		speed_multiplier = 1
+	speed = velocity.x
 
 	if move_direction > 0:
 		anim.scale.x = 1
