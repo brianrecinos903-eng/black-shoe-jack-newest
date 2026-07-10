@@ -28,5 +28,5 @@ func animate():
 		print("Switching from ", animation, " to ", target_Anim)
 		play(target_Anim)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	animate()

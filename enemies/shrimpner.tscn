@@ -170,10 +170,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r0p3l"]
-size = Vector2(484, 57)
+size = Vector2(635, 95.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fp1n2"]
 size = Vector2(128, 136)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l48vr"]
+size = Vector2(127, 133)
 
 [node name="Shrimpner" type="CharacterBody2D" unique_id=1056129754 node_paths=PackedStringArray("anim") groups=["enemy"]]
 collision_layer = 64
@@ -190,11 +193,11 @@ sprite_frames = SubResource("SpriteFrames_6jhai")
 animation = &"stunned"
 frame_progress = 0.36437795
 
-[node name="Area2D" type="Area2D" parent="FlipContainer" unique_id=997813133]
+[node name="Sight_Area" type="Area2D" parent="FlipContainer" unique_id=997813133]
 collision_layer = 64
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FlipContainer/Area2D" unique_id=1136806006]
-position = Vector2(302, 18)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlipContainer/Sight_Area" unique_id=1136806006]
+position = Vector2(251.5, 37.25)
 shape = SubResource("RectangleShape2D_r0p3l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=443043869]
@@ -202,8 +205,15 @@ position = Vector2(0, 20)
 shape = SubResource("RectangleShape2D_fp1n2")
 
 [node name="Idle_Timer" type="Timer" parent="." unique_id=570138719]
-wait_time = 5.0
+wait_time = 2.0
 autostart = true
 
-[connection signal="body_entered" from="FlipContainer/Area2D" to="." method="On_Player_Sight"]
+[node name="AttackHitBox" type="Area2D" parent="." unique_id=175995251]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitBox" unique_id=404521713]
+position = Vector2(-0.5, 18.5)
+shape = SubResource("RectangleShape2D_l48vr")
+
 [connection signal="timeout" from="Idle_Timer" to="." method="Idle_Timer_End"]
+[connection signal="body_entered" from="AttackHitBox" to="." method="Player_Enter_Hit_Box"]
+[connection signal="body_exited" from="AttackHitBox" to="." method="Player_Left_Hit_Box"]

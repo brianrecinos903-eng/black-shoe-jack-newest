@@ -29,5 +29,5 @@ func animate():
 	if target_Anim != sprite.animation:
 		sprite.play(target_Anim)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	animate()

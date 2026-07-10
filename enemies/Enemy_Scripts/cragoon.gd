@@ -10,10 +10,10 @@ func cragoon_base_movement():
 		switch_dir()
 	velocity.x = direction * speed
 
-func _on_attack_area_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player") && !stunned:
-		body.take_dmg(attack_Dmg)
-		print("Attacked by: ", name)
+#func _on_attack_area_body_entered(body: Node2D) -> void:
+	#if body.is_in_group("player") && !stunned:
+		#body.take_dmg(attack_Dmg)
+		#print("Attacked by: ", name)
 
 func _physics_process(_delta: float) -> void:
 	if stunned:

@@ -4,6 +4,7 @@ class_name enemy
 
 var stunned_timer: Timer
 @export var anim: AnimatedSprite2D
+@onready var hitBox: Area2D = $AttackHitBox
 
 var direction:int = 1
 @export var speed:int
@@ -18,6 +19,7 @@ func _ready() -> void:
 	stunned_timer.one_shot = true
 	add_child(stunned_timer)
 	stunned_timer.timeout.connect(_on_stun_timer_timeout)
+	hitBox.body_entered.connect(_on_attack_area_body_entered)
 
 func Apply_Gravity(_delta) -> void:
 	if !is_on_floor():
@@ -36,7 +38,11 @@ func stun(attack_type: Helpers.PlayerAttackType = Helpers.PlayerAttackType.DEFAU
 	stunned = true
 	stunned_timer.start()
 
+func _on_attack_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player") && !stunned:
+		body.take_dmg(attack_Dmg)
+
 func switch_dir():
 	direction *= -1
-	if velocity.x != 0:
+	if is_on_wall():
 		velocity.x = direction * speed

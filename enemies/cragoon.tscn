@@ -197,5 +197,3 @@ collision_layer = 64
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitBox" unique_id=1446375454]
 position = Vector2(-2.5, 84.5)
 shape = SubResource("RectangleShape2D_g4v7s")
-
-[connection signal="body_entered" from="AttackHitBox" to="." method="_on_attack_area_body_entered"]
