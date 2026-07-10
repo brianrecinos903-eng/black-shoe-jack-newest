@@ -12,3 +12,7 @@ enum PlayerAttackType {
 	DEFAULT,
 	SLAM
 }
+
+func print_log(msg: String, flag: bool):
+	if flag:
+		print(msg)	

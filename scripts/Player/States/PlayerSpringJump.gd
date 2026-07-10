@@ -18,7 +18,6 @@ func physics_update(delta: float) -> void:
 
 	if player.slam_area.disabled == false:
 		Helpers.wait(0.5)
-		print("Slam disabled")
 		player.slam_area.disabled = true
 
 	if abs(player.velocity.x) <= 400:

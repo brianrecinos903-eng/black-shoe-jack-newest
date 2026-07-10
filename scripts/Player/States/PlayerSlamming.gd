@@ -47,13 +47,13 @@ func physics_update(delta: float) -> void:
 			handle_bounce()
 			return
 		Helpers.wait(button_hold_time)
-		print("Exited: ", exited)
+		Helpers.print_log("Exited: %s" % exited, player.enable_debug)
 		if exited or not Input.is_action_pressed("down"):
 			return
 
 		player.camera_2d.shake(player.slam_shake_factor)
 		player.slam_area.disabled = false
-		print("Slam enabled")
+		Helpers.print_log("Slam enabled", player.enable_debug)
 		state_machine.transition_to(PlayerState.SPRING)
 		return
 		

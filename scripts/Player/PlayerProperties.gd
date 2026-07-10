@@ -54,6 +54,8 @@ var dmg_source : Helpers.DamageType
 @export_range(0,1) var slam_shake_factor := 0.5
 @export_range(0,1) var hurt_shake_factor := 0.5
 
+@export_group("Debug")
+@export var enable_debug: bool = false
 
 
 @onready var death_timer: Timer = $DeathTimer
@@ -162,7 +164,7 @@ func anim_move() -> void:
 
 
 func _on_slam_area_body_entered(body: Node2D) -> void:
-	print("Body slammed")
+	Helpers.print_log("Body slammed", enable_debug)
 	if not body.is_in_group("enemy"):
 		return
 	body.stun(Helpers.PlayerAttackType.SLAM)

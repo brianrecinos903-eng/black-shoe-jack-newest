@@ -30,11 +30,9 @@ func enter():
 		player.velocity.y = abs(player.velocity.x) + 100
 	else: 
 		player.velocity.y = -abs(player.velocity.x)
-	print("wall run dimension ", player.move_direction)
 	
 func exit():
 	player.velocity.x = player.move_direction * abs(player.velocity.y)
-	print("player velocity x: ", player.velocity.x)
 	player.gravity_factor = 1
 
 
