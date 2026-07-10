@@ -170,7 +170,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r0p3l"]
-size = Vector2(635, 95.5)
+size = Vector2(587, 95.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fp1n2"]
 size = Vector2(128, 136)
@@ -197,7 +197,7 @@ frame_progress = 0.36437795
 collision_layer = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FlipContainer/Sight_Area" unique_id=1136806006]
-position = Vector2(251.5, 37.25)
+position = Vector2(275.5, 37.25)
 shape = SubResource("RectangleShape2D_r0p3l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=443043869]
