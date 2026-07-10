@@ -10,6 +10,7 @@ var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var friction_force: float = 800.0
 @export var acceleration = 1000.0
 @export var max_speed: float = 600
+@export var max_wallrun_speed: float = 400
 @export var speed: float 
 var speed_multiplier: float = 1
 
@@ -45,6 +46,7 @@ var bounces_left: int = max_bounces
 @export_group("Gameplay settings")
 @export var health: int = 3
 @export var dmg_knockback: Vector2 = Vector2(100, 100)
+var in_water: bool = true
 var is_alive: bool = true
 var last_checkpoint: Vector2
 var is_hurt := false

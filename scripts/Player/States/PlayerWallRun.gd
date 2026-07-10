@@ -3,7 +3,7 @@ extends PlayerState
 func apply_wallrun(wall_run_direction: float, delta: float) -> void:
 	player.move_direction = Input.get_axis("left", "right")
 	if player.move_direction != 0:
-		player.velocity.y = move_toward(player.velocity.y, wall_run_direction * player.max_speed, player.acceleration * player.speed_multiplier * delta)
+		player.velocity.y = wall_run_direction * player.max_wallrun_speed * player.speed_multiplier 
 	else:
 		player.velocity.y = move_toward(player.velocity.y, 0, player.friction_force * delta * player.speed_multiplier)
 		player.speed_multiplier = 1

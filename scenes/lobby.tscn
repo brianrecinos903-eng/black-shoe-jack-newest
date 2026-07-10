@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cext6w2tixtca" path="res://art/water_animated-Sheet.png" id="8_0gjkf"]
 [ext_resource type="PackedScene" uid="uid://b6am1uxqlfmi0" path="res://scenes/checkpoint.tscn" id="8_ncsg4"]
 [ext_resource type="Texture2D" uid="uid://dtok8ve2ma6lx" path="res://art/BG Pixel Art-Sheet-Sheet.png" id="9_0gjkf"]
+[ext_resource type="PackedScene" uid="uid://up1pvbg7atua" path="res://scenes/JumpPad.tscn" id="9_iulku"]
 [ext_resource type="PackedScene" uid="uid://5vgm163kkxqw" path="res://enemies/gish.tscn" id="11_yad6j"]
 [ext_resource type="PackedScene" uid="uid://3a7uiu0jmb0l" path="res://scenes/Spike.tscn" id="14_q6qq2"]
 [ext_resource type="PackedScene" uid="uid://l8qi5jvswr87" path="res://enemies/shrimpner.tscn" id="15_rgcd7"]
@@ -2069,6 +2070,9 @@ z_index = 1
 tile_map_data = PackedByteArray("AAA4AAAAAQAAAAAAAAA5AAAAAQAAAAAAAAA6AAAAAQAAAAAAAAA7AAAAAQAAAAAAAAA8AAAAAQAAAAAAAAA9AAAAAQAAAAAAAAA+AAAAAQAAAAAAAAA4AAEAAQAAAAEAAAA4AAIAAQAAAAEAAAA4AAMAAQAAAAEAAAA4AAQAAQAAAAEAAAA5AAEAAQAAAAEAAAA5AAIAAQAAAAEAAAA5AAMAAQAAAAEAAAA5AAQAAQAAAAEAAAA6AAEAAQAAAAEAAAA6AAIAAQAAAAEAAAA6AAMAAQAAAAEAAAA6AAQAAQAAAAEAAAA7AAEAAQAAAAEAAAA7AAIAAQAAAAEAAAA7AAMAAQAAAAEAAAA7AAQAAQAAAAEAAAA8AAEAAQAAAAEAAAA8AAIAAQAAAAEAAAA8AAMAAQAAAAEAAAA8AAQAAQAAAAEAAAA9AAEAAQAAAAEAAAA9AAIAAQAAAAEAAAA9AAMAAQAAAAEAAAA9AAQAAQAAAAEAAAA+AAEAAQAAAAEAAAA+AAIAAQAAAAEAAAA+AAMAAQAAAAEAAAA+AAQAAQAAAAEAAAA4AAUAAQAAAAEAAAA5AAUAAQAAAAEAAAA6AAUAAQAAAAEAAAA7AAUAAQAAAAEAAAA8AAUAAQAAAAEAAAA9AAUAAQAAAAEAAAA+AAUAAQAAAAEAAAA=")
 tile_set = SubResource("TileSet_lqo1b")
 
+[node name="JumpPad" parent="All sea bar tiles" unique_id=1434854951 instance=ExtResource("9_iulku")]
+position = Vector2(3482, -10)
+
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=6456256]
 scale = Vector2(2, 2)
 scroll_scale = Vector2(0.8, 0.8)
@@ -2115,5 +2119,3 @@ z_index = -1
 position = Vector2(8, -128)
 
 [node name="PauseMenuCanvasLayer" parent="." unique_id=385780542 instance=ExtResource("18_o2i1r")]
-
-[connection signal="player_entered_spike" from="Spike" to="Player" method="_on_spike_player_entered_spike"]
