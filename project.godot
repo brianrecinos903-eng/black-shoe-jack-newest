@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 Helpers="*uid://dleho7goljq83"
 
+[display]
+
+window/size/mode=4
+
 [dotnet]
 
 project/assembly_name="Black Shoe Jack"
