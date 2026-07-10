@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c5x5bv3p6o1nc"]
+
+[ext_resource type="Script" uid="uid://gdg3mpfjtupo" path="res://scripts/Data/saveable.gd" id="1_klgbr"]
+
+[node name="Saveable" type="Node" unique_id=87085637]
+script = ExtResource("1_klgbr")
