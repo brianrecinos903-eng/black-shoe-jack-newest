@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://3a7uiu0jmb0l" path="res://scenes/Spike.tscn" id="14_q6qq2"]
 [ext_resource type="PackedScene" uid="uid://l8qi5jvswr87" path="res://enemies/shrimpner.tscn" id="15_rgcd7"]
 [ext_resource type="PackedScene" uid="uid://cgyka8oxhu3cl" path="res://Non-playable-characters/ronald_pretzel.tscn" id="16_lqo1b"]
+[ext_resource type="PackedScene" uid="uid://dkcif5cpt2iil" path="res://scenes/pause_menu.tscn" id="18_o2i1r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pc087"]
 texture = ExtResource("3_nqcc7")
@@ -2112,5 +2113,7 @@ position = Vector2(-384, -600)
 [node name="Ronald Pretzel" parent="." unique_id=2086317626 instance=ExtResource("16_lqo1b")]
 z_index = -1
 position = Vector2(8, -128)
+
+[node name="PauseMenuCanvasLayer" parent="." unique_id=385780542 instance=ExtResource("18_o2i1r")]
 
 [connection signal="player_entered_spike" from="Spike" to="Player" method="_on_spike_player_entered_spike"]
