@@ -13,6 +13,7 @@ func enter() -> void:
 		player.is_hurt = false
 		player.can_be_hurt = true
 		state_machine.transition_to(PlayerState.DEATH)
+		player.reset_health()
 		return
 
 	if player.dmg_source == Helpers.DamageType.TRAP:

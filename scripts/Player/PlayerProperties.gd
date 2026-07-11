@@ -45,6 +45,7 @@ var default_sprite_pos = 0
 var bounces_left: int = max_bounces
 
 @export_group("Gameplay settings")
+@export var max_health: int = 3
 @export var health: int = 3
 @export var dmg_knockback: Vector2 = Vector2(100, 100)
 @export var spike_knockback: Vector2 = Vector2(0, -750)
@@ -184,5 +185,8 @@ func _on_spike_body_entered(body: Node2D) -> void:
 	take_dmg(1, Helpers.DamageType.TRAP)
 	velocity = spike_knockback
 	
+func reset_health() -> void:
+	health = max_health
+	took_damage.emit(health)
 	
 	

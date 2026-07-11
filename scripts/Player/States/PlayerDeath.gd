@@ -1,5 +1,7 @@
 extends PlayerState
 
+
+
 func _ready() -> void:
 	state_name = PlayerState.DEATH
 
@@ -19,3 +21,4 @@ func death_timer_end() -> void:
 	player.is_alive = true
 	player.global_position = player.last_checkpoint
 	state_machine.transition_to(player.grounded_state_name())
+	
