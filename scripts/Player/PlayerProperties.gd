@@ -1,5 +1,7 @@
 class_name Player extends CharacterBody2D
 
+signal took_damage(new_health: int)
+
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @export_group("Movement parameters")
@@ -147,6 +149,9 @@ func take_dmg(amount: int, dmg_type: Helpers.DamageType = Helpers.DamageType.ENE
 		is_hurt = true
 		dmg_source = dmg_type
 		health -= amount
+		
+		took_damage.emit(health)
+		
 		
 func _in_attack_range(body: Node2D) -> void:
 	if not body.is_in_group("enemy"):
