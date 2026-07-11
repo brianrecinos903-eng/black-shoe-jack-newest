@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://b6am1uxqlfmi0" path="res://scenes/checkpoint.tscn" id="8_ncsg4"]
 [ext_resource type="Texture2D" uid="uid://dtok8ve2ma6lx" path="res://art/BG Pixel Art-Sheet-Sheet.png" id="9_0gjkf"]
 [ext_resource type="PackedScene" uid="uid://up1pvbg7atua" path="res://scenes/JumpPad.tscn" id="9_iulku"]
+[ext_resource type="PackedScene" uid="uid://bd3cpans3bx58" path="res://scenes/platform.tscn" id="10_dfnwm"]
 [ext_resource type="PackedScene" uid="uid://5vgm163kkxqw" path="res://enemies/gish.tscn" id="11_yad6j"]
 [ext_resource type="PackedScene" uid="uid://3a7uiu0jmb0l" path="res://scenes/Spike.tscn" id="14_q6qq2"]
 [ext_resource type="PackedScene" uid="uid://l8qi5jvswr87" path="res://enemies/shrimpner.tscn" id="15_rgcd7"]
@@ -2072,6 +2073,13 @@ tile_set = SubResource("TileSet_lqo1b")
 
 [node name="JumpPad" parent="All sea bar tiles" unique_id=1434854951 instance=ExtResource("9_iulku")]
 position = Vector2(3482, -10)
+
+[node name="Platform" parent="All sea bar tiles" unique_id=1737836055 groups=["platforms"] instance=ExtResource("10_dfnwm")]
+position = Vector2(3560, -167)
+one_way = true
+player_can_drop_down = true
+moving_platform = true
+animation_name = "RESET"
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=6456256]
 scale = Vector2(2, 2)

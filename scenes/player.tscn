@@ -584,10 +584,11 @@ size = Vector2(64, 78)
 size = Vector2(816, 63)
 
 [node name="Player" type="CharacterBody2D" unique_id=413210945 groups=["player"]]
-collision_mask = 33
+collision_mask = 161
 script = ExtResource("1_ur7pv")
 slam_shake_factor = 0.826
 hurt_shake_factor = 0.826
+enable_debug = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2035270482]
 texture_filter = 1
@@ -624,6 +625,7 @@ shape = SubResource("RectangleShape2D_sfl3n")
 [node name="StateMachine" type="Node" parent="." unique_id=1263486853 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_y4r1p")
 initial_state = NodePath("Idle")
+enable_debug = true
 
 [node name="Idle" type="Node" parent="StateMachine" unique_id=686660641]
 script = ExtResource("9_a8ls1")

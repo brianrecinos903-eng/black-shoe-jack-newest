@@ -37,6 +37,7 @@ var can_coyote: bool = true
 var gravity_factor := 1.0
 var inverse_sprite_pos = 50
 var default_sprite_pos = 0
+var is_on_platform: bool = false
 
 
 @export_subgroup("Bounce settings")
@@ -176,4 +177,5 @@ func _on_slam_area_body_entered(body: Node2D) -> void:
 	body.stun(Helpers.PlayerAttackType.SLAM)
 
 
+				
 	

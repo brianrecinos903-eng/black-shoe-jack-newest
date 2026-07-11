@@ -15,13 +15,12 @@ func enter():
 func physics_update(delta: float) -> void:
 	player.apply_gravity(delta)
 	player.apply_speed_input()
+	player.apply_horizontal_movement(delta)
 
 	if player.slam_area.disabled == false:
 		Helpers.wait(0.5)
 		player.slam_area.disabled = true
 
-	if abs(player.velocity.x) <= 400:
-		player.apply_horizontal_movement(delta)
 
 	if player.is_on_ceiling() and player.move_direction != 0:
 		state_machine.transition_to(PlayerState.CEILLING_RUN)

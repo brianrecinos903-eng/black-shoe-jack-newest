@@ -20,15 +20,18 @@ func exit():
 	player.gravity_factor = player.default_gravity_factor
 
 func handle_bounce() -> void:
+	print("handling bounce")
 	if player.bounces_left == 0:
 		exit_state()
 		return
 	if player.bounces_left > 0:
 		player.velocity.y = player.jump_impulse
 		player.bounces_left -= 1
+		return
 
 
 func enter() -> void:
+	print("Now in slam")
 	exited = false
 	player.speed_multiplier = 0.2
 	player.bounces_left = player.max_bounces
@@ -39,7 +42,7 @@ func physics_update(delta: float) -> void:
 	player.apply_horizontal_movement(delta)
 
 	if player.is_on_floor():
-
+		print(player.bounces_left)
 		if Input.is_action_just_pressed("left") or Input.is_action_just_pressed("right"):
 			exit_state()
 			return
@@ -47,6 +50,7 @@ func physics_update(delta: float) -> void:
 			handle_bounce()
 			return
 		Helpers.wait(button_hold_time)
+		print("waited")
 		Helpers.print_log("Exited: %s" % exited, player.enable_debug)
 		if exited or not Input.is_action_pressed("down"):
 			return

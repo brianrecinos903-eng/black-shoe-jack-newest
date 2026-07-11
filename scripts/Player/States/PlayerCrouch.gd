@@ -4,6 +4,8 @@ func _ready() -> void:
 	state_name = PlayerState.CROUCH
 
 func enter():
+	if player.is_on_platform:
+		player.position.y += 10
 	player.crouch_collider()
 
 func exit():
