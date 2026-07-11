@@ -40,12 +40,13 @@ func enter() -> void:
 func physics_update(delta: float) -> void:
 	player.apply_gravity(delta)
 	player.apply_horizontal_movement(delta)
+	player.move_and_slide()
 
+	if Input.is_action_just_pressed("up"):
+		exit_state()
+		return
 	if player.is_on_floor():
 		print(player.bounces_left)
-		if Input.is_action_just_pressed("left") or Input.is_action_just_pressed("right"):
-			exit_state()
-			return
 		if not Input.is_action_pressed("down"):
 			handle_bounce()
 			return
@@ -63,7 +64,6 @@ func physics_update(delta: float) -> void:
 		
 
 	player.anim.play("slam")
-	player.move_and_slide()
 
 
 	
