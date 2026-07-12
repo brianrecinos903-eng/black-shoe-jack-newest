@@ -177,7 +177,7 @@ size = Vector2(179, 87)
 
 [node name="Cragoon" type="CharacterBody2D" unique_id=2088169173 node_paths=PackedStringArray("anim") groups=["enemy"]]
 collision_layer = 64
-collision_mask = 2
+collision_mask = 66
 script = ExtResource("1_ds4yr")
 anim = NodePath("AnimatedSprite2D")
 
