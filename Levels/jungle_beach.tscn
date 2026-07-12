@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://dfu7qfe3tfxom" path="res://art/Beachy_dunes.png" id="4_14s50"]
 [ext_resource type="Texture2D" uid="uid://ct87bmq0xmxdu" path="res://art/Tiki bar2.png" id="4_w4pq1"]
 [ext_resource type="Texture2D" uid="uid://dtok8ve2ma6lx" path="res://art/BG Pixel Art-Sheet-Sheet.png" id="5_w4pq1"]
+[ext_resource type="PackedScene" uid="uid://gciqq0ragkc4" path="res://enemies/cragoon.tscn" id="6_4ga6w"]
+[ext_resource type="PackedScene" uid="uid://dkcif5cpt2iil" path="res://scenes/pause_menu.tscn" id="7_devg4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4ga6w"]
 texture = ExtResource("4_14s50")
@@ -1152,3 +1154,8 @@ z_index = -3
 position = Vector2(956, -212)
 scale = Vector2(1.2, 1.2)
 texture = ExtResource("5_w4pq1")
+
+[node name="Cragoon" parent="." unique_id=2088169173 instance=ExtResource("6_4ga6w")]
+position = Vector2(-88, -136)
+
+[node name="PauseMenuCanvasLayer" parent="." unique_id=385780542 instance=ExtResource("7_devg4")]
