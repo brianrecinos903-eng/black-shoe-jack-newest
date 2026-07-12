@@ -184,10 +184,6 @@ func _on_slam_area_body_entered(body: Node2D) -> void:
 	body.stun(Helpers.PlayerAttackType.SLAM)
 	
 
-func _on_spike_body_entered(body: Node2D) -> void:
-	take_dmg(1, Helpers.DamageType.TRAP)
-	velocity = spike_knockback
-	
 func reset_health() -> void:
 	health = max_health
 	took_damage.emit(health)
