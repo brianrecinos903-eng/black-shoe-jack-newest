@@ -13,6 +13,13 @@ enum PlayerAttackType {
 	SLAM
 }
 
+enum CoinType {
+	DEFAULT = 100,
+	RED = 300,
+	BLUE = 400,
+	GREEN = 500
+}
+
 func print_log(msg: String, flag: bool):
 	if flag:
 		print(msg)	

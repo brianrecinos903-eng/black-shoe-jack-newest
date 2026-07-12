@@ -53,6 +53,7 @@ var last_checkpoint: Vector2
 var is_hurt := false
 var can_be_hurt := true
 var dmg_source : Helpers.DamageType
+var score: float = 0
 
 @export_group("Camera Settings")
 @export_range(0,1) var slam_shake_factor := 0.5
@@ -176,6 +177,7 @@ func _on_slam_area_body_entered(body: Node2D) -> void:
 		return
 	body.stun(Helpers.PlayerAttackType.SLAM)
 
-
+func add_score(amount: float):
+	score += amount
 				
 	
