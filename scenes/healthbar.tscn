@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://crfa3yom7xqbh"]
+
+[ext_resource type="Texture2D" uid="uid://bgdec7ny0mm28" path="res://art/BISCUIT.png" id="1_iywrq"]
+[ext_resource type="Script" uid="uid://ijt5t2o1e21y" path="res://scenes/healthbar.gd" id="1_vjxg4"]
+
+[node name="Healthbar" type="Control" unique_id=238535903]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vjxg4")
+
+[node name="Heart1" type="TextureRect" parent="." unique_id=650166021]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_iywrq")
+
+[node name="Heart2" type="TextureRect" parent="." unique_id=211393209]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 55.0
+offset_right = 119.0
+offset_bottom = 64.0
+texture = ExtResource("1_iywrq")
+
+[node name="Heart3" type="TextureRect" parent="." unique_id=896991455]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 109.0
+offset_right = 173.0
+offset_bottom = 64.0
+texture = ExtResource("1_iywrq")
+
+[node name="HealthBG" type="ColorRect" parent="." unique_id=1061674996]
+z_index = -1
+layout_mode = 0
+offset_left = 2.0
+offset_top = -1.0
+offset_right = 168.0
+offset_bottom = 61.0
+color = Color(0.19215687, 0.19215687, 0.19215687, 0.70980394)

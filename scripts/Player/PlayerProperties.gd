@@ -1,5 +1,7 @@
 class_name Player extends CharacterBody2D
 
+signal took_damage(new_health: int)
+
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @export_group("Movement parameters")
@@ -45,8 +47,10 @@ var is_on_platform: bool = false
 var bounces_left: int = max_bounces
 
 @export_group("Gameplay settings")
+@export var max_health: int = 3
 @export var health: int = 3
 @export var dmg_knockback: Vector2 = Vector2(100, 100)
+@export var spike_knockback: Vector2 = Vector2(0, -750)
 var in_water: bool = true
 var is_alive: bool = true
 var last_checkpoint: Vector2
@@ -150,6 +154,9 @@ func take_dmg(amount: int, dmg_type: Helpers.DamageType = Helpers.DamageType.ENE
 		dmg_source = dmg_type
 		health -= amount
 		
+		took_damage.emit(health)
+		
+		
 func _in_attack_range(body: Node2D) -> void:
 	if not body.is_in_group("enemy"):
 		return
@@ -175,7 +182,14 @@ func _on_slam_area_body_entered(body: Node2D) -> void:
 	if not body.is_in_group("enemy"):
 		return
 	body.stun(Helpers.PlayerAttackType.SLAM)
+	
 
-
-				
+func _on_spike_body_entered(body: Node2D) -> void:
+	take_dmg(1, Helpers.DamageType.TRAP)
+	velocity = spike_knockback
+	
+func reset_health() -> void:
+	health = max_health
+	took_damage.emit(health)
+	
 	

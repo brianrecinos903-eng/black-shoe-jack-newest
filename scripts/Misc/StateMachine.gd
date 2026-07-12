@@ -13,6 +13,7 @@ func _ready() -> void:
 			states[child.name] = child
 			child.player = owner
 			child.state_machine = self
+	#Helpers.print_log("States found: %s" % states.keys(), enable_debug)
 	Helpers.print_log("Owner: %s" % owner, enable_debug)
 	if initial_state:
 		previous_state = initial_state.state_name
