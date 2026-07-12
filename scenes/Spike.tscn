@@ -16,3 +16,5 @@ texture = ExtResource("1_ycsm2")
 position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_uk11t")
 debug_color = Color(0.8508984, 0.34238663, 0.39515233, 0.41960785)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
