@@ -11,7 +11,8 @@ var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var speed_multiplier_step: float = 0.01
 @export var friction_force: float = 800.0
 @export var acceleration = 1000.0
-@export var max_speed: float = 600
+@export var walk_speed: float = 300
+@export var max_speed: float = 900
 @export var max_wallrun_speed: float = 400
 @export var speed: float 
 var speed_multiplier: float = 1
@@ -119,8 +120,15 @@ func grounded_state_name() -> String:
 
 func apply_horizontal_movement(delta: float) -> void:
 	move_direction = Input.get_axis("left", "right")
+	var desired_speed = walk_speed
+
+	if speed_multiplier > 1:
+		desired_speed = max_speed
+	else:
+		desired_speed = walk_speed
+
 	if move_direction != 0:
-		velocity.x = move_toward(velocity.x, move_direction * max_speed, acceleration * speed_multiplier * delta)
+		velocity.x = move_toward(velocity.x, move_direction * desired_speed, acceleration * speed_multiplier * delta)
 	else:
 		velocity.x = move_toward(velocity.x, 0, friction_force * delta * speed_multiplier)
 		speed_multiplier = 1

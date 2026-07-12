@@ -2162,4 +2162,3 @@ grow_vertical = 1
 
 [connection signal="took_damage" from="Player" to="CanvasLayer/Control/Healthbar" method="_on_player_took_damage"]
 [connection signal="body_entered" from="Spike" to="Player" method="_on_spike_body_entered"]
-[connection signal="player_entered_spike" from="Spike" to="Player" method="_on_spike_player_entered_spike"]

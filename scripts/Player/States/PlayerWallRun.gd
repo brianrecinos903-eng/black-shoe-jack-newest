@@ -2,6 +2,13 @@ extends PlayerState
 
 func apply_wallrun(wall_run_direction: float, delta: float) -> void:
 	player.move_direction = Input.get_axis("left", "right")
+	var desired_speed = player.walk_speed
+
+	if player.speed_multiplier > 1:
+		desired_speed = player.max_speed
+	else:
+		player.desired_speed = player.walk_speed
+
 	if player.move_direction != 0:
 		player.velocity.y = wall_run_direction * player.max_wallrun_speed * player.speed_multiplier 
 	else:
