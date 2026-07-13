@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://dkcif5cpt2iil" path="res://scenes/pause_menu.tscn" id="18_o2i1r"]
 [ext_resource type="PackedScene" uid="uid://crvwk3euktc4m" path="res://enemies/barmin.tscn" id="19_iulku"]
 [ext_resource type="PackedScene" uid="uid://crfa3yom7xqbh" path="res://scenes/healthbar.tscn" id="20_dfnwm"]
+[ext_resource type="AudioStream" uid="uid://dox7sw0yxuqig" path="res://Music/bongo bass bop (remastered + solos).mp3" id="24_wjff0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pc087"]
 texture = ExtResource("3_nqcc7")
@@ -2159,6 +2160,10 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="Bar music!" type="AudioStreamPlayer" parent="." unique_id=1583473103]
+stream = ExtResource("24_wjff0")
+parameters/looping = true
 
 [connection signal="took_damage" from="Player" to="CanvasLayer/Control/Healthbar" method="_on_player_took_damage"]
 [connection signal="body_entered" from="Spike" to="Player" method="_on_spike_body_entered"]
