@@ -1,18 +1,18 @@
 [gd_scene format=4 uid="uid://ba34qnr5dfsq4"]
 
 [ext_resource type="Script" uid="uid://bkbgm5bx2ly4b" path="res://scripts/lobby.gd" id="1_o1atq"]
-[ext_resource type="Texture2D" uid="uid://b07uogw01vjsc" path="res://art/All sea bar walls.png" id="2_q60fs"]
-[ext_resource type="Texture2D" uid="uid://ddarxkcofo6sh" path="res://art/All sea bar.png" id="3_nqcc7"]
+[ext_resource type="Texture2D" uid="uid://b07uogw01vjsc" path="res://Tilesets/All sea bar walls.png" id="2_q60fs"]
+[ext_resource type="Texture2D" uid="uid://ddarxkcofo6sh" path="res://Tilesets/All sea bar.png" id="3_nqcc7"]
 [ext_resource type="PackedScene" uid="uid://bpmvu08481i1c" path="res://scenes/player.tscn" id="4_nqcc7"]
-[ext_resource type="Texture2D" uid="uid://b8uruf5yxvv54" path="res://art/all sea bar interior creations.png" id="4_oipnb"]
+[ext_resource type="Texture2D" uid="uid://b8uruf5yxvv54" path="res://Tilesets/all sea bar interior creations.png" id="4_oipnb"]
 [ext_resource type="Texture2D" uid="uid://di04o1vp71ww4" path="res://art/all_sea_bar_tables.png" id="5_yad6j"]
 [ext_resource type="PackedScene" uid="uid://gciqq0ragkc4" path="res://enemies/cragoon.tscn" id="6_apkv3"]
-[ext_resource type="Texture2D" uid="uid://cyajg1j27bj8s" path="res://art/all sea bar stools.png" id="6_m1sns"]
+[ext_resource type="Texture2D" uid="uid://cyajg1j27bj8s" path="res://Tilesets/all sea bar stools.png" id="6_m1sns"]
 [ext_resource type="Texture2D" uid="uid://8l1tcbpnuqt3" path="res://art/all_sea_bar_drinks.png" id="7_dyhay"]
 [ext_resource type="PackedScene" uid="uid://du2u3v7pf6n0q" path="res://scenes/edge_marker.tscn" id="7_omrgh"]
 [ext_resource type="Texture2D" uid="uid://cext6w2tixtca" path="res://art/water_animated-Sheet.png" id="8_0gjkf"]
 [ext_resource type="PackedScene" uid="uid://b6am1uxqlfmi0" path="res://scenes/checkpoint.tscn" id="8_ncsg4"]
-[ext_resource type="Texture2D" uid="uid://dtok8ve2ma6lx" path="res://art/BG Pixel Art-Sheet-Sheet.png" id="9_0gjkf"]
+[ext_resource type="Texture2D" uid="uid://dtok8ve2ma6lx" path="res://Backgrounds/BG Pixel Art-Sheet-Sheet.png" id="9_0gjkf"]
 [ext_resource type="PackedScene" uid="uid://up1pvbg7atua" path="res://scenes/JumpPad.tscn" id="9_iulku"]
 [ext_resource type="PackedScene" uid="uid://bd3cpans3bx58" path="res://scenes/platform.tscn" id="10_dfnwm"]
 [ext_resource type="PackedScene" uid="uid://3pj5nx0k3w5n" path="res://scenes/coin.tscn" id="11_0jb4q"]
@@ -23,7 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://dkcif5cpt2iil" path="res://scenes/pause_menu.tscn" id="18_o2i1r"]
 [ext_resource type="PackedScene" uid="uid://crvwk3euktc4m" path="res://enemies/barmin.tscn" id="19_iulku"]
 [ext_resource type="PackedScene" uid="uid://crfa3yom7xqbh" path="res://scenes/healthbar.tscn" id="20_dfnwm"]
-[ext_resource type="AudioStream" uid="uid://dox7sw0yxuqig" path="res://Music/bongo bass bop (remastered + solos).mp3" id="24_wjff0"]
+[ext_resource type="AudioStream" uid="uid://cp0n8w2o5hra6" path="res://Music/chuck.wav" id="24_wjff0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pc087"]
 texture = ExtResource("3_nqcc7")
@@ -2163,7 +2163,6 @@ grow_vertical = 1
 
 [node name="Bar music!" type="AudioStreamPlayer" parent="." unique_id=1583473103]
 stream = ExtResource("24_wjff0")
-parameters/looping = true
 
 [connection signal="took_damage" from="Player" to="CanvasLayer/Control/Healthbar" method="_on_player_took_damage"]
 [connection signal="body_entered" from="Spike" to="Player" method="_on_spike_body_entered"]
