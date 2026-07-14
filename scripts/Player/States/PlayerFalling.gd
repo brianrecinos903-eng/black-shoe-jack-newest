@@ -16,7 +16,7 @@ func exit():
 
 func physics_update(delta):
 	player.apply_gravity(delta)
-	player.apply_horizontal_movement(delta)
+	player.apply_motion(delta)
 	player.apply_speed_input()
 
 

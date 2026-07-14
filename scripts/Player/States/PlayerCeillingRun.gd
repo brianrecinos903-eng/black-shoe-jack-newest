@@ -7,6 +7,8 @@ func _ready() -> void:
 func enter():
 	player.gravity_factor = -1
 	player.anim.position.y = player.inverse_sprite_pos
+	if state_machine.previous_state == PlayerState.WALL_RUN:
+		player.velocity.x = abs(player.velocity.y) * -player.move_direction 
 	
 func exit():
 	player.gravity_factor = 1
@@ -14,7 +16,7 @@ func exit():
  
 
 func physics_update(delta: float) -> void:
-	player.apply_horizontal_movement(delta)
+	player.apply_motion(delta, player.SurfaceType.CEILLING)
 	player.apply_speed_input()
 
 	player.velocity.y = -100

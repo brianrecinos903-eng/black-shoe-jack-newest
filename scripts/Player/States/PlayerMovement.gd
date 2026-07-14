@@ -6,7 +6,7 @@ func _ready() -> void:
 
 func physics_update(delta: float) -> void:
 	player.apply_gravity(delta)
-	player.apply_horizontal_movement(delta)
+	player.apply_motion(delta)
 	player.apply_speed_input()
 
 	if player.is_hurt:

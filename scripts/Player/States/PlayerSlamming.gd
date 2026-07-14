@@ -39,7 +39,7 @@ func enter() -> void:
 
 func physics_update(delta: float) -> void:
 	player.apply_gravity(delta)
-	player.apply_horizontal_movement(delta)
+	player.apply_motion(delta)
 	player.move_and_slide()
 
 	if Input.is_action_just_pressed("up"):

@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cext6w2tixtca" path="res://art/water_animated-Sheet.png" id="8_0gjkf"]
 [ext_resource type="PackedScene" uid="uid://b6am1uxqlfmi0" path="res://scenes/checkpoint.tscn" id="8_ncsg4"]
 [ext_resource type="Texture2D" uid="uid://dtok8ve2ma6lx" path="res://art/BG Pixel Art-Sheet-Sheet.png" id="9_0gjkf"]
+[ext_resource type="Script" uid="uid://ckhfut1bx7awa" path="res://scripts/LevelElemets/zone.gd" id="9_h1rib"]
 [ext_resource type="PackedScene" uid="uid://up1pvbg7atua" path="res://scenes/JumpPad.tscn" id="9_iulku"]
 [ext_resource type="PackedScene" uid="uid://bd3cpans3bx58" path="res://scenes/platform.tscn" id="10_dfnwm"]
 [ext_resource type="PackedScene" uid="uid://3pj5nx0k3w5n" path="res://scenes/coin.tscn" id="11_0jb4q"]
@@ -21,7 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://l8qi5jvswr87" path="res://enemies/shrimpner.tscn" id="15_rgcd7"]
 [ext_resource type="PackedScene" uid="uid://cgyka8oxhu3cl" path="res://Non-playable-characters/ronald_pretzel.tscn" id="16_lqo1b"]
 [ext_resource type="PackedScene" uid="uid://dkcif5cpt2iil" path="res://scenes/pause_menu.tscn" id="18_o2i1r"]
-[ext_resource type="PackedScene" uid="uid://crvwk3euktc4m" path="res://enemies/barmin.tscn" id="19_iulku"]
+[ext_resource type="PackedScene" uid="uid://blaxd27as4r2b" path="res://enemies/barmin.tscn" id="19_iulku"]
 [ext_resource type="PackedScene" uid="uid://crfa3yom7xqbh" path="res://scenes/healthbar.tscn" id="20_dfnwm"]
 [ext_resource type="AudioStream" uid="uid://dox7sw0yxuqig" path="res://Music/bongo bass bop (remastered + solos).mp3" id="24_wjff0"]
 
@@ -2030,6 +2031,9 @@ physics_layer_0/collision_layer = 32
 physics_layer_0/collision_mask = 32
 sources/1 = SubResource("TileSetAtlasSource_0gjkf")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a34j0"]
+size = Vector2(502, 387)
+
 [node name="Lobby" type="Node2D" unique_id=1524016313]
 script = ExtResource("1_o1atq")
 
@@ -2069,11 +2073,21 @@ z_index = -2
 tile_map_data = PackedByteArray("AADT//n/AAAJAAMAAADT//r/AAAJAAQAAADT//v/AAAJAAUAAADa//r/AAALAAQAAADa//v/AAALAAUAAADb//r/AAAMAAQAAADb//v/AAAMAAUAAADA//r/AAAOAAQAAADA//v/AAAOAAUAAADp//n/AAAJAAgAAADp//r/AAAJAAkAAADp//v/AAAJAAoAAAD3//r/AAALAAQAAAD3//v/AAALAAUAAAD4//r/AAAMAAQAAAD4//v/AAAMAAUAAAAFAPr/AAAOAAkAAAAFAPv/AAAOAAoAAAD0//r/AAAOAAQAAAD0//v/AAAOAAUAAAC0//r/AAALAAkAAAC0//v/AAALAAoAAAC1//r/AAAMAAkAAAC1//v/AAAMAAoAAAA=")
 tile_set = SubResource("TileSet_m1sns")
 
-[node name="Water_Layer" type="TileMapLayer" parent="All sea bar tiles" unique_id=192470597]
+[node name="Water_Layer" type="TileMapLayer" parent="All sea bar tiles" unique_id=192470597 groups=["zones"]]
 modulate = Color(1, 1, 1, 0.61960787)
 z_index = 1
 tile_map_data = PackedByteArray("AAA4AAAAAQAAAAAAAAA5AAAAAQAAAAAAAAA6AAAAAQAAAAAAAAA7AAAAAQAAAAAAAAA8AAAAAQAAAAAAAAA9AAAAAQAAAAAAAAA+AAAAAQAAAAAAAAA4AAEAAQAAAAEAAAA4AAIAAQAAAAEAAAA4AAMAAQAAAAEAAAA4AAQAAQAAAAEAAAA5AAEAAQAAAAEAAAA5AAIAAQAAAAEAAAA5AAMAAQAAAAEAAAA5AAQAAQAAAAEAAAA6AAEAAQAAAAEAAAA6AAIAAQAAAAEAAAA6AAMAAQAAAAEAAAA6AAQAAQAAAAEAAAA7AAEAAQAAAAEAAAA7AAIAAQAAAAEAAAA7AAMAAQAAAAEAAAA7AAQAAQAAAAEAAAA8AAEAAQAAAAEAAAA8AAIAAQAAAAEAAAA8AAMAAQAAAAEAAAA8AAQAAQAAAAEAAAA9AAEAAQAAAAEAAAA9AAIAAQAAAAEAAAA9AAMAAQAAAAEAAAA9AAQAAQAAAAEAAAA+AAEAAQAAAAEAAAA+AAIAAQAAAAEAAAA+AAMAAQAAAAEAAAA+AAQAAQAAAAEAAAA4AAUAAQAAAAEAAAA5AAUAAQAAAAEAAAA6AAUAAQAAAAEAAAA7AAUAAQAAAAEAAAA8AAUAAQAAAAEAAAA9AAUAAQAAAAEAAAA+AAUAAQAAAAEAAAA=")
 tile_set = SubResource("TileSet_lqo1b")
+
+[node name="Area2D" type="Area2D" parent="All sea bar tiles/Water_Layer" unique_id=560792403 groups=["zones"]]
+collision_layer = 32
+collision_mask = 32
+script = ExtResource("9_h1rib")
+zone_id = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="All sea bar tiles/Water_Layer/Area2D" unique_id=395376026]
+position = Vector2(3815, 212.5)
+shape = SubResource("RectangleShape2D_a34j0")
 
 [node name="JumpPad" parent="All sea bar tiles" unique_id=1434854951 instance=ExtResource("9_iulku")]
 position = Vector2(3482, -10)
