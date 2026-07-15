@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dnobxr888nygj" path="res://Levels/shipyard.gd" id="1_kqqo7"]
 [ext_resource type="Texture2D" uid="uid://b07uogw01vjsc" path="res://Tilesets/All sea bar walls.png" id="2_fqvtp"]
 [ext_resource type="Texture2D" uid="uid://ddarxkcofo6sh" path="res://Tilesets/All sea bar.png" id="3_ubprl"]
-[ext_resource type="Texture2D" uid="uid://yite7u3lrs3g" path="res://Backgrounds/Costal_Cave2.png" id="4_ubprl"]
+[ext_resource type="Texture2D" uid="uid://iwa32rogpw1a" path="res://Backgrounds/Costal_Cave1.png" id="4_eth5l"]
 [ext_resource type="PackedScene" uid="uid://bpmvu08481i1c" path="res://scenes/player.tscn" id="5_eth5l"]
 [ext_resource type="PackedScene" uid="uid://dkcif5cpt2iil" path="res://scenes/pause_menu.tscn" id="6_n2ncx"]
 
@@ -1126,7 +1126,7 @@ repeat_times = 4
 z_index = -3
 position = Vector2(332, -120)
 scale = Vector2(1.2, 1.2)
-texture = ExtResource("4_ubprl")
+texture = ExtResource("4_eth5l")
 
 [node name="PauseMenuCanvasLayer" parent="." unique_id=385780542 instance=ExtResource("6_n2ncx")]
 

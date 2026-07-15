@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://gciqq0ragkc4" path="res://enemies/cragoon.tscn" id="6_4ga6w"]
 [ext_resource type="PackedScene" uid="uid://dkcif5cpt2iil" path="res://scenes/pause_menu.tscn" id="7_devg4"]
 [ext_resource type="PackedScene" uid="uid://du2u3v7pf6n0q" path="res://scenes/edge_marker.tscn" id="8_nil3t"]
+[ext_resource type="AudioStream" uid="uid://clb0untp0atig" path="res://Music/shipyard bsj.mp3" id="9_0mq1j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4ga6w"]
 texture = ExtResource("4_14s50")
@@ -1166,3 +1167,7 @@ position = Vector2(-336, -40)
 
 [node name="EdgeMarker2" parent="." unique_id=743795543 instance=ExtResource("8_nil3t")]
 position = Vector2(344, -40)
+
+[node name="Beach_music" type="AudioStreamPlayer" parent="." unique_id=592896892]
+stream = ExtResource("9_0mq1j")
+parameters/looping = true
