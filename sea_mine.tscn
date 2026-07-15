@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bjascxnjuud8r"]
+
+[ext_resource type="Script" uid="uid://ic3fdxykud7d" path="res://sea_mine.gd" id="1_16g4d"]
+[ext_resource type="Texture2D" uid="uid://c0pl7kky5f286" path="res://traps/Seamine-Sheet.png" id="1_ff7g7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4m45i"]
+radius = 37.215588
+
+[node name="Seamine" type="Area2D" unique_id=442305192]
+script = ExtResource("1_16g4d")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=737338843]
+position = Vector2(7, 0)
+texture = ExtResource("1_ff7g7")
+hframes = 4
+vframes = 4
+frame = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=848602308]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_4m45i")
+debug_color = Color(0.95591825, 0.2597667, 0.27325943, 0.41960785)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

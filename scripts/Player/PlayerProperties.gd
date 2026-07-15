@@ -51,7 +51,7 @@ var bounces_left: int = max_bounces
 @export var max_health: int = 3
 @export var health: int = 3
 @export var dmg_knockback: Vector2 = Vector2(100, 100)
-@export var spike_knockback: Vector2 = Vector2(0, -750)
+@export var trap_knockback: Vector2 = Vector2(0, -750)
 var in_water: bool = true
 var is_alive: bool = true
 var last_checkpoint: Vector2

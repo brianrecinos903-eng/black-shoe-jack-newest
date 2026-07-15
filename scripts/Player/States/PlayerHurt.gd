@@ -17,7 +17,7 @@ func enter() -> void:
 		return
 
 	if player.dmg_source == Helpers.DamageType.TRAP:
-		player.velocity = player.spike_knockback
+		player.velocity = player.trap_knockback
 	else:
 		player.velocity.x = player.dmg_knockback.x * -player.face_direction
 		player.velocity.y = player.dmg_knockback.y * Vector2.UP.y
