@@ -70,7 +70,7 @@ var bounces_left: int = max_bounces
 var score: float = 0
 var in_water: bool = true
 var last_checkpoint: Vector2
-var current_zone: Helpers.ZoneType = Helpers.ZoneType.AIR
+var active_zones: Dictionary[Helpers.ZoneType, bool] = {}
 
 
 enum SurfaceType {
@@ -163,9 +163,6 @@ func apply_speed_input() -> void:
 		decelerate()
 
 func apply_gravity(delta: float) -> void:
-	Helpers.print_log("Current zone: %s" % current_zone, enable_debug)
-	if current_zone == Helpers.ZoneType.WATER:
-		gravity_factor = water_gravity_factor
 	if not is_on_floor():
 		velocity.y += gravity * delta * gravity_factor
 
@@ -208,9 +205,42 @@ func add_score(amount: float):
 func reset_health() -> void:
 	health = max_health
 	took_damage.emit(health)
-	
 
-func _area_entered(body: Node2D) -> void:
-	if body.is_in_group("zones"):
-		current_zone = body.zone_id
+func enter_zone(zone_id: Helpers.ZoneType) -> void:
+	active_zones[zone_id] = true
+	print("Entered zone: ", zone_id)
+	# Example: react to specific zones
+	match zone_id:
+		Helpers.ZoneType.WATER:
+			_set_swimming(true)
+			return
+		Helpers.ZoneType.AIR:
+			_set_on_ground(true)
+			return
 
+func exit_zone(zone_id: Helpers.ZoneType) -> void:
+	active_zones.erase(zone_id)
+	print("Exited zone: ", zone_id)
+	match zone_id:
+		Helpers.ZoneType.WATER:
+			_set_swimming(false)
+		Helpers.ZoneType.AIR:
+			_set_on_ground(false)
+
+func is_in_zone(zone_id: Helpers.ZoneType) -> bool:
+	return active_zones.has(zone_id)
+
+func _set_swimming(value: bool) -> void:
+	if value:
+		gravity_factor = water_gravity_factor
+		in_water = true
+	else:
+		gravity_factor = default_gravity_factor
+		in_water = false
+
+func _set_on_ground(value: bool) -> void:
+	if value:
+		gravity_factor = default_gravity_factor
+		in_water = false
+	else:
+		pass

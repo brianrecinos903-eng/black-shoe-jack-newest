@@ -28,5 +28,10 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to(PlayerState.CROUCH)
 		return
 
+	if player.in_water and not player.is_on_floor():
+		Helpers.wait(3)
+		state_machine.transition_to(PlayerState.FALL)
+
+
 	player.anim.play("idle")
 	player.move_and_slide()

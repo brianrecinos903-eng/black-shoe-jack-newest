@@ -4,12 +4,18 @@ func _ready() -> void:
 	state_name = PlayerState.CROUCH
 
 func enter():
-	if player.is_on_platform:
-		player.position.y += 10
-	player.crouch_collider()
+	if player.in_water:
+		player.gravity_factor = player.water_gravity_factor * 2
+	else:
+		if player.is_on_platform:
+			player.position.y += 10
+		player.crouch_collider()
 
 func exit():
-	player.uncrouch_collider()
+	if player.in_water:
+		player.gravity_factor = player.water_gravity_factor
+	else:
+		player.uncrouch_collider()
 
 
 func physics_update(delta: float) -> void:

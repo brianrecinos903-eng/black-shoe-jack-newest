@@ -10,7 +10,7 @@ enum DamageType {
 
 enum ZoneType {
 	AIR = 10,
-	WATER = 20,
+	WATER = 20
 }
 	
 enum PlayerAttackType {

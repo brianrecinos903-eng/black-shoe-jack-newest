@@ -35,7 +35,8 @@ func enter() -> void:
 	exited = false
 	player.speed_multiplier = 0.2
 	player.bounces_left = player.max_bounces
-	player.gravity_factor = player.fall_gravity_factor
+	if not player.in_water:
+		player.gravity_factor = player.fall_gravity_factor
 
 func physics_update(delta: float) -> void:
 	player.apply_gravity(delta)
