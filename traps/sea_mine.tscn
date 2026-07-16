@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://bjascxnjuud8r"]
+
+[ext_resource type="Script" uid="uid://ic3fdxykud7d" path="res://traps/sea_mine.gd" id="1_16g4d"]
+[ext_resource type="Texture2D" uid="uid://ri5ldhswrx5f" path="res://traps/Large_Seamine-Sheet.png" id="2_lnoly"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1upu"]
+atlas = ExtResource("2_lnoly")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_417vj"]
+atlas = ExtResource("2_lnoly")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7gkc"]
+atlas = ExtResource("2_lnoly")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmlkg"]
+atlas = ExtResource("2_lnoly")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0fko"]
+atlas = ExtResource("2_lnoly")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ob36u"]
+atlas = ExtResource("2_lnoly")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xv5yi"]
+atlas = ExtResource("2_lnoly")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyf31"]
+atlas = ExtResource("2_lnoly")
+region = Rect2(384, 128, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6jhai"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i1upu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_417vj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f7gkc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmlkg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0fko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ob36u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xv5yi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jyf31")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4m45i"]
+radius = 37.215588
+
+[node name="Seamine" type="Area2D" unique_id=442305192]
+script = ExtResource("1_16g4d")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1205528178]
+sprite_frames = SubResource("SpriteFrames_6jhai")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=848602308]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_4m45i")
+debug_color = Color(0.95591825, 0.2597667, 0.27325943, 0.41960785)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
