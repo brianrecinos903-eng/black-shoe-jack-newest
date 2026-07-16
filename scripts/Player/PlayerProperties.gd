@@ -233,6 +233,7 @@ func is_in_zone(zone_id: Helpers.ZoneType) -> bool:
 func _set_swimming(value: bool) -> void:
 	if value:
 		gravity_factor = water_gravity_factor
+		can_coyote = true
 		in_water = true
 	else:
 		gravity_factor = default_gravity_factor

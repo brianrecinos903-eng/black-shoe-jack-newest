@@ -13,9 +13,13 @@ func enter():
 		player.gravity_factor = player.fall_gravity_factor
 	else:
 		player.can_coyote = true
+		player.gravity_factor = player.water_gravity_factor 
 
 func exit():
-	player.gravity_factor = player.default_gravity_factor
+	if player.in_water:
+		player.gravity_factor = player.water_gravity_factor 
+	else:
+		player.gravity_factor = player.default_gravity_factor
 
 func physics_update(delta):
 	player.apply_gravity(delta)

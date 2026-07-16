@@ -6,6 +6,8 @@ func _ready() -> void:
 	state_name = PlayerState.HURT
 
 func enter() -> void:
+	if player.in_water:
+		player.gravity_factor = player.water_gravity_factor 
 	player.camera_2d.shake(player.hurt_shake_factor)
 	player.can_be_hurt = false
 
@@ -24,10 +26,14 @@ func enter() -> void:
 		
 	stunned_timer.start()
 	
+func exit():
+	if player.in_water:
+		player.gravity_factor = player.water_gravity_factor 
 
 func physics_update(_delta: float) -> void:
 	player.apply_motion(_delta)
-	player.apply_gravity(_delta)
+	if not player.in_water:
+		player.apply_gravity(_delta)
 	player.move_and_slide()
 	
 	# player.anim.play()

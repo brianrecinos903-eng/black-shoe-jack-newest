@@ -5,7 +5,8 @@ func _ready() -> void:
 
 func enter():
 	if player.in_water:
-		player.gravity_factor = player.water_gravity_factor * 2
+		player.gravity_factor = player.water_gravity_factor 
+		player.velocity.y = 100
 	else:
 		if player.is_on_platform:
 			player.position.y += 10
@@ -19,10 +20,14 @@ func exit():
 
 
 func physics_update(delta: float) -> void:
-	player.apply_gravity(delta)
 	player.apply_motion(delta)
+	player.apply_gravity(delta)
 
-	
+	if not player.in_water:
+		if player.is_falling():
+			state_machine.transition_to(PlayerState.FALL)
+			return
+
 	if player.is_hurt:
 		state_machine.transition_to(PlayerState.HURT)
 		return
@@ -31,9 +36,6 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to(PlayerState.JUMP)
 		return
 
-	if player.is_falling():
-		state_machine.transition_to(PlayerState.FALL)
-		return
 
 	if Input.is_action_just_released("down"):
 		state_machine.transition_to(PlayerState.IDLE)

@@ -4,7 +4,8 @@ func _ready() -> void:
 	state_name = PlayerState.IDLE
 
 func physics_update(delta: float) -> void:
-	player.apply_gravity(delta)
+	if not player.in_water:
+		player.apply_gravity(delta)
 	player.apply_motion(delta)
 	player.apply_speed_input()
 
@@ -16,9 +17,10 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to(PlayerState.JUMP)
 		return
 
-	if player.is_falling():
-		state_machine.transition_to(PlayerState.FALL)
-		return
+	if not player.in_water:
+		if player.is_falling():
+			state_machine.transition_to(PlayerState.FALL)
+			return
 
 	if player.move_direction != 0:
 		state_machine.transition_to(PlayerState.MOVE)
@@ -28,9 +30,6 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to(PlayerState.CROUCH)
 		return
 
-	if player.in_water and not player.is_on_floor():
-		Helpers.wait(3)
-		state_machine.transition_to(PlayerState.FALL)
 
 
 	player.anim.play("idle")

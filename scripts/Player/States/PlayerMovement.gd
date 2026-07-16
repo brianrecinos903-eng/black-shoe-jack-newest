@@ -4,12 +4,22 @@ extends PlayerState
 func _ready() -> void:
 	state_name = PlayerState.MOVE
 
+func enter():
+	if player.in_water:
+		player.velocity.y = 0
+		player.gravity_factor = player.water_gravity_factor 
+
+func exit():
+	if player.in_water:
+		player.gravity_factor = player.water_gravity_factor 
+
+
 func physics_update(delta: float) -> void:
-	player.apply_gravity(delta)
 	player.apply_motion(delta)
 	player.apply_speed_input()
 
 	if not player.in_water:
+		player.apply_gravity(delta)
 		if Input.is_action_pressed("down") and not player.is_falling():
 			state_machine.transition_to(PlayerState.SLIDE)
 			return

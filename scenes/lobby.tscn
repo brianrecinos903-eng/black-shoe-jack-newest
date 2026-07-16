@@ -2035,7 +2035,7 @@ physics_layer_0/collision_mask = 32
 sources/1 = SubResource("TileSetAtlasSource_0gjkf")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a34j0"]
-size = Vector2(502, 387)
+size = Vector2(6308, 1297)
 
 [node name="Lobby" type="Node2D" unique_id=1524016313]
 script = ExtResource("1_o1atq")
@@ -2095,7 +2095,7 @@ script = ExtResource("9_h1rib")
 zone_id = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="All sea bar tiles/Water_Layer/Zone" unique_id=395376026]
-position = Vector2(3815, 212.5)
+position = Vector2(6718, 667.5)
 shape = SubResource("RectangleShape2D_a34j0")
 
 [node name="JumpPad" parent="All sea bar tiles" unique_id=1434854951 instance=ExtResource("9_iulku")]
@@ -2138,7 +2138,8 @@ position = Vector2(2008, -128)
 position = Vector2(-1122, -63)
 
 [node name="Player" parent="." unique_id=413210945 instance=ExtResource("4_nqcc7")]
-position = Vector2(-1112, -64)
+position = Vector2(4121, -64)
+water_gravity_factor = 0.0
 
 [node name="Gish" parent="." unique_id=847841096 instance=ExtResource("11_yad6j")]
 position = Vector2(4976, -80)

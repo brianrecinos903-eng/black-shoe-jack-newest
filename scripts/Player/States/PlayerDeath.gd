@@ -12,7 +12,8 @@ func enter() -> void:
 	player.anim.play("death")
 
 func physics_update(_delta: float) -> void:
-	player.apply_gravity(_delta)
+	if not player.in_water:
+		player.apply_gravity(_delta)
 	player.velocity.x = 0
 	player.move_and_slide()
 

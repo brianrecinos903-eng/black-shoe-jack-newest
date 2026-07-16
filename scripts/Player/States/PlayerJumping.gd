@@ -18,15 +18,21 @@ func enter():
 
 		ignore_floor_check = true
 	else:
-		player.velocity.y = player.jump_impulse 
+		player.velocity.y = player.jump_impulse * 0.5
+		player.gravity_factor = player.water_gravity_factor 
+		player.can_coyote = true
+
+func exit():
+	if player.in_water:
+		player.gravity_factor = player.water_gravity_factor 
 
 
 func physics_update(delta: float) -> void:
-	player.apply_gravity(delta)
 	player.apply_speed_input()
 	player.apply_motion(delta)
 
 	if not player.in_water:
+		player.apply_gravity(delta)
 		if state_machine.previous_state == PlayerState.CEILLING_RUN or state_machine.previous_state ==  PlayerState.WALL_RUN or state_machine.previous_state == PlayerState.HURT:
 			player.can_coyote = true 
 			state_machine.transition_to(PlayerState.FALL)
@@ -47,22 +53,27 @@ func physics_update(delta: float) -> void:
 				state_machine.transition_to(PlayerState.WALL_RUN)
 				return
 
+		if not ignore_floor_check and player.is_on_floor():
+			player.can_coyote = true
+			state_machine.transition_to(player.grounded_state_name())
+			return
+	else:
+		if Input.is_action_just_pressed("jump"):
+			state_machine.transition_to(PlayerState.JUMP)
+			return
+
+		if player.move_direction != 0:
+			state_machine.transition_to(PlayerState.MOVE)
+			return
+
+
 	if player.is_hurt:
 		player.can_coyote = true
 		state_machine.transition_to(PlayerState.HURT)
 		return
 
 
-	if player.velocity.y >= 150:
-		state_machine.transition_to(PlayerState.FALL)
-		return
 
-
-
-	if not ignore_floor_check and player.is_on_floor():
-		player.can_coyote = true
-		state_machine.transition_to(player.grounded_state_name())
-		return
 	# TODO: Make animation for swim up
 	player.anim.play("jump")
 	player.move_and_slide()
