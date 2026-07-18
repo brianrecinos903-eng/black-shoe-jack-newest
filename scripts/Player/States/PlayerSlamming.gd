@@ -35,11 +35,12 @@ func enter() -> void:
 	exited = false
 	player.speed_multiplier = 0.2
 	player.bounces_left = player.max_bounces
-	player.gravity_factor = player.fall_gravity_factor
+	if not player.in_water:
+		player.gravity_factor = player.fall_gravity_factor
 
 func physics_update(delta: float) -> void:
 	player.apply_gravity(delta)
-	player.apply_horizontal_movement(delta)
+	player.apply_motion(delta)
 	player.move_and_slide()
 
 	if Input.is_action_just_pressed("up"):

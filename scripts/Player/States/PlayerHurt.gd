@@ -6,6 +6,8 @@ func _ready() -> void:
 	state_name = PlayerState.HURT
 
 func enter() -> void:
+	if player.in_water:
+		player.gravity_factor = player.water_gravity_factor 
 	player.camera_2d.shake(player.hurt_shake_factor)
 	player.can_be_hurt = false
 
@@ -19,15 +21,19 @@ func enter() -> void:
 	if player.dmg_source == Helpers.DamageType.TRAP:
 		player.velocity = player.trap_knockback
 	else:
-		player.velocity.x = player.dmg_knockback.x * -player.face_direction
+		player.velocity.x = player.dmg_knockback.x * -player.move_direction
 		player.velocity.y = player.dmg_knockback.y * Vector2.UP.y
 		
 	stunned_timer.start()
 	
+func exit():
+	if player.in_water:
+		player.gravity_factor = player.water_gravity_factor 
 
 func physics_update(_delta: float) -> void:
-	player.apply_horizontal_movement(_delta)
-	player.apply_gravity(_delta)
+	player.apply_motion(_delta)
+	if not player.in_water:
+		player.apply_gravity(_delta)
 	player.move_and_slide()
 	
 	# player.anim.play()

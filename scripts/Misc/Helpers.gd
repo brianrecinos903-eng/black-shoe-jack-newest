@@ -7,6 +7,11 @@ enum DamageType {
 	TRAP,
 	ENEMY,
 }
+
+enum ZoneType {
+	AIR = 10,
+	WATER = 20
+}
 	
 enum PlayerAttackType {
 	DEFAULT,
