@@ -45,9 +45,6 @@ var is_on_platform: bool = false
 @export var health: int = 3
 @export var dmg_knockback: Vector2 = Vector2(100, 100)
 @export var trap_knockback: Vector2 = Vector2(0, -750)
-var in_water: bool = true
-var is_alive: bool = true
-var last_checkpoint: Vector2
 var is_hurt := false
 var can_be_hurt := true
 var dmg_source : Helpers.DamageType
@@ -72,7 +69,7 @@ var bounces_left: int = max_bounces
 
 
 var score: float = 0
-var in_water: bool = true
+var in_water: bool = false
 var last_checkpoint: Vector2
 var active_zones: Dictionary[Helpers.ZoneType, bool] = {}
 
