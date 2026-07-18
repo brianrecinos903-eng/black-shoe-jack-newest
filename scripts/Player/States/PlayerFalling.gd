@@ -27,6 +27,12 @@ func physics_update(delta):
 	player.apply_speed_input()
 
 	Helpers.wait(player.coyote_timeframe)
+
+	if player.in_water:
+		player.apply_water_drag(delta)
+		state_machine.transition_to(player.grounded_state_name())
+		return
+
 	if Input.is_action_just_pressed("jump") and player.can_coyote:
 		player.can_coyote = false
 		state_machine.transition_to(PlayerState.JUMP)

@@ -9,6 +9,7 @@ var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var max_speed_multiplier: float = 3
 @export var speed_multiplier_step: float = 0.01
 @export var friction_force: float = 800.0
+@export var in_water_resistance: float = 1200.0
 @export var acceleration = 1000.0
 @export var walk_speed: float = 300
 @export var max_speed: float = 900
@@ -143,7 +144,10 @@ func apply_motion(delta: float, surface: SurfaceType = SurfaceType.FLOOR) -> voi
 		else:
 			velocity.x = move_toward(velocity.x, move_direction * desired_speed, acceleration * speed_multiplier * delta)
 	else:
-		velocity.x = move_toward(velocity.x, 0, friction_force * delta * speed_multiplier)
+		if in_water:
+			velocity.x = move_toward(velocity.x, 0, in_water_resistance * delta * speed_multiplier)
+		else:
+			velocity.x = move_toward(velocity.x, 0, friction_force * delta * speed_multiplier)
 		speed_multiplier = 1
 
 	if move_direction > 0:
@@ -165,6 +169,9 @@ func apply_speed_input() -> void:
 func apply_gravity(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += gravity * delta * gravity_factor
+
+func apply_water_drag(delta: float) -> void:
+	velocity.y = move_toward(velocity.y, 0, in_water_resistance * delta * speed_multiplier)
 
 func take_dmg(amount: int, dmg_type: Helpers.DamageType = Helpers.DamageType.ENEMY) -> void:
 	if can_be_hurt:

@@ -3,11 +3,15 @@ extends PlayerState
 func _ready() -> void:
 	state_name = PlayerState.IDLE
 
+
 func physics_update(delta: float) -> void:
 	if not player.in_water:
 		player.apply_gravity(delta)
 	player.apply_motion(delta)
 	player.apply_speed_input()
+
+	if player.in_water:
+		player.apply_water_drag(delta)
 
 	if player.is_hurt:
 		state_machine.transition_to(PlayerState.HURT)

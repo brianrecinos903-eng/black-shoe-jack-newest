@@ -2139,6 +2139,7 @@ position = Vector2(-1122, -63)
 
 [node name="Player" parent="." unique_id=413210945 instance=ExtResource("4_nqcc7")]
 position = Vector2(4121, -64)
+in_water_resistance = 400.0
 water_gravity_factor = 0.0
 
 [node name="Gish" parent="." unique_id=847841096 instance=ExtResource("11_yad6j")]

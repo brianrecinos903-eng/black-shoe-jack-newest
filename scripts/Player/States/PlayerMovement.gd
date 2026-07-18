@@ -6,7 +6,6 @@ func _ready() -> void:
 
 func enter():
 	if player.in_water:
-		player.velocity.y = 0
 		player.gravity_factor = player.water_gravity_factor 
 
 func exit():
@@ -37,7 +36,7 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to(PlayerState.HURT)
 		return
 
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_pressed("jump"):
 		state_machine.transition_to(PlayerState.JUMP)
 		return
 
@@ -45,6 +44,11 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to(PlayerState.IDLE)
 		return
 
+	if player.in_water:
+		player.apply_water_drag(delta)
+		if Input.is_action_pressed("down"):
+			state_machine.transition_to(PlayerState.CROUCH)
+			return
 
 	player.anim_move()
 	player.move_and_slide()

@@ -15,6 +15,7 @@ func enter():
 func exit():
 	if player.in_water:
 		player.gravity_factor = player.water_gravity_factor
+		player.velocity.y = 0
 	else:
 		player.uncrouch_collider()
 
@@ -22,11 +23,14 @@ func exit():
 func physics_update(delta: float) -> void:
 	player.apply_motion(delta)
 	player.apply_gravity(delta)
+	player.move_and_slide()
 
 	if not player.in_water:
 		if player.is_falling():
 			state_machine.transition_to(PlayerState.FALL)
 			return
+
+
 
 	if player.is_hurt:
 		state_machine.transition_to(PlayerState.HURT)
@@ -48,4 +52,3 @@ func physics_update(delta: float) -> void:
 		player.anim.play("crouch")
 
 
-	player.move_and_slide()
