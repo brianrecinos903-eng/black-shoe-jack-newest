@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://n31le76pce6w"]
+
+[ext_resource type="Script" uid="uid://b27nso06xxca8" path="res://traps/spikeball.gd" id="1_u711t"]
+[ext_resource type="Texture2D" uid="uid://c0pl7kky5f286" path="res://traps/Seamine-Sheet.png" id="2_buv6i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4m45i"]
+radius = 12.165525
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uk11t"]
+radius = 15.0
+
+[node name="Spikeball" type="CharacterBody2D" unique_id=1453933816]
+script = ExtResource("1_u711t")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2058547661]
+texture = ExtResource("2_buv6i")
+hframes = 5
+vframes = 4
+
+[node name="BounceBox" type="CollisionShape2D" parent="." unique_id=634999236]
+shape = SubResource("CircleShape2D_4m45i")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=642035132]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=2088951695]
+shape = SubResource("CircleShape2D_uk11t")
+debug_color = Color(0.8979024, 0.2793323, 0.38732737, 0.41960785)
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

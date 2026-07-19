@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bd3cpans3bx58" path="res://scenes/platform.tscn" id="10_dfnwm"]
 [ext_resource type="PackedScene" uid="uid://3pj5nx0k3w5n" path="res://scenes/coin.tscn" id="11_0jb4q"]
 [ext_resource type="PackedScene" uid="uid://5vgm163kkxqw" path="res://enemies/gish.tscn" id="11_yad6j"]
+[ext_resource type="PackedScene" uid="uid://n31le76pce6w" path="res://traps/spikeball.tscn" id="13_3jc85"]
 [ext_resource type="PackedScene" uid="uid://3a7uiu0jmb0l" path="res://scenes/Spike.tscn" id="14_q6qq2"]
 [ext_resource type="PackedScene" uid="uid://l8qi5jvswr87" path="res://enemies/shrimpner.tscn" id="15_rgcd7"]
 [ext_resource type="PackedScene" uid="uid://cgyka8oxhu3cl" path="res://Non-playable-characters/ronald_pretzel.tscn" id="16_lqo1b"]
@@ -2115,6 +2116,9 @@ metadata/_custom_type_script = "uid://ckhfut1bx7awa"
 position = Vector2(1322.9998, -860.5)
 scale = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_sfl3n")
+
+[node name="Spikeball" parent="All sea bar tiles" unique_id=1453933816 instance=ExtResource("13_3jc85")]
+position = Vector2(-942, -219)
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=6456256]
 scale = Vector2(2, 2)
