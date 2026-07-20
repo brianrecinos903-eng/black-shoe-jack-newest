@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://n31le76pce6w"]
 
-[ext_resource type="Script" uid="uid://b27nso06xxca8" path="res://traps/spikeball.gd" id="1_u711t"]
+[ext_resource type="Script" uid="uid://b27nso06xxca8" path="res://traps scripts/spikeball.gd" id="1_u711t"]
 [ext_resource type="Texture2D" uid="uid://c0pl7kky5f286" path="res://traps/Seamine-Sheet.png" id="2_buv6i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4m45i"]

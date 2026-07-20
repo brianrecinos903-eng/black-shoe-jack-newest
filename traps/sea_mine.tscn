@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bjascxnjuud8r"]
 
-[ext_resource type="Script" uid="uid://ic3fdxykud7d" path="res://traps/sea_mine.gd" id="1_16g4d"]
+[ext_resource type="Script" uid="uid://ic3fdxykud7d" path="res://traps scripts/sea_mine.gd" id="1_16g4d"]
 [ext_resource type="Texture2D" uid="uid://ri5ldhswrx5f" path="res://traps/Large_Seamine-Sheet.png" id="2_lnoly"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i1upu"]

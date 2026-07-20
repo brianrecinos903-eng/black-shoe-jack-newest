@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
 var bounces = 0
-var max_bounces = 3
+var max_bounces = 7
 var bounce_strength = 700
-var move_direction = 0
+var move_direction = 1
 var speed = 200
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
