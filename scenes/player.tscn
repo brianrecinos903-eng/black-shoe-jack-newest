@@ -756,9 +756,7 @@ enable_debug = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2035270482]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_6jhai")
-animation = &"werejack_swim"
-frame = 5
-frame_progress = 0.54357344
+animation = &"werejack_idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=761622445]
 position = Vector2(0, 25)
