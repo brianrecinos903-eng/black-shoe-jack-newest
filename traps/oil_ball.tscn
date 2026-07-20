@@ -6,6 +6,91 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_4m45i"]
 radius = 9.055386
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_e82hv"]
+atlas = ExtResource("2_t3o4p")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_et8y2"]
+atlas = ExtResource("2_t3o4p")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yk0km"]
+atlas = ExtResource("2_t3o4p")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rtuu"]
+atlas = ExtResource("2_t3o4p")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jpuw2"]
+atlas = ExtResource("2_t3o4p")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqvnm"]
+atlas = ExtResource("2_t3o4p")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5wom"]
+atlas = ExtResource("2_t3o4p")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ad6gq"]
+atlas = ExtResource("2_t3o4p")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8q203"]
+atlas = ExtResource("2_t3o4p")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8rvsw"]
+atlas = ExtResource("2_t3o4p")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7g34b"]
+atlas = ExtResource("2_t3o4p")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6jhai"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e82hv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_et8y2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yk0km")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rtuu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpuw2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqvnm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5wom")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ad6gq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8q203")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8rvsw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7g34b")
+}],
+"loop": 1,
+"name": &"spin",
+"speed": 10.0
+}]
+
 [node name="OilBall" type="Area2D" unique_id=1753829653]
 script = ExtResource("1_sw3ly")
 
@@ -13,10 +98,12 @@ script = ExtResource("1_sw3ly")
 z_index = 1
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_4m45i")
+debug_color = Color(0.95686275, 0.25882354, 0.27450982, 0.41960785)
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=404857651]
-texture = ExtResource("2_t3o4p")
-hframes = 4
-vframes = 3
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1262812854]
+sprite_frames = SubResource("SpriteFrames_6jhai")
+animation = &"spin"
+frame = 2
+frame_progress = 0.43281254
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
