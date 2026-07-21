@@ -25,7 +25,7 @@ func handle_bounce() -> void:
 		exit_state()
 		return
 	if player.bounces_left > 0:
-		player.velocity.y = player.jump_impulse
+		player.velocity.y = -player.jump_impulse
 		player.bounces_left -= 1
 		return
 

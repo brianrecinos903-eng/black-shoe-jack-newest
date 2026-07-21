@@ -14,12 +14,15 @@ func exit():
 	player.gravity_factor = 1
 	player.anim.position.y = player.default_sprite_pos
  
+func pull_player():
+	player.velocity.y = -100
+
 
 func physics_update(delta: float) -> void:
 	player.apply_motion(delta, player.SurfaceType.CEILLING)
 	player.apply_speed_input()
 
-	player.velocity.y = -100
+	pull_player()
 	if player.is_hurt:
 		state_machine.transition_to(PlayerState.HURT)
 		return
@@ -30,7 +33,7 @@ func physics_update(delta: float) -> void:
 			state_machine.transition_to(PlayerState.WALL_RUN)
 			return
 
-	if not player.is_level_within_distance(Vector2.UP, 70) or Input.is_action_just_pressed("jump"):
+	if not player.is_level_within_distance(Vector2.UP, player.acceptable_distance) or Input.is_action_just_pressed("jump"):
 		Helpers.print_log("Player not on ceilling", player.enable_debug)
 		state_machine.transition_to(PlayerState.JUMP)
 		return

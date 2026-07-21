@@ -6,10 +6,10 @@ func _ready() -> void:
 func enter():
 	if player.in_water:
 		player.gravity_factor = player.water_gravity_factor 
-		player.velocity.y = 100
+		player.velocity.y = player.swim_down_impulse
 	else:
 		if player.is_on_platform:
-			player.position.y += 10
+			player.position.y += player.platform_threshold
 		player.crouch_collider()
 
 func exit():
@@ -30,15 +30,19 @@ func physics_update(delta: float) -> void:
 			state_machine.transition_to(PlayerState.FALL)
 			return
 
+		if Input.is_action_just_pressed("jump"):
+			state_machine.transition_to(PlayerState.JUMP)
+			return
+	else:
+		if Input.is_action_just_pressed("up"):
+			state_machine.transition_to(PlayerState.JUMP)
+			return
 
 
 	if player.is_hurt:
 		state_machine.transition_to(PlayerState.HURT)
 		return
 
-	if Input.is_action_just_pressed("jump"):
-		state_machine.transition_to(PlayerState.JUMP)
-		return
 
 
 	if Input.is_action_just_released("down"):

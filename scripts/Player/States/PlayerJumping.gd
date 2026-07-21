@@ -9,16 +9,16 @@ func enter():
 	if not player.in_water:
 		player.gravity_factor = player.jump_gravity_factor
 		if state_machine.previous_state == PlayerState.WALL_RUN:
-			player.velocity.y = player.jump_impulse
+			player.velocity.y = -player.jump_impulse
 			player.velocity.x = -player.move_direction * player.wall_jump_impulse
 		elif state_machine.previous_state == PlayerState.CEILLING_RUN:
-			player.velocity.y = 200
+			player.velocity.y = player.ceilling_jump_impulse
 		else:
-			player.velocity.y = player.jump_impulse
+			player.velocity.y = -player.jump_impulse
 
 		ignore_floor_check = true
 	else:
-		player.velocity.y = player.jump_impulse * 0.7
+		player.velocity.y = -player.swim_up_impulse
 		player.gravity_factor = player.water_gravity_factor 
 		player.can_coyote = true
 
@@ -66,13 +66,13 @@ func physics_update(delta: float) -> void:
 	else:
 		player.apply_water_drag(delta)
 		print("swimming up")
-		if Input.is_action_pressed("jump"):
+		if Input.is_action_just_released("up"):
+			state_machine.transition_to(player.grounded_state_name())
+			return
+		if Input.is_action_pressed("up"):
 			state_machine.transition_to(PlayerState.JUMP)
 			return
 
-		if Input.is_action_just_released("jump"):
-			state_machine.transition_to(player.grounded_state_name())
-			return
 
 
 	if player.is_hurt:

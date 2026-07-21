@@ -17,13 +17,17 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to(PlayerState.HURT)
 		return
 
-	if Input.is_action_just_pressed("jump"):
-		state_machine.transition_to(PlayerState.JUMP)
-		return
 
 	if not player.in_water:
 		if player.is_falling():
 			state_machine.transition_to(PlayerState.FALL)
+			return
+		if Input.is_action_just_pressed("jump"):
+			state_machine.transition_to(PlayerState.JUMP)
+			return
+	else:
+		if Input.is_action_just_pressed("up"):
+			state_machine.transition_to(PlayerState.JUMP)
 			return
 
 	if player.move_direction != 0:

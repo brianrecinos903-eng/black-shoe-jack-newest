@@ -24,7 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://l8qi5jvswr87" path="res://enemies/shrimpner.tscn" id="15_rgcd7"]
 [ext_resource type="PackedScene" uid="uid://cgyka8oxhu3cl" path="res://Non-playable-characters/ronald_pretzel.tscn" id="16_lqo1b"]
 [ext_resource type="PackedScene" uid="uid://dkcif5cpt2iil" path="res://scenes/pause_menu.tscn" id="18_o2i1r"]
-[ext_resource type="PackedScene" uid="uid://crvwk3euktc4m" path="res://enemies/barmin.tscn" id="19_iulku"]
+[ext_resource type="PackedScene" uid="uid://blaxd27as4r2b" path="res://enemies/barmin.tscn" id="19_iulku"]
 [ext_resource type="PackedScene" uid="uid://crfa3yom7xqbh" path="res://scenes/healthbar.tscn" id="20_dfnwm"]
 [ext_resource type="AudioStream" uid="uid://cp0n8w2o5hra6" path="res://Music/chuck.wav" id="24_wjff0"]
 [ext_resource type="PackedScene" uid="uid://bjascxnjuud8r" path="res://traps/sea_mine.tscn" id="25_h1rib"]
@@ -2038,7 +2038,7 @@ sources/1 = SubResource("TileSetAtlasSource_0gjkf")
 size = Vector2(455, 373)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sfl3n"]
-size = Vector2(411.69995, 84.04999)
+size = Vector2(411.69995, 90.49999)
 
 [node name="Lobby" type="Node2D" unique_id=1524016313]
 script = ExtResource("1_o1atq")
@@ -2114,7 +2114,7 @@ script = ExtResource("9_kn4i6")
 metadata/_custom_type_script = "uid://ckhfut1bx7awa"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="All sea bar tiles/Air" unique_id=1718975877]
-position = Vector2(1322.9998, -860.5)
+position = Vector2(1322.9998, -795.99994)
 scale = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_sfl3n")
 
@@ -2151,6 +2151,7 @@ position = Vector2(-1122, -63)
 
 [node name="Player" parent="." unique_id=413210945 instance=ExtResource("4_nqcc7")]
 position = Vector2(-1112, -64)
+in_water_resistance = 200.0
 
 [node name="Gish" parent="." unique_id=847841096 instance=ExtResource("11_yad6j")]
 position = Vector2(4976, -80)

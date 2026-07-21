@@ -32,13 +32,19 @@ func physics_update(delta: float) -> void:
 				state_machine.transition_to(PlayerState.WALL_RUN)
 				return
 
+		if Input.is_action_pressed("jump"):
+			state_machine.transition_to(PlayerState.JUMP)
+			return
+
+	else:
+		if Input.is_action_pressed("up"):
+			state_machine.transition_to(PlayerState.JUMP)
+			return
+
 	if player.is_hurt:
 		state_machine.transition_to(PlayerState.HURT)
 		return
 
-	if Input.is_action_pressed("jump"):
-		state_machine.transition_to(PlayerState.JUMP)
-		return
 
 	if player.move_direction == 0:
 		state_machine.transition_to(PlayerState.IDLE)

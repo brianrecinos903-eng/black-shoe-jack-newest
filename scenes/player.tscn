@@ -518,6 +518,11 @@ animations = [{
 "name": &"jump",
 "speed": 7.0
 }, {
+"frames": [],
+"loop": 1,
+"name": &"new_animation",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qfm1y")
@@ -756,7 +761,7 @@ enable_debug = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2035270482]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_6jhai")
-animation = &"werejack_idle"
+animation = &"new_animation"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=761622445]
 position = Vector2(0, 25)

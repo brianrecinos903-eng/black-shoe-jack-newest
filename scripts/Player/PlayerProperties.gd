@@ -4,32 +4,53 @@ signal took_damage(new_health: int)
 
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-@export_group("Movement parameters")
-@export_subgroup("Horizontal movement")
+@export_category("Movement parameters")
+
+@export_group("Horizontal movement")
+@export_subgroup("Accelration&Decceleration")
 @export var max_speed_multiplier: float = 3
 @export var speed_multiplier_step: float = 0.01
+@export var decceleration_step: float = 2.0
+@export var acceleration = 1000.0
+
+@export_subgroup("Resistances")
 @export var friction_force: float = 800.0
 @export var in_water_resistance: float = 1200.0
-@export var acceleration = 1000.0
+
+@export_subgroup("Movement speeds")
 @export var walk_speed: float = 300
 @export var max_speed: float = 900
 @export var max_wallrun_speed: float = 400
 var speed_multiplier: float = 1
+
 @export_subgroup("Slide")
 @export var slide_impulse: float = 1000
 @export var in_crouch_scale: float = 0.5
 var standing_collider_pos = 25
 var crouch_collider_pos = 44
-# direction
 var move_direction: int = 1
 
-@export_subgroup("Vertical Movement")
-@export var jump_impulse: float = -630.0
+@export_group("Vertical Movement")
+@export_subgroup("jump")
+@export var jump_impulse: float = 630.0
+@export var ceilling_jump_impulse: float = 200
 @export var wall_jump_impulse: float = 300.0
 @export var spring_jump_impulse: Vector2 = Vector2(1000.0, -1000.0)
+
+@export_subgroup("Swimming")
+@export var swim_up_impulse: float = 400.0
+@export var swim_down_impulse: float = 300
+
+@export_subgroup("Platform fall through")
+@export var platform_threshold: float = 10
+
 @export_subgroup("Coyote time")
 @export var coyote_timeframe: float =  0.5
 var can_coyote: bool = true
+
+@export_subgroup("Ceilling run settings")
+@export var acceptable_distance: float = 70
+
 @export_subgroup("Grafvity")
 @export_range(0.0,2.0) var default_gravity_factor := 1.0
 @export_range(0.0,2.0) var jump_gravity_factor := 0.8
@@ -49,6 +70,7 @@ var is_hurt := false
 var can_be_hurt := true
 var dmg_source : Helpers.DamageType
 var is_alive: bool = true
+
 @export_subgroup("Bounce settings")
 @export var max_bounces: int = 3
 var bounces_left: int = max_bounces
@@ -109,7 +131,7 @@ func accelerate(allow_full: bool = true) -> void:
 		speed_multiplier = max_speed_multiplier
 
 func decelerate() -> void:
-	speed_multiplier -= speed_multiplier_step / 2.0
+	speed_multiplier -= speed_multiplier_step / decceleration_step
 
 func is_falling() -> bool:
 	if not is_on_floor() and velocity.y > 0:
@@ -188,7 +210,7 @@ func _in_attack_range(body: Node2D) -> void:
 		body.kill()
 	elif state_machine.current_state.name == PlayerState.FALL:
 		body.stun()
-		velocity.y = jump_impulse
+		velocity.y = -jump_impulse
 
 func anim_move() -> void:
 	if speed_multiplier >= 2.9:
@@ -216,7 +238,6 @@ func reset_health() -> void:
 func enter_zone(zone_id: Helpers.ZoneType) -> void:
 	active_zones[zone_id] = true
 	print("Entered zone: ", zone_id)
-	# Example: react to specific zones
 	match zone_id:
 		Helpers.ZoneType.WATER:
 			_set_swimming(true)
