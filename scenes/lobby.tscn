@@ -24,10 +24,11 @@
 [ext_resource type="PackedScene" uid="uid://l8qi5jvswr87" path="res://enemies/shrimpner.tscn" id="15_rgcd7"]
 [ext_resource type="PackedScene" uid="uid://cgyka8oxhu3cl" path="res://Non-playable-characters/ronald_pretzel.tscn" id="16_lqo1b"]
 [ext_resource type="PackedScene" uid="uid://dkcif5cpt2iil" path="res://scenes/pause_menu.tscn" id="18_o2i1r"]
-[ext_resource type="PackedScene" uid="uid://blaxd27as4r2b" path="res://enemies/barmin.tscn" id="19_iulku"]
+[ext_resource type="PackedScene" uid="uid://crvwk3euktc4m" path="res://enemies/barmin.tscn" id="19_iulku"]
 [ext_resource type="PackedScene" uid="uid://crfa3yom7xqbh" path="res://scenes/healthbar.tscn" id="20_dfnwm"]
 [ext_resource type="AudioStream" uid="uid://cp0n8w2o5hra6" path="res://Music/chuck.wav" id="24_wjff0"]
 [ext_resource type="PackedScene" uid="uid://bjascxnjuud8r" path="res://traps/sea_mine.tscn" id="25_h1rib"]
+[ext_resource type="PackedScene" uid="uid://q1ha1sscin8k" path="res://enemies/oozer.tscn" id="29_f2bte"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pc087"]
 texture = ExtResource("3_nqcc7")
@@ -2202,6 +2203,13 @@ stream = ExtResource("24_wjff0")
 
 [node name="Seamine" parent="." unique_id=442305192 instance=ExtResource("25_h1rib")]
 position = Vector2(-1608, -224)
+
+[node name="Oozer" parent="." unique_id=1551069852 instance=ExtResource("29_f2bte")]
+z_index = -1
+position = Vector2(1120, -240)
+
+[node name="Oozer2" parent="." unique_id=263724400 instance=ExtResource("29_f2bte")]
+position = Vector2(-2224, -336)
 
 [connection signal="took_damage" from="Player" to="CanvasLayer/Control/Healthbar" method="_on_player_took_damage"]
 [connection signal="body_entered" from="Spike" to="Player" method="_on_spike_body_entered"]
