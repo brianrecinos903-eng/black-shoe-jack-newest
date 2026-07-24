@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bjlg05bj2ac1f" path="res://enemies/Enemy_Scripts/barmin.gd" id="1_mvowx"]
 [ext_resource type="Texture2D" uid="uid://5d0a8luv7js5" path="res://enemies/Barmin-Sheet.png" id="1_u4doi"]
+[ext_resource type="PackedScene" uid="uid://dxojd7eewhhe4" path="res://traps/oil_ball.tscn" id="2_eo2lu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xt0mn"]
 atlas = ExtResource("1_u4doi")
@@ -122,11 +123,20 @@ size = Vector2(66, 87)
 collision_layer = 64
 collision_mask = 64
 script = ExtResource("1_mvowx")
+oil_ball_scene = ExtResource("2_eo2lu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=854561880]
 position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_6jhai")
 animation = &"hiding"
+
+[node name="EyeTop" type="Marker2D" parent="AnimatedSprite2D" unique_id=1021470892]
+position = Vector2(11, -3)
+gizmo_extents = 56.5
+
+[node name="EyeBottom" type="Marker2D" parent="AnimatedSprite2D" unique_id=1269176228]
+position = Vector2(-8, 4)
+gizmo_extents = 69.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=236749461]
 position = Vector2(-4, 8)
