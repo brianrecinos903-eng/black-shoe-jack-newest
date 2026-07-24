@@ -115,6 +115,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fp1n2"]
 size = Vector2(72, 96)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mvowx"]
+size = Vector2(66, 87)
+
 [node name="Barmin" type="CharacterBody2D" unique_id=653777892]
 collision_layer = 64
 collision_mask = 64
@@ -128,3 +131,12 @@ animation = &"hiding"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=236749461]
 position = Vector2(-4, 8)
 shape = SubResource("RectangleShape2D_fp1n2")
+
+[node name="AttackHitBox" type="Area2D" parent="." unique_id=1427572074 groups=["enemy"]]
+collision_layer = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitBox" unique_id=1885320889]
+position = Vector2(-4, 10)
+shape = SubResource("RectangleShape2D_mvowx")
+
+[connection signal="body_entered" from="AttackHitBox" to="." method="_on_attack_hit_box_body_entered"]
