@@ -1,22 +1,19 @@
 extends enemy
 
-@onready var _anim: AnimatedSprite2D = $AnimatedSprite2D
-@onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var eye_top: Marker2D = $AnimatedSprite2D/EyeTop
 @onready var eye_bottom: Marker2D = $AnimatedSprite2D/EyeBottom
+@onready var collision: CollisionShape2D = $CollisionShape2D
 
 enum BarminState { HIDING, POPPING, ACTIVE, DEAD }
 
 @export_group("movement")
-@export var frantic_speed: float = 90.0
-@export var hide_cooldown: float = 1.0   
-@export var idle_time: float = 0.4       
-@export var attack_dmg: float = 1.0
+@export var hide_cooldown: float = 1.0
+@export var idle_time: float = 0.4
 @export var max_health: float = 3.0
 
 @export_group("Direction")
 @export var detect_radius: float = 220.0
-@export var lose_sight_time: float = 2.0 
+@export var lose_sight_time: float = 2.0
 @export var direction_change_min: float = 0.3
 @export var direction_change_max: float = 0.9
 
@@ -26,7 +23,7 @@ enum BarminState { HIDING, POPPING, ACTIVE, DEAD }
 @export var shoot_interval_max: float = 2.5
 @export var fast_ball_speed: float = 260.0
 @export var slow_ball_speed: float = 110.0
-@export var shot_stagger: float = 0.25   
+@export var shot_stagger: float = 0.25
 
 var state: BarminState = BarminState.HIDING
 var health: float
@@ -40,6 +37,7 @@ var _hidden_position: Vector2
 
 
 func _ready() -> void:
+	super._ready()  # sets up stunned_timer + connects hitBox.body_entered
 	health = max_health
 	_hidden_position = global_position
 	_enter_hiding()
@@ -50,14 +48,14 @@ func _enter_hiding() -> void:
 	velocity = Vector2.ZERO
 	global_position = _hidden_position
 	_hide_cooldown_timer = hide_cooldown
-	_anim.play("hiding")
+	anim.play("hiding")
 
 
 func _pop_out() -> void:
 	if state == BarminState.DEAD:
 		return
 	state = BarminState.POPPING
-	_anim.play("idle")
+	anim.play("idle")
 	await get_tree().create_timer(idle_time).timeout
 	if state == BarminState.DEAD:
 		return
@@ -66,7 +64,7 @@ func _pop_out() -> void:
 
 func _enter_active() -> void:
 	state = BarminState.ACTIVE
-	_anim.play("walk")
+	anim.play("walk")
 	direction = [-1, 1][randi() % 2]
 	_direction_timer = randf_range(direction_change_min, direction_change_max)
 	_shoot_timer = randf_range(shoot_interval_min, shoot_interval_max)
@@ -74,15 +72,17 @@ func _enter_active() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	Apply_Gravity(delta)
+	move_and_slide()
 	if state == BarminState.DEAD:
 		return
 
-	if not is_on_floor():
-		velocity.y += gravity * delta
-	else:
-		velocity.y = 0.0
-
 	_find_player()
+
+	if stunned:
+		velocity.x = 0.0
+		move_and_slide()
+		return
 
 	match state:
 		BarminState.HIDING:
@@ -96,7 +96,6 @@ func _physics_process(delta: float) -> void:
 		_:
 			velocity.x = 0.0
 
-	move_and_slide()
 
 
 func _find_player() -> void:
@@ -112,8 +111,8 @@ func _process_active(delta: float) -> void:
 		direction = [-1, 1][randi() % 2]
 		_direction_timer = randf_range(direction_change_min, direction_change_max)
 
-	velocity.x = direction * frantic_speed
-	_anim.flip_h = direction < 0
+	velocity.x = direction * speed
+	anim.flip_h = direction < 0
 
 	var in_range := player != null and global_position.distance_to(player.global_position) <= detect_radius
 
@@ -154,22 +153,16 @@ func _spawn_oil_ball(eye: Node2D) -> void:
 	ball.set("velocity", dir * (fast_ball_speed if is_fast else slow_ball_speed))
 
 
-func _die() -> void:
-	if state == BarminState.DEAD:
-		return
+func kill() -> void:
+	print("taking damage")
 	state = BarminState.DEAD
 	velocity = Vector2.ZERO
-	collision.set_deferred("disabled", true)
-	if _anim.sprite_frames and _anim.sprite_frames.has_animation("dead"):
-		_anim.play("dead")
-		await _anim.animation_finished
-	else:
-		await get_tree().create_timer(0.2).timeout
 	queue_free()
 
 
-func _on_attack_hit_box_body_entered(body: Node2D) -> void:
-	if state == BarminState.ACTIVE and body.is_in_group("player"):
+# Overrides the base class's hitBox handler (already wired up in super._ready())
+func _on_attack_area_body_entered(body: Node2D) -> void:
+	if state == BarminState.ACTIVE and not stunned and body.is_in_group("player"):
 		if body.has_method("take_dmg"):
-			body.take_dmg(attack_dmg, Helpers.DamageType.ENEMY)
+			body.take_dmg(attack_Dmg, Helpers.DamageType.ENEMY)
 		print("Attacked by: ", name)
