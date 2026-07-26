@@ -1,6 +1,6 @@
-extends CharacterBody2D
+extends enemy
 
-@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+@onready var _anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var eye_top: Marker2D = $AnimatedSprite2D/EyeTop
 @onready var eye_bottom: Marker2D = $AnimatedSprite2D/EyeBottom
@@ -9,7 +9,6 @@ enum BarminState { HIDING, POPPING, ACTIVE, DEAD }
 
 @export_group("movement")
 @export var frantic_speed: float = 90.0
-@export var gravity: float = 900.0
 @export var hide_cooldown: float = 1.0   
 @export var idle_time: float = 0.4       
 @export var attack_dmg: float = 1.0
@@ -30,7 +29,6 @@ enum BarminState { HIDING, POPPING, ACTIVE, DEAD }
 @export var shot_stagger: float = 0.25   
 
 var state: BarminState = BarminState.HIDING
-var direction: int = 1
 var health: float
 var player: Node2D = null
 
@@ -52,14 +50,14 @@ func _enter_hiding() -> void:
 	velocity = Vector2.ZERO
 	global_position = _hidden_position
 	_hide_cooldown_timer = hide_cooldown
-	anim.play("hiding")
+	_anim.play("hiding")
 
 
 func _pop_out() -> void:
 	if state == BarminState.DEAD:
 		return
 	state = BarminState.POPPING
-	anim.play("idle")
+	_anim.play("idle")
 	await get_tree().create_timer(idle_time).timeout
 	if state == BarminState.DEAD:
 		return
@@ -68,7 +66,7 @@ func _pop_out() -> void:
 
 func _enter_active() -> void:
 	state = BarminState.ACTIVE
-	anim.play("walk")
+	_anim.play("walk")
 	direction = [-1, 1][randi() % 2]
 	_direction_timer = randf_range(direction_change_min, direction_change_max)
 	_shoot_timer = randf_range(shoot_interval_min, shoot_interval_max)
@@ -115,7 +113,7 @@ func _process_active(delta: float) -> void:
 		_direction_timer = randf_range(direction_change_min, direction_change_max)
 
 	velocity.x = direction * frantic_speed
-	anim.flip_h = direction < 0
+	_anim.flip_h = direction < 0
 
 	var in_range := player != null and global_position.distance_to(player.global_position) <= detect_radius
 
@@ -156,23 +154,15 @@ func _spawn_oil_ball(eye: Node2D) -> void:
 	ball.set("velocity", dir * (fast_ball_speed if is_fast else slow_ball_speed))
 
 
-func kill(amount: float) -> void:
-	if state == BarminState.DEAD:
-		return
-	health -= amount
-	if health <= 0.0:
-		_die()
-
-
 func _die() -> void:
 	if state == BarminState.DEAD:
 		return
 	state = BarminState.DEAD
 	velocity = Vector2.ZERO
 	collision.set_deferred("disabled", true)
-	if anim.sprite_frames and anim.sprite_frames.has_animation("dead"):
-		anim.play("dead")
-		await anim.animation_finished
+	if _anim.sprite_frames and _anim.sprite_frames.has_animation("dead"):
+		_anim.play("dead")
+		await _anim.animation_finished
 	else:
 		await get_tree().create_timer(0.2).timeout
 	queue_free()
