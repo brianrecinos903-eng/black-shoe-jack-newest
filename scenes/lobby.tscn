@@ -2039,7 +2039,7 @@ sources/1 = SubResource("TileSetAtlasSource_0gjkf")
 size = Vector2(455, 373)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sfl3n"]
-size = Vector2(411.69995, 90.49999)
+size = Vector2(411.69995, 85.84999)
 
 [node name="Lobby" type="Node2D" unique_id=1524016313]
 script = ExtResource("1_o1atq")
@@ -2115,7 +2115,7 @@ script = ExtResource("9_kn4i6")
 metadata/_custom_type_script = "uid://ckhfut1bx7awa"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="All sea bar tiles/Air" unique_id=1718975877]
-position = Vector2(1322.9998, -795.99994)
+position = Vector2(1322.9998, -842.49994)
 scale = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_sfl3n")
 
