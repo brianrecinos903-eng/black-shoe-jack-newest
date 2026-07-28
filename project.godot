@@ -33,6 +33,7 @@ enemy=""
 player=""
 platforms=""
 zones=""
+reverse_direction=""
 
 [input]
 
