@@ -2225,7 +2225,7 @@ position = Vector2(-496, -58)
 position = Vector2(-1479, -288)
 
 [node name="VerticleSawReverse" parent="." unique_id=1704358582 instance=ExtResource("34_417c5")]
-position = Vector2(-1472, -432)
+position = Vector2(-1472, -640)
 
 [node name="VerticleSawReverse2" parent="." unique_id=555467231 instance=ExtResource("34_417c5")]
 position = Vector2(-1480, -110)
