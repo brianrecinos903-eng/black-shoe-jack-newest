@@ -2129,6 +2129,9 @@ position = Vector2(-1488, -163)
 [node name="OilBall" parent="All sea bar tiles" unique_id=1753829653 instance=ExtResource("14_jhtcy")]
 position = Vector2(-805, -106)
 
+[node name="ReverseSawDirection" parent="All sea bar tiles" unique_id=817469136 instance=ExtResource("30_iwv4c")]
+position = Vector2(512, -58)
+
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=6456256]
 scale = Vector2(2, 2)
 scroll_scale = Vector2(0.8, 0.8)

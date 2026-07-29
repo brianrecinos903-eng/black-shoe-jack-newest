@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+
+@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+
 var can_reverse = true
 
 @export var speed = 500
@@ -7,9 +10,12 @@ var can_reverse = true
 
 var direction = 1
 
+func _ready() -> void:
+	anim.play("spin")
+
 func _physics_process(delta: float) -> void:
 	velocity.x = speed * direction
-	%Sprite2D.rotation += spin_speed * direction * delta
+	anim.rotation += spin_speed * direction * delta
 	
 	move_and_slide()
 	
