@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dhgsepeppyyjx" path="res://enemies/Enemy_Scripts/oozer.gd" id="1_5hpd0"]
 [ext_resource type="Texture2D" uid="uid://c8oa50i0j67ma" path="res://enemies/oozer-Sheet.png" id="1_qippd"]
+[ext_resource type="Script" uid="uid://do1i5qvqaxghh" path="res://scripts/Misc/StateMachine.gd" id="3_rduom"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5hpd0"]
 atlas = ExtResource("1_qippd")
@@ -117,3 +118,16 @@ frame_progress = 0.94456905
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=334684911]
 position = Vector2(-4, 20)
 shape = SubResource("RectangleShape2D_6jhai")
+
+[node name="Wall Raycast" type="RayCast2D" parent="." unique_id=2003521702]
+target_position = Vector2(30, 0)
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1459494905]
+target_position = Vector2(0, -10)
+
+[node name="State Machine" type="Node" parent="." unique_id=1335337476]
+script = ExtResource("3_rduom")
+
+[node name="Active" type="Node" parent="State Machine" unique_id=51877727]
+
+[node name="Stunned" type="Node" parent="State Machine" unique_id=314694307]
