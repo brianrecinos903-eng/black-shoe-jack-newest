@@ -31,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://q1ha1sscin8k" path="res://enemies/oozer.tscn" id="29_f2bte"]
 [ext_resource type="PackedScene" uid="uid://djch05mehck6r" path="res://traps/reverse_saw_direction.tscn" id="30_iwv4c"]
 [ext_resource type="PackedScene" uid="uid://yupi05o4g45s" path="res://traps/spinning_saw.tscn" id="31_wpcbs"]
+[ext_resource type="PackedScene" uid="uid://24le3mfhjcyh" path="res://traps/verticle_saw.tscn" id="32_ierb3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pc087"]
 texture = ExtResource("3_nqcc7")
@@ -2218,6 +2219,9 @@ position = Vector2(-1264, -51)
 
 [node name="SpinningSaw" parent="." unique_id=1208247165 instance=ExtResource("31_wpcbs")]
 position = Vector2(-496, -58)
+
+[node name="VerticleSaw" parent="." unique_id=668058662 instance=ExtResource("32_ierb3")]
+position = Vector2(-848, -167)
 
 [connection signal="took_damage" from="Player" to="CanvasLayer/Control/Healthbar" method="_on_player_took_damage"]
 [connection signal="body_entered" from="Spike" to="Player" method="_on_spike_body_entered"]
