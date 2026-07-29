@@ -749,6 +749,7 @@ size = Vector2(816, 63)
 collision_mask = 161
 script = ExtResource("1_ur7pv")
 wall_jump_impulse = 600.0
+water_sink_speed = 1.0
 slam_shake_factor = 0.826
 hurt_shake_factor = 0.826
 enable_debug = true
