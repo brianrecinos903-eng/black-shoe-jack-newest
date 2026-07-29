@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b1cemjhah2t3o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4m45i"]
+size = Vector2(203, 20)
+
+[node name="VerticleSawReverse" type="Area2D" unique_id=1704358582 groups=["reverse_direction"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1048351805]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_4m45i")
+debug_color = Color(0.91764706, 0, 0.7058824, 0.41960785)
