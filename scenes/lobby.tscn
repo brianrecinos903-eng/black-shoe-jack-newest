@@ -29,6 +29,7 @@
 [ext_resource type="AudioStream" uid="uid://cp0n8w2o5hra6" path="res://Music/chuck.wav" id="24_wjff0"]
 [ext_resource type="PackedScene" uid="uid://bjascxnjuud8r" path="res://traps/sea_mine.tscn" id="25_h1rib"]
 [ext_resource type="PackedScene" uid="uid://q1ha1sscin8k" path="res://enemies/oozer.tscn" id="29_f2bte"]
+[ext_resource type="PackedScene" uid="uid://yupi05o4g45s" path="res://traps/spinning_saw.tscn" id="30_iwv4c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pc087"]
 texture = ExtResource("3_nqcc7")
@@ -2210,6 +2211,9 @@ position = Vector2(1120, -240)
 
 [node name="Oozer2" parent="." unique_id=263724400 instance=ExtResource("29_f2bte")]
 position = Vector2(-2224, -336)
+
+[node name="SpinningSaw" parent="." unique_id=1208247165 instance=ExtResource("30_iwv4c")]
+position = Vector2(-832, -51)
 
 [connection signal="took_damage" from="Player" to="CanvasLayer/Control/Healthbar" method="_on_player_took_damage"]
 [connection signal="body_entered" from="Spike" to="Player" method="_on_spike_body_entered"]
