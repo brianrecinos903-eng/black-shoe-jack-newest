@@ -16,6 +16,7 @@ radius = 24.186773
 script = ExtResource("1_pq6dm")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1840841209]
+unique_name_in_owner = true
 texture = ExtResource("2_8f16p")
 hframes = 3
 vframes = 3

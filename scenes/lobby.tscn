@@ -2215,9 +2215,6 @@ position = Vector2(1120, -240)
 [node name="Oozer2" parent="." unique_id=263724400 instance=ExtResource("29_f2bte")]
 position = Vector2(-2224, -336)
 
-[node name="ReverseSawDirection" parent="." unique_id=817469136 instance=ExtResource("30_iwv4c")]
-position = Vector2(384, -58)
-
 [node name="ReverseSawDirection2" parent="." unique_id=1414435214 instance=ExtResource("30_iwv4c")]
 position = Vector2(-1264, -51)
 

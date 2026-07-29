@@ -9,7 +9,7 @@ var direction = 1
 
 func _physics_process(delta: float) -> void:
 	velocity.x = speed * direction
-	rotation += spin_speed * direction * delta
+	%Sprite2D.rotation += spin_speed * direction * delta
 	
 	move_and_slide()
 	
