@@ -2129,9 +2129,6 @@ position = Vector2(-1488, -163)
 [node name="OilBall" parent="All sea bar tiles" unique_id=1753829653 instance=ExtResource("14_jhtcy")]
 position = Vector2(-805, -106)
 
-[node name="ReverseSawDirection" parent="All sea bar tiles" unique_id=817469136 instance=ExtResource("30_iwv4c")]
-position = Vector2(512, -58)
-
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=6456256]
 scale = Vector2(2, 2)
 scroll_scale = Vector2(0.8, 0.8)
@@ -2219,19 +2216,22 @@ position = Vector2(1120, -240)
 position = Vector2(-2224, -336)
 
 [node name="ReverseSawDirection2" parent="." unique_id=1414435214 instance=ExtResource("30_iwv4c")]
-position = Vector2(-1264, -51)
+position = Vector2(352, -337)
 
 [node name="SpinningSaw" parent="." unique_id=1208247165 instance=ExtResource("31_wpcbs")]
-position = Vector2(-496, -58)
+position = Vector2(1088, -344)
+
+[node name="ReverseSawDirection" parent="." unique_id=817469136 instance=ExtResource("30_iwv4c")]
+position = Vector2(2096, -344)
 
 [node name="VerticleSaw" parent="." unique_id=668058662 instance=ExtResource("32_ierb3")]
-position = Vector2(-1479, -288)
+position = Vector2(-1239, -800)
 
 [node name="VerticleSawReverse" parent="." unique_id=1704358582 instance=ExtResource("34_417c5")]
-position = Vector2(-1472, -640)
+position = Vector2(-1232, -1208)
 
 [node name="VerticleSawReverse2" parent="." unique_id=555467231 instance=ExtResource("34_417c5")]
-position = Vector2(-1480, -110)
+position = Vector2(-1240, -622)
 
 [connection signal="took_damage" from="Player" to="CanvasLayer/Control/Healthbar" method="_on_player_took_damage"]
 [connection signal="body_entered" from="Spike" to="Player" method="_on_spike_body_entered"]
