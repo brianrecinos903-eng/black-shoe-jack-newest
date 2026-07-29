@@ -8,7 +8,7 @@ var can_reverse = true
 var direction = 1
 
 func _physics_process(delta: float) -> void:
-	velocity.x = speed * direction
+	velocity.y = speed * direction
 	rotation += spin_speed * direction * delta
 	
 	move_and_slide()

@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://24le3mfhjcyh"]
+
+[ext_resource type="Script" uid="uid://b611n28r8v7gq" path="res://traps scripts/verticle_saw.gd" id="1_pq6dm"]
+[ext_resource type="Texture2D" uid="uid://dpby0jhes8nrl" path="res://traps/spinning_spike_trap-Sheet.png" id="2_8f16p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4m45i"]
+size = Vector2(93, 188)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8iu0h"]
+radius = 31.016125
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fq0nf"]
+radius = 24.186773
+
+[node name="VerticleSaw" type="CharacterBody2D" unique_id=668058662]
+script = ExtResource("1_pq6dm")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1840841209]
+texture = ExtResource("2_8f16p")
+hframes = 3
+vframes = 3
+
+[node name="ReverseDirectionDetect" type="Area2D" parent="." unique_id=1754689372]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ReverseDirectionDetect" unique_id=1966142697]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_4m45i")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=898025741]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=61054213]
+position = Vector2(-3, 0)
+shape = SubResource("CircleShape2D_8iu0h")
+debug_color = Color(0.9426072, 0.16869015, 0.43935534, 0.41960785)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1440328973]
+shape = SubResource("CircleShape2D_fq0nf")
+
+[connection signal="area_entered" from="ReverseDirectionDetect" to="." method="_on_reverse_direction_detect_area_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

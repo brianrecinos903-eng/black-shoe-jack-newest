@@ -29,7 +29,7 @@ shape = SubResource("RectangleShape2D_fq0nf")
 [node name="Hitbox" type="Area2D" parent="." unique_id=1325652458]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1506988070]
-position = Vector2(-3, 1)
+position = Vector2(-2, 1)
 shape = SubResource("CircleShape2D_4m45i")
 debug_color = Color(0.9545118, 0.16571763, 0.354806, 0.41960785)
 
