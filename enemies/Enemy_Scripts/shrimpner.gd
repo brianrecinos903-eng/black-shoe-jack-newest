@@ -55,7 +55,7 @@ func Player_Enter_Hit_Box(player: Node) -> void:
 func Player_Left_Hit_Box(player: Node) -> void:
 	if player.is_in_group("player"):
 		await get_tree().physics_frame
-		await get_tree().physics_frame
+	
 		hit_Player = false;
 
 func Should_Switch_Direction() -> bool:
