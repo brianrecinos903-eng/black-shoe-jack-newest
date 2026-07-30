@@ -17,7 +17,6 @@ shape = SubResource("RectangleShape2D_cassd")
 debug_color = Color(0.72200876, 0.47901028, 0, 0.41960785)
 
 [node name="Cooldown" type="Timer" parent="." unique_id=1732267545]
-wait_time = 5.0
 one_shot = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1568,4 +1568,4 @@ tile_map_data = PackedByteArray("AAAAAAoAAwANABYAAAAAAAsAAwANABcAAAABAAoAAwAOABY
 tile_set = SubResource("TileSet_wgvqp")
 
 [node name="hidden_door" parent="." unique_id=543556437 instance=ExtResource("5_mqoq7")]
-position = Vector2(-92, 258)
+position = Vector2(-96, 256)
