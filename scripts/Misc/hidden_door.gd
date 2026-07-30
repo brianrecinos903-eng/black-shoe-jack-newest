@@ -26,13 +26,16 @@ func _on_body_entered(body: Node2D) -> void:
 			partner.partner = self
 			get_tree().root.add_child.call_deferred(dest)
 			_send.call_deferred(body, partner)
-			_send.call_deferred(body, partner)
 			
 		Role.RECIEVER:
+			if not is_instance_valid(partner):
+				return
 			var back = partner
-			back.spawned_room.queue_free()
+			if is_instance_valid(back.spawned_room):
+				back.spawned_room.queue_free()
 			back.spawned_room = null
-			_send(body, back)
+			back.partner = null
+			_send.call_deferred(body, back)
 
 func _send(body: Node2D, target: Area2D) -> void:
 	body.global_position = target.global_position + EXIT_MARGIN * target.exit_dir
