@@ -31,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://djch05mehck6r" path="res://traps/reverse_saw_direction.tscn" id="30_iwv4c"]
 [ext_resource type="PackedScene" uid="uid://yupi05o4g45s" path="res://traps/spinning_saw.tscn" id="31_wpcbs"]
 [ext_resource type="PackedScene" uid="uid://24le3mfhjcyh" path="res://traps/verticle_saw.tscn" id="32_ierb3"]
+[ext_resource type="PackedScene" uid="uid://757v06s0jrna" path="res://scenes/turbine.tscn" id="33_78rk6"]
 [ext_resource type="PackedScene" uid="uid://b1cemjhah2t3o" path="res://traps/verticle_saw_reverse.tscn" id="34_417c5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pc087"]
@@ -2243,6 +2244,10 @@ position = Vector2(-1122, -63)
 
 [node name="Bar music!" type="AudioStreamPlayer" parent="." unique_id=1583473103]
 stream = ExtResource("24_wjff0")
+
+[node name="Turbine" parent="." unique_id=66369674 instance=ExtResource("33_78rk6")]
+position = Vector2(2896, 0)
+lift_force = 100.0
 
 [connection signal="took_damage" from="Player" to="CanvasLayer/Control/Healthbar" method="_on_player_took_damage"]
 [connection signal="body_entered" from="traps/Spike" to="Player" method="_on_spike_body_entered"]
