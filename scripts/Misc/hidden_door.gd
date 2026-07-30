@@ -26,7 +26,7 @@ func _on_body_entered(body: Node2D) -> void:
 			partner.partner = self
 			get_tree().root.add_child.call_deferred(dest)
 			_send.call_deferred(body, partner)
-			_send(body, partner)
+			_send.call_deferred(body, partner)
 			
 		Role.RECIEVER:
 			var back = partner
