@@ -24,7 +24,8 @@ func _on_body_entered(body: Node2D) -> void:
 			spawned_room = dest
 			partner = dest.hidden_door
 			partner.partner = self
-			get_tree().root.add_child(dest)
+			get_tree().root.add_child.call_deferred(dest)
+			_send.call_deferred(body, partner)
 			_send(body, partner)
 			
 		Role.RECIEVER:
