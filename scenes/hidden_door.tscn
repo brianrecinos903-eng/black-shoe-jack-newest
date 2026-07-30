@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://6flkovn5m8dy"]
+
+[ext_resource type="Script" uid="uid://cnvq6tc5qxm2g" path="res://scripts/Misc/hidden_door.gd" id="1_krn8d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cassd"]
+size = Vector2(6, 128)
+
+[node name="hidden_door" type="Area2D" unique_id=543556437 node_paths=PackedStringArray("cooldown_timer")]
+collision_layer = 4096
+script = ExtResource("1_krn8d")
+cooldown_timer = NodePath("Cooldown")
+role = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2127511546]
+z_index = 1
+shape = SubResource("RectangleShape2D_cassd")
+debug_color = Color(0.72200876, 0.47901028, 0, 0.41960785)
+
+[node name="Cooldown" type="Timer" parent="." unique_id=1732267545]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

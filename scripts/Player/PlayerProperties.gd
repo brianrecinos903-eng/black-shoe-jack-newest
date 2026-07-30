@@ -92,7 +92,6 @@ var bounces_left: int = max_bounces
 @onready var collider: CollisionShape2D = $"CollisionShape2D"
 @onready var slam_area: CollisionShape2D = $SlamArea/"CollisionShape2D"
 
-var score: float = 0
 var in_water: bool = false
 var last_checkpoint: Vector2
 var active_zones: Dictionary[Helpers.ZoneType, bool] = { }
@@ -251,7 +250,7 @@ func _on_slam_area_body_entered(body: Node2D) -> void:
 
 
 func add_score(amount: float):
-	score += amount
+	Playerdata.score += amount
 
 
 func reset_health() -> void:

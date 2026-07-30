@@ -746,7 +746,7 @@ size = Vector2(64, 78)
 size = Vector2(816, 63)
 
 [node name="Player" type="CharacterBody2D" unique_id=413210945 groups=["player"]]
-collision_mask = 161
+collision_mask = 4257
 script = ExtResource("1_ur7pv")
 wall_jump_impulse = 600.0
 water_sink_speed = 1.0
