@@ -23,4 +23,3 @@ func _ready() -> void:
 	player = owner as Player
 	print(owner)
 	assert(player != null, "The PlayerState state type must be used only in the player scene. It needs the owner to be a Player node.")
-
