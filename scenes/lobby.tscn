@@ -2235,7 +2235,7 @@ animation_name = "RESET"
 [node name="JumpPads" type="Node" parent="." unique_id=2004232901]
 
 [node name="JumpPad" parent="JumpPads" unique_id=1434854951 instance=ExtResource("9_iulku")]
-position = Vector2(3482, -10)
+position = Vector2(3482, -16)
 
 [node name="checkpoints" type="Node" parent="." unique_id=1158457690]
 
