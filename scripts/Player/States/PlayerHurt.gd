@@ -6,39 +6,39 @@ func _ready() -> void:
 	state_name = PlayerState.HURT
 
 func enter() -> void:
-	if player.in_water:
-		player.gravity_factor = player.water_gravity_factor 
-	player.camera_2d.shake(player.hurt_shake_factor)
-	player.can_be_hurt = false
+	if state_owner.in_water:
+		state_owner.gravity_factor = state_owner.water_gravity_factor 
+	state_owner.camera_2d.shake(state_owner.hurt_shake_factor)
+	state_owner.can_be_hurt = false
 
-	if player.health <= 0:
-		player.is_hurt = false
-		player.can_be_hurt = true
+	if state_owner.health <= 0:
+		state_owner.is_hurt = false
+		state_owner.can_be_hurt = true
 		state_machine.transition_to(PlayerState.DEATH)
-		player.reset_health()
+		state_owner.reset_health()
 		return
 
-	if player.dmg_source == Helpers.DamageType.TRAP:
-		player.velocity = player.trap_knockback
+	if state_owner.dmg_source == Helpers.DamageType.TRAP:
+		state_owner.velocity = state_owner.trap_knockback
 	else:
-		player.velocity.x = player.dmg_knockback.x * -player.move_direction
-		player.velocity.y = player.dmg_knockback.y * Vector2.UP.y
+		state_owner.velocity.x = state_owner.dmg_knockback.x * -state_owner.move_direction
+		state_owner.velocity.y = state_owner.dmg_knockback.y * Vector2.UP.y
 		
 	stunned_timer.start()
 	
 func exit():
-	if player.in_water:
-		player.gravity_factor = player.water_gravity_factor 
+	if state_owner.in_water:
+		state_owner.gravity_factor = state_owner.water_gravity_factor 
 
 func physics_update(_delta: float) -> void:
-	player.apply_motion(_delta)
-	if not player.in_water:
-		player.apply_gravity(_delta)
-	player.move_and_slide()
+	state_owner.apply_motion(_delta)
+	if not state_owner.in_water:
+		state_owner.apply_gravity(_delta)
+	state_owner.move_and_slide()
 	
-	# player.anim.play()
+	# state_owner.anim.play()
 
 func _on_stun_timer_timeout() -> void:
-	player.is_hurt = false
-	player.can_be_hurt = true
-	state_machine.transition_to(player.grounded_state_name())
+	state_owner.is_hurt = false
+	state_owner.can_be_hurt = true
+	state_machine.transition_to(state_owner.grounded_state_name())
