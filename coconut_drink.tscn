@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://cu3b362prxgc2"]
+
+[ext_resource type="Script" uid="uid://v6mdey3nfawc" path="res://collectables/coconut_drink.gd" id="1_hh1hf"]
+[ext_resource type="Texture2D" uid="uid://dw6apv2ctmgb4" path="res://collectables/coconut_drink-Sheet.png" id="2_j61mk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxyi5"]
+atlas = ExtResource("2_j61mk")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njs35"]
+atlas = ExtResource("2_j61mk")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1layb"]
+atlas = ExtResource("2_j61mk")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxdfh"]
+atlas = ExtResource("2_j61mk")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6jhai"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxyi5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_njs35")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1layb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wxdfh")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7sxda"]
+radius = 25.298222
+
+[node name="Coconut_drink" type="Area2D" unique_id=1951407305]
+collision_layer = 65
+collision_mask = 65
+script = ExtResource("1_hh1hf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=331076477]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_6jhai")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1938237520]
+shape = SubResource("CircleShape2D_7sxda")
