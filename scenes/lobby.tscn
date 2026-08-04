@@ -31,6 +31,12 @@
 [ext_resource type="PackedScene" uid="uid://q1ha1sscin8k" path="res://enemies/oozer.tscn" id="29_f2bte"]
 [ext_resource type="PackedScene" uid="uid://djch05mehck6r" path="res://traps/reverse_saw_direction.tscn" id="30_iwv4c"]
 [ext_resource type="PackedScene" uid="uid://yupi05o4g45s" path="res://traps/spinning_saw.tscn" id="31_wpcbs"]
+<<<<<<< Updated upstream
+=======
+[ext_resource type="PackedScene" uid="uid://24le3mfhjcyh" path="res://traps/verticle_saw.tscn" id="32_ierb3"]
+[ext_resource type="PackedScene" uid="uid://757v06s0jrna" path="res://scenes/turbine.tscn" id="33_78rk6"]
+[ext_resource type="PackedScene" uid="uid://kgrxtbxu0ne" path="res://traps/verticle_saw_reverse.tscn" id="34_417c5"]
+>>>>>>> Stashed changes
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pc087"]
 texture = ExtResource("3_nqcc7")
