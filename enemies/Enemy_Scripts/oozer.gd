@@ -1,7 +1,11 @@
-extends CharacterBody2D
+extends enemy 
 
-@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+signal on_player_bounce 
 
+func _ready() -> void: 
+	direction = 1 
+	anim = $AnimatedSprite2D 
+	anim.play($"State Machine".initial_state.state_name)
 
-func _ready() -> void:
-	anim.play("idle")
+func _process(delta: float) -> void:
+	position.x += speed * direction * delta 

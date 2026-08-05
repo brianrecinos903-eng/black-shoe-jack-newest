@@ -9,62 +9,62 @@ func _ready() -> void:
 	state_name = PlayerState.SLAM
 
 func exit_state() -> void:
-	var next_state := player.grounded_state_name()
+	var next_state := (state_owner as Player).grounded_state_name()
 	state_machine.transition_to(next_state)
-	player.move_and_slide()
+	state_owner.move_and_slide()
 	exited = true
 	return
 
 
 func exit():
-	player.gravity_factor = player.default_gravity_factor
+	state_owner.gravity_factor = state_owner.default_gravity_factor
 
 func handle_bounce() -> void:
 	print("handling bounce")
-	if player.bounces_left == 0:
+	if state_owner.bounces_left == 0:
 		exit_state()
 		return
-	if player.bounces_left > 0:
-		player.velocity.y = -player.jump_impulse
-		player.bounces_left -= 1
+	if state_owner.bounces_left > 0:
+		state_owner.velocity.y = -state_owner.jump_impulse
+		state_owner.bounces_left -= 1
 		return
 
 
 func enter() -> void:
 	print("Now in slam")
 	exited = false
-	player.speed_multiplier = 0.2
-	player.bounces_left = player.max_bounces
-	if not player.in_water:
-		player.gravity_factor = player.fall_gravity_factor
+	state_owner.speed_multiplier = 0.2
+	state_owner.bounces_left = state_owner.max_bounces
+	if not state_owner.in_water:
+		state_owner.gravity_factor = state_owner.fall_gravity_factor
 
 func physics_update(delta: float) -> void:
-	player.apply_gravity(delta)
-	player.apply_motion(delta)
-	player.move_and_slide()
+	state_owner.apply_gravity(delta)
+	state_owner.apply_motion(delta)
+	state_owner.move_and_slide()
 
 	if Input.is_action_just_pressed("up"):
 		exit_state()
 		return
-	if player.is_on_floor():
-		print(player.bounces_left)
+	if state_owner.is_on_floor():
+		print(state_owner.bounces_left)
 		if not Input.is_action_pressed("down"):
 			handle_bounce()
 			return
 		Helpers.wait(button_hold_time)
 		print("waited")
-		Helpers.print_log("Exited: %s" % exited, player.enable_debug)
+		Helpers.print_log("Exited: %s" % exited, state_owner.enable_debug)
 		if exited or not Input.is_action_pressed("down"):
 			return
 
-		player.camera_2d.shake(player.slam_shake_factor)
-		player.slam_area.disabled = false
-		Helpers.print_log("Slam enabled", player.enable_debug)
+		state_owner.camera_2d.shake(state_owner.slam_shake_factor)
+		state_owner.slam_area.disabled = false
+		Helpers.print_log("Slam enabled", state_owner.enable_debug)
 		state_machine.transition_to(PlayerState.SPRING)
 		return
 		
 
-	player.anim.play("slam")
+	state_owner.anim.play("slam")
 
 
 	
