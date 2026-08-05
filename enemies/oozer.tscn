@@ -112,6 +112,7 @@ size = Vector2(56, 56)
 collision_layer = 64
 collision_mask = 64
 script = ExtResource("1_5hpd0")
+attack_Dmg = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1958827001]
 sprite_frames = SubResource("SpriteFrames_6jhai")

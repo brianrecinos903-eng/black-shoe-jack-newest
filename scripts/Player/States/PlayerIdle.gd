@@ -2,7 +2,6 @@ extends PlayerState
 
 var water_idle_time := 0.0
 
-
 func _ready() -> void:
 	state_name = PlayerState.IDLE
 
