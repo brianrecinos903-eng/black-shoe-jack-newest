@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cu3b362prxgc2"]
 
-[ext_resource type="Script" path="res://collectables/coconut_drink.gd" id="1_hh1hf"]
+[ext_resource type="Script" uid="uid://v6mdey3nfawc" path="res://collectables/coconut_drink.gd" id="1_hh1hf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xxyi5"]
 region = Rect2(0, 0, 64, 64)
