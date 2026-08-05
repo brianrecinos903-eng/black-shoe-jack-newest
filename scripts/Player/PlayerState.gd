@@ -12,6 +12,7 @@ const CROUCH = "Crouch"
 const SLIDE = "Slide"
 const WALL_RUN = "Wallrun"
 const CEILLING_RUN = "Ceillingrun"
+const LADDER = "Ladder"
 
 
 

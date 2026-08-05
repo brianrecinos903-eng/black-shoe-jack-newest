@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://j2kpi40vn3hv" path="res://scripts/Player/States/PlayerSlide.gd" id="13_jej6c"]
 [ext_resource type="Script" uid="uid://duqswexfliy0x" path="res://scripts/Player/States/PlayerWallRun.gd" id="14_f1ej7"]
 [ext_resource type="Script" uid="uid://d27dki7qtuia8" path="res://scripts/Player/States/PlayerCeillingRun.gd" id="15_qfm1y"]
+[ext_resource type="Script" path="res://scripts/Player/States/PlayerLadder.gd" id="16_ladder"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vdulj"]
 atlas = ExtResource("1_3vyb7")
@@ -831,6 +832,9 @@ script = ExtResource("14_f1ej7")
 
 [node name="Ceillingrun" type="Node" parent="StateMachine" unique_id=232140253]
 script = ExtResource("15_qfm1y")
+
+[node name="Ladder" type="Node" parent="StateMachine"]
+script = ExtResource("16_ladder")
 
 [connection signal="timeout" from="DeathTimer" to="StateMachine/Death" method="death_timer_end"]
 [connection signal="body_entered" from="AttackHitBox" to="." method="_in_attack_range"]
