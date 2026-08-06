@@ -1,7 +1,7 @@
 extends Node
 class_name State
 
-var state_machine 
+var state_machine
 var state_name: String 
 @export var state_owner : Node2D
 

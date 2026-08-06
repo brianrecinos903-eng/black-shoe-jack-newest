@@ -19,7 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://3pj5nx0k3w5n" path="res://scenes/coin.tscn" id="11_0jb4q"]
 [ext_resource type="PackedScene" uid="uid://5vgm163kkxqw" path="res://enemies/gish.tscn" id="11_yad6j"]
 [ext_resource type="PackedScene" uid="uid://n31le76pce6w" path="res://traps/spikeball.tscn" id="13_3jc85"]
-[ext_resource type="PackedScene" uid="uid://dxojd7eewhhe4" path="res://traps/oil_ball.tscn" id="14_jhtcy"]
 [ext_resource type="PackedScene" uid="uid://3a7uiu0jmb0l" path="res://scenes/Spike.tscn" id="14_q6qq2"]
 [ext_resource type="PackedScene" uid="uid://l8qi5jvswr87" path="res://enemies/shrimpner.tscn" id="15_rgcd7"]
 [ext_resource type="PackedScene" uid="uid://cgyka8oxhu3cl" path="res://Non-playable-characters/ronald_pretzel.tscn" id="16_lqo1b"]
@@ -31,12 +30,10 @@
 [ext_resource type="PackedScene" uid="uid://q1ha1sscin8k" path="res://enemies/oozer.tscn" id="29_f2bte"]
 [ext_resource type="PackedScene" uid="uid://djch05mehck6r" path="res://traps/reverse_saw_direction.tscn" id="30_iwv4c"]
 [ext_resource type="PackedScene" uid="uid://yupi05o4g45s" path="res://traps/spinning_saw.tscn" id="31_wpcbs"]
-<<<<<<< Updated upstream
-=======
 [ext_resource type="PackedScene" uid="uid://24le3mfhjcyh" path="res://traps/verticle_saw.tscn" id="32_ierb3"]
 [ext_resource type="PackedScene" uid="uid://757v06s0jrna" path="res://scenes/turbine.tscn" id="33_78rk6"]
-[ext_resource type="PackedScene" uid="uid://kgrxtbxu0ne" path="res://traps/verticle_saw_reverse.tscn" id="34_417c5"]
->>>>>>> Stashed changes
+[ext_resource type="PackedScene" uid="uid://btqiu1go4j4au" path="res://scenes/ladder.tscn" id="34_50md7"]
+[ext_resource type="PackedScene" uid="uid://b1cemjhah2t3o" path="res://traps/verticle_saw_reverse.tscn" id="34_417c5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pc087"]
 texture = ExtResource("3_nqcc7")
@@ -2052,6 +2049,10 @@ size = Vector2(411.69995, 85.84999)
 [node name="Lobby" type="Node2D" unique_id=1524016313]
 script = ExtResource("1_o1atq")
 
+[node name="Player" parent="." unique_id=413210945 instance=ExtResource("4_nqcc7")]
+position = Vector2(-1112, -64)
+in_water_resistance = 200.0
+
 [node name="All sea bar tiles" type="Node" parent="." unique_id=1374521840]
 
 [node name="All sea bar floors" type="TileMapLayer" parent="All sea bar tiles" unique_id=2022172751 groups=["reverse_direction"]]
@@ -2104,20 +2105,6 @@ metadata/_custom_type_script = "uid://ckhfut1bx7awa"
 position = Vector2(46.5, 201.5)
 shape = SubResource("RectangleShape2D_a34j0")
 
-[node name="JumpPad" parent="All sea bar tiles" unique_id=1434854951 instance=ExtResource("9_iulku")]
-position = Vector2(3482, -10)
-
-[node name="Platform" parent="All sea bar tiles" unique_id=1737836055 groups=["platforms"] instance=ExtResource("10_dfnwm")]
-position = Vector2(3560, -167)
-one_way = true
-player_can_drop_down = true
-moving_platform = true
-animation_name = "RESET"
-
-[node name="Coin" parent="All sea bar tiles" unique_id=257508606 instance=ExtResource("11_0jb4q")]
-position = Vector2(2690, -48)
-coin_type = 400
-
 [node name="Air" type="Area2D" parent="All sea bar tiles" unique_id=429361540]
 script = ExtResource("9_kn4i6")
 metadata/_custom_type_script = "uid://ckhfut1bx7awa"
@@ -2126,12 +2113,6 @@ metadata/_custom_type_script = "uid://ckhfut1bx7awa"
 position = Vector2(1322.9998, -842.49994)
 scale = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_sfl3n")
-
-[node name="Spikeball" parent="All sea bar tiles" unique_id=1453933816 instance=ExtResource("13_3jc85")]
-position = Vector2(-1488, -163)
-
-[node name="OilBall" parent="All sea bar tiles" unique_id=1753829653 instance=ExtResource("14_jhtcy")]
-position = Vector2(-805, -106)
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=6456256]
 scale = Vector2(2, 2)
@@ -2152,43 +2133,74 @@ position = Vector2(1720, -41)
 [node name="EdgeMarker2" parent="." unique_id=2058116843 instance=ExtResource("7_omrgh")]
 position = Vector2(2991, -47)
 
-[node name="Cragoon" parent="." unique_id=2088169173 instance=ExtResource("6_apkv3")]
-position = Vector2(2008, -128)
+[node name="traps" type="Node" parent="." unique_id=1704131806]
 
-[node name="Checkpoint" parent="." unique_id=939017722 instance=ExtResource("8_ncsg4")]
-position = Vector2(-1122, -63)
+[node name="Seamine" parent="traps" unique_id=442305192 instance=ExtResource("25_h1rib")]
+position = Vector2(-1856, -368)
 
-[node name="Player" parent="." unique_id=413210945 instance=ExtResource("4_nqcc7")]
-position = Vector2(-1112, -64)
-in_water_resistance = 200.0
+[node name="Seamine2" parent="traps" unique_id=962457295 instance=ExtResource("25_h1rib")]
+position = Vector2(-536, -632)
 
-[node name="Gish" parent="." unique_id=847841096 instance=ExtResource("11_yad6j")]
+[node name="Oozer" parent="traps" unique_id=1551069852 instance=ExtResource("29_f2bte")]
+z_index = -1
+position = Vector2(1120, -240)
+
+[node name="Oozer2" parent="traps" unique_id=263724400 instance=ExtResource("29_f2bte")]
+position = Vector2(-2224, -336)
+
+[node name="ReverseSawDirection2" parent="traps" unique_id=1414435214 instance=ExtResource("30_iwv4c")]
+position = Vector2(352, -337)
+
+[node name="SpinningSaw" parent="traps" unique_id=1208247165 instance=ExtResource("31_wpcbs")]
+position = Vector2(1088, -344)
+
+[node name="ReverseSawDirection" parent="traps" unique_id=817469136 instance=ExtResource("30_iwv4c")]
+position = Vector2(2096, -344)
+
+[node name="VerticleSaw" parent="traps" unique_id=668058662 instance=ExtResource("32_ierb3")]
+position = Vector2(-1239, -800)
+
+[node name="VerticleSawReverse" parent="traps" unique_id=1704358582 instance=ExtResource("34_417c5")]
+position = Vector2(-1232, -1208)
+
+[node name="VerticleSawReverse2" parent="traps" unique_id=555467231 instance=ExtResource("34_417c5")]
+position = Vector2(-1240, -622)
+
+[node name="Spike" parent="traps" unique_id=361684399 instance=ExtResource("14_q6qq2")]
+z_index = -1
+position = Vector2(-8, -480)
+
+[node name="Spikeball" parent="traps" unique_id=1453933816 instance=ExtResource("13_3jc85")]
+position = Vector2(-896, -128)
+
+[node name="enemies" type="Node" parent="." unique_id=1216580663]
+
+[node name="Gish" parent="enemies" unique_id=847841096 instance=ExtResource("11_yad6j")]
 position = Vector2(4976, -80)
 
-[node name="Gish" parent="Gish" unique_id=1611118804 instance=ExtResource("11_yad6j")]
-position = Vector2(-5832, -608)
+[node name="Gish2" parent="enemies" unique_id=1611118804 instance=ExtResource("11_yad6j")]
+position = Vector2(-856, -688)
 
-[node name="Spike" parent="." unique_id=361684399 instance=ExtResource("14_q6qq2")]
-z_index = -1
-position = Vector2(-648, -24)
+[node name="Cragoon" parent="enemies" unique_id=2088169173 instance=ExtResource("6_apkv3")]
+position = Vector2(2008, -128)
 
-[node name="Shrimpner" parent="." unique_id=1056129754 instance=ExtResource("15_rgcd7")]
+[node name="Shrimpner" parent="enemies" unique_id=1056129754 instance=ExtResource("15_rgcd7")]
 z_index = -1
 position = Vector2(-384, -600)
 
-[node name="Ronald Pretzel" parent="." unique_id=2086317626 instance=ExtResource("16_lqo1b")]
+[node name="Ronald Pretzel" parent="enemies" unique_id=2086317626 instance=ExtResource("16_lqo1b")]
 z_index = -1
 position = Vector2(8, -128)
 
-[node name="PauseMenuCanvasLayer" parent="." unique_id=385780542 instance=ExtResource("18_o2i1r")]
-
-[node name="Barmin" parent="." unique_id=653777892 instance=ExtResource("19_iulku")]
+[node name="Barmin" parent="enemies" unique_id=653777892 instance=ExtResource("19_iulku")]
 z_index = -1
 position = Vector2(-376, -56)
 
-[node name="Barmin2" parent="." unique_id=1570906288 instance=ExtResource("19_iulku")]
+[node name="Barmin2" parent="enemies" unique_id=1570906288 instance=ExtResource("19_iulku")]
 z_index = -1
 position = Vector2(904, -248)
+
+[node name="PauseMenuCanvasLayer" parent="." unique_id=385780542 instance=ExtResource("18_o2i1r")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1926319895]
 
@@ -2206,27 +2218,41 @@ anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
 
+[node name="coins" type="Node" parent="." unique_id=1027410120]
+
+[node name="Coin" parent="coins" unique_id=257508606 instance=ExtResource("11_0jb4q")]
+position = Vector2(2690, -48)
+coin_type = 400
+
+[node name="platforms" type="Node" parent="." unique_id=1391725907]
+
+[node name="Platform" parent="platforms" unique_id=1737836055 groups=["platforms"] instance=ExtResource("10_dfnwm")]
+position = Vector2(3560, -167)
+one_way = true
+player_can_drop_down = true
+moving_platform = true
+animation_name = "RESET"
+
+[node name="JumpPads" type="Node" parent="." unique_id=2004232901]
+
+[node name="JumpPad" parent="JumpPads" unique_id=1434854951 instance=ExtResource("9_iulku")]
+position = Vector2(3482, -16)
+
+[node name="checkpoints" type="Node" parent="." unique_id=1158457690]
+
+[node name="Checkpoint" parent="checkpoints" unique_id=939017722 instance=ExtResource("8_ncsg4")]
+position = Vector2(-1122, -63)
+
 [node name="Bar music!" type="AudioStreamPlayer" parent="." unique_id=1583473103]
 stream = ExtResource("24_wjff0")
 
-[node name="Seamine" parent="." unique_id=442305192 instance=ExtResource("25_h1rib")]
-position = Vector2(-1608, -224)
+[node name="Turbine" parent="." unique_id=66369674 instance=ExtResource("33_78rk6")]
+position = Vector2(2896, 0)
+lift_force = 100.0
 
-[node name="Oozer" parent="." unique_id=1551069852 instance=ExtResource("29_f2bte")]
-z_index = -1
-position = Vector2(1120, -240)
-
-[node name="Oozer2" parent="." unique_id=263724400 instance=ExtResource("29_f2bte")]
-position = Vector2(-2224, -336)
-
-[node name="ReverseSawDirection" parent="." unique_id=817469136 instance=ExtResource("30_iwv4c")]
-position = Vector2(384, -58)
-
-[node name="ReverseSawDirection2" parent="." unique_id=1414435214 instance=ExtResource("30_iwv4c")]
-position = Vector2(-1264, -51)
-
-[node name="SpinningSaw" parent="." unique_id=1208247165 instance=ExtResource("31_wpcbs")]
-position = Vector2(-496, -58)
+[node name="Ladder" parent="." unique_id=1622742213 instance=ExtResource("34_50md7")]
+position = Vector2(490, -286)
+ladder_height = 384.0
 
 [connection signal="took_damage" from="Player" to="CanvasLayer/Control/Healthbar" method="_on_player_took_damage"]
-[connection signal="body_entered" from="Spike" to="Player" method="_on_spike_body_entered"]
+[connection signal="body_entered" from="traps/Spike" to="Player" method="_on_spike_body_entered"]

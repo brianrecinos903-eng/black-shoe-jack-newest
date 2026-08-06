@@ -38,6 +38,10 @@ var move_direction: int = 1
 @export var wall_jump_impulse: float = 300.0
 @export var spring_jump_impulse: Vector2 = Vector2(1000.0, -1000.0)
 
+@export_subgroup("Ladder")
+@export var ladder_climb_speed: float = 220.0
+var active_ladder: Ladder
+
 @export_subgroup("Swimming")
 @export var swim_up_impulse: float = 400.0
 @export var swim_down_impulse: float = 300
@@ -106,6 +110,30 @@ enum SurfaceType {
 
 func _ready() -> void:
 	slam_area.disabled = true
+
+
+func _physics_process(_delta: float) -> void:
+	if (
+		is_on_ladder()
+		and state_machine.current_state.state_name != PlayerState.LADDER
+		and state_machine.current_state.state_name != PlayerState.HURT
+		and state_machine.current_state.state_name != PlayerState.DEATH
+		and (Input.is_action_pressed("up") or Input.is_action_pressed("down"))
+	):
+		state_machine.transition_to(PlayerState.LADDER)
+
+
+func enter_ladder(ladder: Ladder) -> void:
+	active_ladder = ladder
+
+
+func exit_ladder(ladder: Ladder) -> void:
+	if active_ladder == ladder:
+		active_ladder = null
+
+
+func is_on_ladder() -> bool:
+	return is_instance_valid(active_ladder)
 
 
 func crouch_collider():

@@ -2,11 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dhgsepeppyyjx" path="res://enemies/Enemy_Scripts/oozer.gd" id="1_5hpd0"]
 [ext_resource type="Texture2D" uid="uid://c8oa50i0j67ma" path="res://enemies/oozer-Sheet.png" id="1_qippd"]
-[ext_resource type="Script" uid="uid://do1i5qvqaxghh" path="res://scripts/Misc/StateMachine.gd" id="3_rduom"]
-[ext_resource type="Script" uid="uid://dh31b6o7qll4v" path="res://scripts/Enemies/Oozer states/OozerIdle.gd" id="4_baql5"]
-[ext_resource type="Script" uid="uid://db4ni65uqxj7p" path="res://scripts/Enemies/Oozer states/OozerWalk.gd" id="5_ahwvx"]
-[ext_resource type="Script" uid="uid://c5ao5wocysu5g" path="res://scripts/Enemies/Oozer states/OozerStunned.gd" id="6_askhb"]
-[ext_resource type="Script" uid="uid://di18mvqa8y7c4" path="res://scripts/Enemies/Oozer states/OozerDeath.gd" id="7_80www"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5hpd0"]
 atlas = ExtResource("1_qippd")
@@ -112,7 +107,6 @@ size = Vector2(56, 56)
 collision_layer = 64
 collision_mask = 64
 script = ExtResource("1_5hpd0")
-attack_Dmg = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1958827001]
 sprite_frames = SubResource("SpriteFrames_6jhai")
@@ -122,25 +116,4 @@ animation = &"Walk"
 position = Vector2(-4, 20)
 shape = SubResource("RectangleShape2D_6jhai")
 
-[node name="Wall Raycast" type="RayCast2D" parent="." unique_id=2003521702]
-target_position = Vector2(30, 0)
-
-[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1459494905]
-target_position = Vector2(0, -10)
-
-[node name="State Machine" type="Node" parent="." unique_id=1335337476 node_paths=PackedStringArray("initial_state")]
-script = ExtResource("3_rduom")
-initial_state = NodePath("Idle")
-
-[node name="Idle" type="Node" parent="State Machine" unique_id=51877727 node_paths=PackedStringArray("state_owner")]
-script = ExtResource("4_baql5")
-state_owner = NodePath("../..")
-
-[node name="Walk" type="Node" parent="State Machine" unique_id=1172698184]
-script = ExtResource("5_ahwvx")
-
-[node name="Stunned" type="Node" parent="State Machine" unique_id=314694307]
-script = ExtResource("6_askhb")
-
-[node name="Death" type="Node" parent="State Machine" unique_id=1269004274]
-script = ExtResource("7_80www")
+[node name="State Machine" type="Node" parent="." unique_id=689985012]

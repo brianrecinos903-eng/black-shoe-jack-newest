@@ -12,10 +12,7 @@ const CROUCH = "Crouch"
 const SLIDE = "Slide"
 const WALL_RUN = "Wallrun"
 const CEILLING_RUN = "Ceillingrun"
-
-
-
-#@export var player: Player
+const LADDER = "Ladder"
 
 
 func _ready() -> void:
