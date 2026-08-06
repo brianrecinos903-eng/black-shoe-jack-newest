@@ -15,13 +15,8 @@ const CEILLING_RUN = "Ceillingrun"
 const LADDER = "Ladder"
 
 
-
-@export var player: Player
-
-
 func _ready() -> void:
 	await owner.ready
-	player = owner as Player
+	state_owner = owner as Player
 	print(owner)
-	assert(player != null, "The PlayerState state type must be used only in the player scene. It needs the owner to be a Player node.")
-
+	assert(state_owner != null, "The PlayerState state type must be used only in the player scene. It needs the owner to be a Player node.")

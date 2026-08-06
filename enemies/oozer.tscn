@@ -73,7 +73,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_baql5")
 }],
 "loop": 1,
-"name": &"idle",
+"name": &"Idle",
 "speed": 8.0
 }, {
 "frames": [{
@@ -96,7 +96,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_8nfym")
 }],
 "loop": 1,
-"name": &"walk",
+"name": &"Walk",
 "speed": 9.0
 }]
 
@@ -110,10 +110,10 @@ script = ExtResource("1_5hpd0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1958827001]
 sprite_frames = SubResource("SpriteFrames_6jhai")
-animation = &"walk"
-frame = 4
-frame_progress = 0.94456905
+animation = &"Walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=334684911]
 position = Vector2(-4, 20)
 shape = SubResource("RectangleShape2D_6jhai")
+
+[node name="State Machine" type="Node" parent="." unique_id=689985012]

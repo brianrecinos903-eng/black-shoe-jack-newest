@@ -12,24 +12,24 @@ func enter():
 
 
 func physics_update(delta: float) -> void:
-	player.apply_gravity(delta)
-	player.apply_motion(delta)
-	player.apply_speed_input()
-	if player.in_water:
-		player.apply_water_drag(delta)
-		if player.move_direction == 0:
+	state_owner.apply_gravity(delta)
+	state_owner.apply_motion(delta)
+	state_owner.apply_speed_input()
+	if state_owner.in_water:
+		state_owner.apply_water_drag(delta)
+		if state_owner.move_direction == 0:
 			water_idle_time += delta
 		else:
 			water_idle_time = 0.0
-		if water_idle_time >= player.water_sink_delay:
-			player.velocity.y = player.water_sink_speed
+		if water_idle_time >= state_owner.water_sink_delay:
+			state_owner.velocity.y = state_owner.water_sink_speed
 			state_machine.transition_to(PlayerState.FALL)
 			return
-	if player.is_hurt:
+	if state_owner.is_hurt:
 		state_machine.transition_to(PlayerState.HURT)
 		return
-	if not player.in_water:
-		if player.is_falling():
+	if not state_owner.in_water:
+		if state_owner.is_falling():
 			state_machine.transition_to(PlayerState.FALL)
 			return
 		if Input.is_action_just_pressed("jump"):
@@ -39,11 +39,11 @@ func physics_update(delta: float) -> void:
 		if Input.is_action_just_pressed("up"):
 			state_machine.transition_to(PlayerState.JUMP)
 			return
-	if player.move_direction != 0:
+	if state_owner.move_direction != 0:
 		state_machine.transition_to(PlayerState.MOVE)
 		return
 	if Input.is_action_pressed("down"):
 		state_machine.transition_to(PlayerState.CROUCH)
 		return
-	player.anim.play("idle")
-	player.move_and_slide()
+	state_owner.anim.play("idle")
+	state_owner.move_and_slide()
