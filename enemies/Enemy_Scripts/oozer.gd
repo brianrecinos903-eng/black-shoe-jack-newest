@@ -1,7 +1,5 @@
-extends CharacterBody2D
+extends enemy
 
-@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
-
-
-func _ready() -> void:
-	anim.play("idle")
+func _ready() -> void: 
+	anim = $AnimatedSprite2D
+	anim.play("Idle")

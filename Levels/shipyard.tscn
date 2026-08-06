@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://iwa32rogpw1a" path="res://Backgrounds/Costal_Cave1.png" id="4_eth5l"]
 [ext_resource type="PackedScene" uid="uid://bpmvu08481i1c" path="res://scenes/player.tscn" id="5_eth5l"]
 [ext_resource type="PackedScene" uid="uid://dkcif5cpt2iil" path="res://scenes/pause_menu.tscn" id="6_n2ncx"]
+[ext_resource type="PackedScene" uid="uid://q1ha1sscin8k" path="res://enemies/oozer.tscn" id="7_n2ncx"]
+[ext_resource type="PackedScene" uid="uid://l8qi5jvswr87" path="res://enemies/shrimpner.tscn" id="8_1g304"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n2ncx"]
 texture = ExtResource("2_eth5l")
@@ -1456,3 +1458,9 @@ texture = ExtResource("4_eth5l")
 
 [node name="Player" parent="." unique_id=413210945 instance=ExtResource("5_eth5l")]
 position = Vector2(0, -64)
+
+[node name="Oozer" parent="." unique_id=1551069852 instance=ExtResource("7_n2ncx")]
+position = Vector2(520, -48)
+
+[node name="Shrimpner" parent="." unique_id=1056129754 instance=ExtResource("8_1g304")]
+position = Vector2(784, -88)
