@@ -37,6 +37,7 @@ var move_direction: int = 1
 @export var ceilling_jump_impulse: float = 200
 @export var wall_jump_impulse: float = 300.0
 @export var spring_jump_impulse: Vector2 = Vector2(1000.0, -1000.0)
+@export_range(0, 100, 1) var spring_jump_max_bounces: int = 12 # 0 = unlimited
 
 @export_subgroup("Ladder")
 @export var ladder_climb_speed: float = 220.0

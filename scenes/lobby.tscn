@@ -2052,6 +2052,7 @@ script = ExtResource("1_o1atq")
 [node name="Player" parent="." unique_id=413210945 instance=ExtResource("4_nqcc7")]
 position = Vector2(-1112, -64)
 in_water_resistance = 200.0
+spring_jump_max_bounces = 5
 
 [node name="All sea bar tiles" type="Node" parent="." unique_id=1374521840]
 

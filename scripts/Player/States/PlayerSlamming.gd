@@ -1,15 +1,17 @@
 extends PlayerState
 
-@export var button_hold_time = 1.5
+@export var button_hold_time := 1.5
 
+var spring_hold_elapsed := 0.0
+var spring_ready := false
 
-var exited = false
 
 func _ready() -> void:
 	state_name = PlayerState.SLAM
 
+
 func exit_state() -> void:
-	var next_state := (state_owner as Player).grounded_state_name()
+	var next_state := state_owner.grounded_state_name()
 	state_machine.transition_to(next_state)
 	state_owner.move_and_slide()
 	exited = true
@@ -18,6 +20,7 @@ func exit_state() -> void:
 
 func exit():
 	state_owner.gravity_factor = state_owner.default_gravity_factor
+
 
 func handle_bounce() -> void:
 	print("handling bounce")
@@ -37,6 +40,16 @@ func enter() -> void:
 	state_owner.bounces_left = state_owner.max_bounces
 	if not state_owner.in_water:
 		state_owner.gravity_factor = state_owner.fall_gravity_factor
+
+
+func update_spring_charge(delta: float) -> void:
+	if Input.is_action_pressed("down"):
+		spring_hold_elapsed += delta
+		spring_ready = spring_hold_elapsed >= button_hold_time
+	else:
+		spring_hold_elapsed = 0.0
+		spring_ready = false
+
 
 func physics_update(delta: float) -> void:
 	state_owner.apply_gravity(delta)
