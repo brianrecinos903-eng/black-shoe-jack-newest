@@ -3,8 +3,10 @@ extends CharacterBody2D
 class_name enemy
 
 var stunned_timer: Timer
-@export var anim: AnimatedSprite2D
-@onready var hitBox: Area2D = $AttackHitBox
+@onready var anim: AnimatedSprite2D
+@onready var hitBox: Area2D = $AttackHitBox 
+@onready var stateMachine: Node = $StateMachine
+
 
 var direction:int = 1
 @export var speed:int
@@ -19,7 +21,8 @@ func _ready() -> void:
 	stunned_timer.one_shot = true
 	add_child(stunned_timer)
 	stunned_timer.timeout.connect(_on_stun_timer_timeout)
-	hitBox.body_entered.connect(_on_attack_area_body_entered)
+	hitBox.body_entered.connect(_on_attack_area_body_entered) 
+	
 
 func Apply_Gravity(_delta) -> void:
 	if !is_on_floor():
