@@ -106,10 +106,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6jhai"]
-size = Vector2(56, 58)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ic7tg"]
-size = Vector2(50, 58)
+size = Vector2(56, 56)
 
 [node name="Oozer" type="CharacterBody2D" unique_id=1551069852]
 collision_layer = 64
@@ -121,15 +118,10 @@ sprite_frames = SubResource("SpriteFrames_6jhai")
 animation = &"Walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=334684911]
-position = Vector2(-2, 19)
+position = Vector2(-4, 20)
 shape = SubResource("RectangleShape2D_6jhai")
 
 [node name="AttackHitBox" type="Area2D" parent="." unique_id=1872605497]
-position = Vector2(0, 15)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitBox" unique_id=2011393139]
-position = Vector2(1, 4)
-shape = SubResource("RectangleShape2D_ic7tg")
 
 [node name="StateMachine" type="Node" parent="." unique_id=689985012 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_baql5")
