@@ -47,7 +47,7 @@ func physics_update(delta):
 		state_machine.transition_to(PlayerState.JUMP)
 		return
 	if not player.in_water:
-		if Input.is_action_just_pressed("down"):
+		if Input.is_action_pressed("down"):
 			state_machine.transition_to(PlayerState.SLAM)
 			return
 
