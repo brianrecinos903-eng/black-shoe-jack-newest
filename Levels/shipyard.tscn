@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://dkcif5cpt2iil" path="res://scenes/pause_menu.tscn" id="6_n2ncx"]
 [ext_resource type="PackedScene" uid="uid://q1ha1sscin8k" path="res://enemies/oozer.tscn" id="7_n2ncx"]
 [ext_resource type="PackedScene" uid="uid://l8qi5jvswr87" path="res://enemies/shrimpner.tscn" id="8_1g304"]
+[ext_resource type="PackedScene" path="res://collectables/werefish_biscuit.tscn" id="9_werefish_biscuit"]
+[ext_resource type="PackedScene" path="res://scenes/werefish_switch.tscn" id="10_werefish_switch"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n2ncx"]
 texture = ExtResource("2_eth5l")
@@ -1459,8 +1461,14 @@ texture = ExtResource("4_eth5l")
 [node name="Player" parent="." unique_id=413210945 instance=ExtResource("5_eth5l")]
 position = Vector2(0, -64)
 
+[node name="WerefishBiscuit" parent="." instance=ExtResource("9_werefish_biscuit")]
+position = Vector2(192, -64)
+
 [node name="Oozer" parent="." unique_id=1551069852 instance=ExtResource("7_n2ncx")]
 position = Vector2(520, -48)
 
 [node name="Shrimpner" parent="." unique_id=1056129754 instance=ExtResource("8_1g304")]
 position = Vector2(784, -88)
+
+[node name="WerefishSwitch" parent="." instance=ExtResource("10_werefish_switch")]
+position = Vector2(1024, -80)

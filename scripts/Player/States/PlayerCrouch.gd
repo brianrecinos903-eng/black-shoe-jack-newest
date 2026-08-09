@@ -8,7 +8,7 @@ func _ready() -> void:
 func enter():
 	if state_owner.in_water:
 		state_owner.gravity_factor = state_owner.water_gravity_factor
-		state_owner.velocity.y = state_owner.swim_down_impulse
+		state_owner.velocity.y = state_owner.get_swim_down_impulse()
 	else:
 		if state_owner.is_on_platform:
 			state_owner.position.y += state_owner.platform_threshold

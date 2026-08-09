@@ -69,6 +69,10 @@ var inverse_sprite_pos = 50
 var default_sprite_pos = 0
 var is_on_platform: bool = false
 
+@export_group("Werefish")
+@export_range(1.0, 3.0, 0.1) var werefish_water_speed_multiplier: float = 1.5
+var is_werefish: bool = false
+
 @export_group("Gameplay settings")
 @export var max_health: int = 3
 @export var health: int = 3
@@ -96,6 +100,7 @@ var bounces_left: int = max_bounces
 @onready var state_machine: StateMachine = $StateMachine
 @onready var collider: CollisionShape2D = $"CollisionShape2D"
 @onready var slam_area: CollisionShape2D = $SlamArea/"CollisionShape2D"
+@onready var attack_hitbox: Area2D = $AttackHitBox
 
 var score: float = 0
 var in_water: bool = false
@@ -114,6 +119,9 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	if is_werefish:
+		_bite_overlapping_enemies()
+
 	if (
 		is_on_ladder()
 		and state_machine.current_state.state_name != PlayerState.LADDER
@@ -184,7 +192,7 @@ func grounded_state_name() -> String:
 func apply_motion(delta: float, surface: SurfaceType = SurfaceType.FLOOR) -> void:
 	move_direction = Input.get_axis("left", "right")
 
-	var desired_speed = walk_speed
+	var desired_speed = walk_speed * get_water_speed_multiplier()
 	var wall_run_direction = 0
 	match surface:
 		SurfaceType.FLOOR, SurfaceType.CEILLING:
@@ -242,6 +250,30 @@ func apply_water_drag(delta: float) -> void:
 	velocity.y = move_toward(velocity.y, 0, in_water_resistance * delta * speed_multiplier)
 
 
+func get_water_speed_multiplier() -> float:
+	return werefish_water_speed_multiplier if is_werefish and in_water else 1.0
+
+
+func get_swim_up_impulse() -> float:
+	return swim_up_impulse * get_water_speed_multiplier()
+
+
+func get_swim_down_impulse() -> float:
+	return swim_down_impulse * get_water_speed_multiplier()
+
+
+func set_werefish_state(value: bool) -> void:
+	is_werefish = value
+	if not is_werefish:
+		speed_multiplier = min(speed_multiplier, 1.0)
+
+
+func _bite_overlapping_enemies() -> void:
+	for body in attack_hitbox.get_overlapping_bodies():
+		if body.is_in_group("enemy") and body.has_method("kill"):
+			body.kill()
+
+
 func take_dmg(amount: int, dmg_type: Helpers.DamageType = Helpers.DamageType.ENEMY) -> void:
 	if can_be_hurt:
 		is_hurt = true
@@ -254,7 +286,9 @@ func take_dmg(amount: int, dmg_type: Helpers.DamageType = Helpers.DamageType.ENE
 func _in_attack_range(body: Node2D) -> void:
 	if not body.is_in_group("enemy"):
 		return
-	if state_machine.current_state.name == PlayerState.SLAM or speed_multiplier > 2:
+	if is_werefish:
+		body.kill()
+	elif state_machine.current_state.name == PlayerState.SLAM or speed_multiplier > 2:
 		body.kill()
 	elif state_machine.current_state.name == PlayerState.FALL:
 		body.stun()
@@ -262,7 +296,9 @@ func _in_attack_range(body: Node2D) -> void:
 
 
 func anim_move() -> void:
-	if speed_multiplier >= 2.9:
+	if is_werefish:
+		anim.play("werejack_swim" if in_water else "werejack_walk")
+	elif speed_multiplier >= 2.9:
 		anim.play("rush")
 	elif speed_multiplier > 2:
 		anim.play("sprint")

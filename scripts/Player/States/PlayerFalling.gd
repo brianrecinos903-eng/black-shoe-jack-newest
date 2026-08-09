@@ -38,7 +38,7 @@ func physics_update(delta):
 			state_owner.can_coyote = true
 			state_machine.transition_to(state_owner.grounded_state_name())
 			return
-		state_owner.anim.play("jump")
+		state_owner.anim.play("werejack_swim" if state_owner.is_werefish else "jump")
 		state_owner.move_and_slide()
 		ignore_floor_check = false
 		return
@@ -59,6 +59,6 @@ func physics_update(delta):
 		state_machine.transition_to(state_owner.grounded_state_name())
 		state_owner.can_coyote = true
 		return
-	state_owner.anim.play("jump")
+	state_owner.anim.play("werejack_walk" if state_owner.is_werefish else "jump")
 	state_owner.move_and_slide()
 	ignore_floor_check = false

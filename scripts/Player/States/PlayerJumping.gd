@@ -19,7 +19,7 @@ func enter():
 			state_owner.velocity.y = -state_owner.jump_impulse
 		ignore_floor_check = true
 	else:
-		state_owner.velocity.y = -state_owner.swim_up_impulse
+		state_owner.velocity.y = -state_owner.get_swim_up_impulse()
 		state_owner.gravity_factor = state_owner.water_gravity_factor
 		state_owner.can_coyote = true
 
@@ -69,7 +69,7 @@ func physics_update(delta: float) -> void:
 		state_owner.apply_water_drag(delta)
 		print("swimming up")
 		if Input.is_action_just_pressed("up"):
-			state_owner.velocity.y = -state_owner.swim_up_impulse
+			state_owner.velocity.y = -state_owner.get_swim_up_impulse()
 
 		if Input.is_action_just_released("up"):
 			state_machine.transition_to(state_owner.grounded_state_name())
@@ -84,5 +84,8 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to(PlayerState.HURT)
 		return
 	# TODO: Make animation for swim up
-	state_owner.anim.play("jump")
+	if state_owner.is_werefish:
+		state_owner.anim.play("werejack_swim" if state_owner.in_water else "werejack_walk")
+	else:
+		state_owner.anim.play("jump")
 	ignore_floor_check = false

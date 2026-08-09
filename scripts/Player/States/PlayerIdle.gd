@@ -21,7 +21,7 @@ func physics_update(delta: float) -> void:
 		else:
 			water_idle_time = 0.0
 		if water_idle_time >= state_owner.water_sink_delay:
-			state_owner.velocity.y = state_owner.water_sink_speed
+			state_owner.velocity.y = state_owner.water_sink_speed * state_owner.get_water_speed_multiplier()
 			state_machine.transition_to(PlayerState.FALL)
 			return
 	if state_owner.is_hurt:
@@ -44,5 +44,5 @@ func physics_update(delta: float) -> void:
 	if Input.is_action_pressed("down"):
 		state_machine.transition_to(PlayerState.CROUCH)
 		return
-	state_owner.anim.play("idle")
+	state_owner.anim.play("werejack_idle" if state_owner.is_werefish else "idle")
 	state_owner.move_and_slide()
