@@ -1,6 +1,6 @@
 extends PlayerState
 
-@export var button_hold_time := 1.5
+@export var button_hold_time := 0.5
 
 var spring_hold_elapsed := 0.0
 var spring_ready := false
@@ -37,6 +37,7 @@ func enter() -> void:
 
 
 func update_spring_charge(delta: float) -> void:
+	state_owner.velocity.x = 0
 	if Input.is_action_pressed("down"):
 		spring_hold_elapsed += delta
 		spring_ready = spring_hold_elapsed >= button_hold_time
