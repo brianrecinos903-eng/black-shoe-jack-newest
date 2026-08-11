@@ -7,6 +7,7 @@ const CONFIRM_DIALOG_SIZE := Vector2i(760, 360)
 @onready var pause_root: Control = $PauseRoot
 @onready var resume_button: Button = $PauseRoot/CenterContainer/PanelContainer/VBoxContainer/ResumeButton
 @onready var options_button: Button = $PauseRoot/CenterContainer/PanelContainer/VBoxContainer/OptionsButton
+@onready var reset_button: Button = $PauseRoot/CenterContainer/PanelContainer/VBoxContainer/ResetButton
 @onready var exit_button: Button = $PauseRoot/CenterContainer/PanelContainer/VBoxContainer/ExitButton
 @onready var exit_confirm_dialog: ConfirmationDialog = $ExitConfirmDialog
 
@@ -19,6 +20,7 @@ func _ready() -> void:
 
 	resume_button.pressed.connect(_on_resume_pressed)
 	options_button.pressed.connect(_on_options_pressed)
+	reset_button.pressed.connect(_on_reset_pressed)
 	exit_button.pressed.connect(_on_exit_pressed)
 	exit_confirm_dialog.confirmed.connect(_on_exit_confirmed)
 
@@ -73,7 +75,10 @@ func _on_resume_pressed() -> void:
 func _on_options_pressed() -> void:
 	print("Options pressed")
 
-
+func _on_reset_pressed() -> void: 
+	get_tree().paused = false
+	get_tree().reload_current_scene()
+	
 func _on_exit_pressed() -> void:
 	exit_confirm_dialog.popup_centered(CONFIRM_DIALOG_SIZE)
 
@@ -81,3 +86,4 @@ func _on_exit_pressed() -> void:
 func _on_exit_confirmed() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_file(main_menu_scene)
+	
