@@ -11,7 +11,7 @@ func _ready() -> void:
 	for child in get_children():
 		if child is State:
 			states[child.name] = child
-			child.player = owner
+			child.state_owner = owner
 			child.state_machine = self
 	#Helpers.print_log("States found: %s" % states.keys(), enable_debug)
 	Helpers.print_log("Owner: %s" % owner, enable_debug)

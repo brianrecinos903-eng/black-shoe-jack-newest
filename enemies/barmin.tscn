@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bjlg05bj2ac1f" path="res://enemies/Enemy_Scripts/barmin.gd" id="1_mvowx"]
 [ext_resource type="Texture2D" uid="uid://5d0a8luv7js5" path="res://enemies/Barmin-Sheet.png" id="1_u4doi"]
+[ext_resource type="PackedScene" uid="uid://dxojd7eewhhe4" path="res://traps/oil_ball.tscn" id="2_eo2lu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xt0mn"]
 atlas = ExtResource("1_u4doi")
@@ -115,16 +116,41 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fp1n2"]
 size = Vector2(72, 96)
 
-[node name="Barmin" type="CharacterBody2D" unique_id=653777892]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mvowx"]
+size = Vector2(66, 87)
+
+[node name="Barmin" type="CharacterBody2D" unique_id=653777892 node_paths=PackedStringArray("anim")]
 collision_layer = 64
-collision_mask = 64
+collision_mask = 2
 script = ExtResource("1_mvowx")
+max_health = 1.0
+oil_ball_scene = ExtResource("2_eo2lu")
+anim = NodePath("AnimatedSprite2D")
+speed = 100
+attack_Dmg = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=854561880]
 position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_6jhai")
-animation = &"hiding"
+animation = &"idle"
+
+[node name="EyeTop" type="Marker2D" parent="AnimatedSprite2D" unique_id=1021470892]
+position = Vector2(11, -3)
+gizmo_extents = 56.5
+
+[node name="EyeBottom" type="Marker2D" parent="AnimatedSprite2D" unique_id=1269176228]
+position = Vector2(-8, 4)
+gizmo_extents = 69.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=236749461]
 position = Vector2(-4, 8)
 shape = SubResource("RectangleShape2D_fp1n2")
+
+[node name="AttackHitBox" type="Area2D" parent="." unique_id=1427572074 groups=["enemy"]]
+collision_layer = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitBox" unique_id=1885320889]
+position = Vector2(-4, 10)
+shape = SubResource("RectangleShape2D_mvowx")
+
+[connection signal="body_entered" from="AttackHitBox" to="." method="_on_attack_hit_box_body_entered"]

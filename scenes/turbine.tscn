@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://757v06s0jrna"]
+
+[ext_resource type="Script" uid="uid://dey0drmpx037j" path="res://scripts/LevelElemets/turbine.gd" id="1_d6off"]
+[ext_resource type="Texture2D" uid="uid://cfx12lx4s1xgk" path="res://icon.svg" id="2_xun2g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pbm2b"]
+size = Vector2(20, 600)
+
+[node name="Turbine" type="Area2D" unique_id=66369674]
+script = ExtResource("1_d6off")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=681560851]
+position = Vector2(0, -42)
+shape = SubResource("RectangleShape2D_pbm2b")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=781696416]
+position = Vector2(9.536743e-07, -4.5000005)
+scale = Vector2(0.15625001, 0.07031251)
+texture = ExtResource("2_xun2g")

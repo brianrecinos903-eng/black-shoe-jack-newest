@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dd2r85rqq4okv"]
+
+[ext_resource type="Script" uid="uid://cu7qcg7julqfb" path="res://scripts/LevelElemets/werefish_switch.gd" id="2_script"]
+[ext_resource type="Texture2D" uid="uid://cfx12lx4s1xgk" path="res://icon.svg" id="2_swx1c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trigger"]
+size = Vector2(96, 112)
+
+[node name="WerefishSwitch" type="Area2D" unique_id=1946221254 groups=["werefish_switch"]]
+collision_layer = 0
+script = ExtResource("2_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1054988482]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_swx1c")
+
+[node name="Prompt" type="Label" parent="." unique_id=1854338957]
+offset_left = -38.0
+offset_top = -100.0
+offset_right = -38.0
+offset_bottom = -100.0
+text = "Press E"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=681408218]
+shape = SubResource("RectangleShape2D_trigger")

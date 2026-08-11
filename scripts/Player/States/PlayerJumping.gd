@@ -2,62 +2,90 @@ extends PlayerState
 
 var ignore_floor_check := true
 
+
 func _ready() -> void:
 	state_name = PlayerState.JUMP
 
-func enter():
-	player.gravity_factor = player.jump_gravity_factor
-	if state_machine.previous_state == PlayerState.WALL_RUN:
-		player.velocity.y = player.jump_impulse
-		player.velocity.x = -player.move_direction * player.wall_jump_impulse
-	elif state_machine.previous_state == PlayerState.CEILLING_RUN:
-		player.velocity.y = 200
-	else:
-		player.velocity.y = player.jump_impulse
 
-	ignore_floor_check = true
+func enter():
+	if not state_owner.in_water:
+		state_owner.gravity_factor = state_owner.jump_gravity_factor
+		if state_machine.previous_state == PlayerState.WALL_RUN:
+			state_owner.velocity.y = -state_owner.jump_impulse
+			state_owner.velocity.x = -state_owner.move_direction * state_owner.wall_jump_impulse
+		elif state_machine.previous_state == PlayerState.CEILLING_RUN:
+			state_owner.velocity.y = state_owner.ceilling_jump_impulse
+		else:
+			state_owner.velocity.y = -state_owner.jump_impulse
+		ignore_floor_check = true
+	else:
+		state_owner.velocity.y = -state_owner.get_swim_up_impulse()
+		state_owner.gravity_factor = state_owner.water_gravity_factor
+		state_owner.can_coyote = true
+
+
+func exit():
+	if state_owner.in_water:
+		state_owner.gravity_factor = state_owner.water_gravity_factor
 
 
 func physics_update(delta: float) -> void:
-	player.apply_gravity(delta)
-	player.apply_speed_input()
-	player.apply_horizontal_movement(delta)
+	state_owner.apply_speed_input()
+	state_owner.apply_motion(delta)
+	state_owner.move_and_slide()
+	state_owner.apply_gravity(delta)
+	if not state_owner.in_water:
+		if Input.is_action_just_released("jump") and state_owner.velocity.y < -state_owner.min_jump_impulse:
+			state_owner.velocity.y = -state_owner.min_jump_impulse
 
-	if state_machine.previous_state == PlayerState.CEILLING_RUN or state_machine.previous_state ==  PlayerState.WALL_RUN or state_machine.previous_state == PlayerState.HURT:
-		player.can_coyote = true 
-		state_machine.transition_to(PlayerState.FALL)
-		return
+		if state_owner.velocity.y >= 150:
+			state_machine.transition_to(PlayerState.FALL)
+			return
+		if (
+			state_machine.previous_state == PlayerState.CEILLING_RUN
+			or state_machine.previous_state == PlayerState.WALL_RUN
+			or state_machine.previous_state == PlayerState.HURT
+		):
+			state_owner.can_coyote = true
+			state_machine.transition_to(PlayerState.FALL)
+			return
+		if state_machine.previous_state == PlayerState.FALL:
+			if state_owner.is_on_ceiling() and state_owner.move_direction != 0:
+				state_machine.transition_to(PlayerState.CEILLING_RUN)
+				return
+		if Input.is_action_just_pressed("down"):
+			state_owner.can_coyote = true
+			state_machine.transition_to(PlayerState.SLAM)
+			return
+		if state_owner.speed_multiplier >= 1.5:
+			if state_owner.is_on_wall():
+				state_machine.transition_to(PlayerState.WALL_RUN)
+				return
+		if not ignore_floor_check and state_owner.is_on_floor():
+			state_owner.can_coyote = true
+			state_machine.transition_to(state_owner.grounded_state_name())
+			return
+	else:
+		state_owner.apply_water_drag(delta)
+		print("swimming up")
+		if Input.is_action_just_pressed("up"):
+			state_owner.velocity.y = -state_owner.get_swim_up_impulse()
 
-	if state_machine.previous_state == PlayerState.FALL:
-		if player.is_on_ceiling() and player.move_direction != 0:
-			state_machine.transition_to(PlayerState.CEILLING_RUN)
+		if Input.is_action_just_released("up"):
+			state_machine.transition_to(state_owner.grounded_state_name())
 			return
 
-	if player.is_hurt:
-		player.can_coyote = true
+		if not ignore_floor_check and state_owner.is_on_floor():
+			state_owner.can_coyote = true
+			state_machine.transition_to(state_owner.grounded_state_name())
+			return
+	if state_owner.is_hurt:
+		state_owner.can_coyote = true
 		state_machine.transition_to(PlayerState.HURT)
 		return
-
-	if Input.is_action_just_pressed("down"):
-		player.can_coyote = true
-		state_machine.transition_to(PlayerState.SLAM)
-		return
-
-	if player.velocity.y >= 150:
-		state_machine.transition_to(PlayerState.FALL)
-		return
-
-	if player.speed_multiplier >= 1.5:
-		if player.is_on_wall():
-			state_machine.transition_to(PlayerState.WALL_RUN)
-			return
-
-
-	if not ignore_floor_check and player.is_on_floor():
-		player.can_coyote = true
-		state_machine.transition_to(player.grounded_state_name())
-		return
-
-	player.anim.play("jump")
-	player.move_and_slide()
+	# TODO: Make animation for swim up
+	if state_owner.is_werefish:
+		state_owner.anim.play("werejack_swim" if state_owner.in_water else "werejack_walk")
+	else:
+		state_owner.anim.play("jump")
 	ignore_floor_check = false

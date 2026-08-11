@@ -1,69 +1,69 @@
 extends PlayerState
 
-@export var button_hold_time = 1.5
+@export var button_hold_time := 0.5
 
+var spring_hold_elapsed := 0.0
+var spring_ready := false
 
-var exited = false
 
 func _ready() -> void:
 	state_name = PlayerState.SLAM
 
+
 func exit_state() -> void:
-	var next_state := player.grounded_state_name()
-	state_machine.transition_to(next_state)
-	player.move_and_slide()
-	exited = true
-	return
+	state_machine.transition_to(state_owner.grounded_state_name())
+	state_owner.move_and_slide()
 
 
-func exit():
-	player.gravity_factor = player.default_gravity_factor
+func exit() -> void:
+	state_owner.gravity_factor = state_owner.default_gravity_factor
+
 
 func handle_bounce() -> void:
-	print("handling bounce")
-	if player.bounces_left == 0:
+	if state_owner.bounces_left == 0:
 		exit_state()
 		return
-	if player.bounces_left > 0:
-		player.velocity.y = player.jump_impulse
-		player.bounces_left -= 1
-		return
+	state_owner.velocity.y = -state_owner.jump_impulse
+	state_owner.bounces_left -= 1
 
 
 func enter() -> void:
-	print("Now in slam")
-	exited = false
-	player.speed_multiplier = 0.2
-	player.bounces_left = player.max_bounces
-	player.gravity_factor = player.fall_gravity_factor
+	spring_hold_elapsed = 0.0
+	spring_ready = false
+	state_owner.speed_multiplier = 0.2
+	state_owner.bounces_left = state_owner.max_bounces
+	if not state_owner.in_water:
+		state_owner.gravity_factor = state_owner.fall_gravity_factor
+
+
+func update_spring_charge(delta: float) -> void:
+	state_owner.velocity.x = 0
+	if Input.is_action_pressed("down"):
+		spring_hold_elapsed += delta
+		spring_ready = spring_hold_elapsed >= button_hold_time
+	else:
+		spring_hold_elapsed = 0.0
+		spring_ready = false
+
 
 func physics_update(delta: float) -> void:
-	player.apply_gravity(delta)
-	player.apply_horizontal_movement(delta)
-	player.move_and_slide()
+	update_spring_charge(delta)
+	state_owner.apply_gravity(delta)
+	state_owner.apply_motion(delta)
+	state_owner.move_and_slide()
 
 	if Input.is_action_just_pressed("up"):
 		exit_state()
 		return
-	if player.is_on_floor():
-		print(player.bounces_left)
+
+	if state_owner.is_on_floor():
 		if not Input.is_action_pressed("down"):
 			handle_bounce()
 			return
-		Helpers.wait(button_hold_time)
-		print("waited")
-		Helpers.print_log("Exited: %s" % exited, player.enable_debug)
-		if exited or not Input.is_action_pressed("down"):
+		if spring_ready:
+			state_owner.camera_2d.shake(state_owner.slam_shake_factor)
+			state_owner.slam_area.disabled = false
+			state_machine.transition_to(PlayerState.SPRING)
 			return
 
-		player.camera_2d.shake(player.slam_shake_factor)
-		player.slam_area.disabled = false
-		Helpers.print_log("Slam enabled", player.enable_debug)
-		state_machine.transition_to(PlayerState.SPRING)
-		return
-		
-
-	player.anim.play("slam")
-
-
-	
+	state_owner.anim.play("slam")
